@@ -38,6 +38,7 @@
 | 2      | 23521105     | Đỗ Tuyết Nhi    |[tweitnhyy](https://github.com/tweitnhyy)     |23521105@gm.uit.edu.vn   |
 | 3      | 23520996      | Nguyễn Thúy Ngân       |[NganNT357](https://github.com/[NganNT357])                 |23520996@gm.uit.edu.vn   |
 | 4      | 23521052      | Nguyễn Trần Thảo Nguyên       |[2nguyen3](https://github.com/2nguyen3)           |23521052@gm.uit.edu.vn   |
+| 5      | 23520356      | Thái Bình Dương       |[DuongThai2712](https://github.com/DuongThai2712)           |23520356@gm.uit.edu.vn   |
 
 
 ## SEMINAR
