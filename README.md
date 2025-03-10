@@ -43,10 +43,10 @@
 
 ## SEMINAR
 <a name="seminar"></a>
-Seminar nhóm: ...
+Seminar nhóm: Z10
 
 
 ## ĐỒ ÁN MÔN HỌC
 <a name="doan"></a>
-Đồ án Nhóm: ...
+Đồ án Nhóm: Z10
 
