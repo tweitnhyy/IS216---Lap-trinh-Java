@@ -44,9 +44,9 @@
 ## SEMINAR
 
 <a name="seminar"></a>
-Seminar nhóm: Z10
+Seminar nhóm: ...
 
 ## ĐỒ ÁN MÔN HỌC
 
 <a name="doan"></a>
-Đồ án Nhóm: Z10
+Đồ án Nhóm: ...
