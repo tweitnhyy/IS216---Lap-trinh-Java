@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./img/weather-favicon.png"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>SkyCast - Thời tiết</title>
+  </head>
+
+  <body>
+    <video autoplay loop muted width="100px" height="100px">
+      <source src="./assets/background.mp4" type="video/mp4" />
+    </video>
+
+    <div class="content">
+      <h1>SkyCast</h1>
+      <p>Thời tiết theo thời gian thực</p>
+
+      <!-- SEACH - CONTAINER -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Nhập quận/huyện..."
+          autocomplete="off"
+        />
+        <button onclick="fetchWeather()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <!-- WEATHER - INFO -->
+      <div class="weather-info">
+        <h2 id="location">--</h2>
+        <img
+          id="weatherIcon"
+          src="assets/default-weather.png"
+          alt="Weather Icon"
+          style="display: none"
+        />
+        <p>Nhiệt độ: <span id="temperature">_ _</span>°C</p>
+        <p>Độ ẩm: <span id="humidity">_ _</span>%</p>
+        <p>Gió: <span id="windSpeed">_ _</span> km/h</p>
+        <p id="status">Đang cập nhật...</p>
+      </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
