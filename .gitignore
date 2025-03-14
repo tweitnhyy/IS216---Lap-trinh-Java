@@ -1,3 +1,2 @@
-.vscode
-
-test
+.vscode/*
+!.vscode/tasks.json
