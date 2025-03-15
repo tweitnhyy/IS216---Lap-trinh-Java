@@ -75,7 +75,7 @@ function updateForecastUI(forecastData) {
       forecastItem.innerHTML = `
           <p>${dayOfWeek}, ${date.getDate()}/${date.getMonth() + 1}</p>
           <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png">
-          <p>${temp.toFixed(1)}°C</p>
+          <p>${temp.toFixed(0)}°C</p>
       `;
 
       forecastContainer.appendChild(forecastItem);
@@ -96,6 +96,7 @@ function updateWeeklyForecast(data) {
       if (!dailyForecast.has(dayKey)) {
           dailyForecast.set(dayKey, {
               temp: entry.main.temp,
+              humidity: entry.main.humidity,
               icon: entry.weather[0].icon,
               date: dayKey,
               isToday: date.toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit" }) === today
@@ -112,7 +113,8 @@ function updateWeeklyForecast(data) {
           <p>${info.date}</p>
           ${info.isToday ? '<p style="color: white; font-weight: bold;">Hôm nay</p>' : ""}
           <img src="https://openweathermap.org/img/wn/${info.icon}@2x.png" alt="Weather Icon">
-          <p>${info.temp.toFixed(1)}°C</p>
+          <p>${info.temp.toFixed(0)}°C</p>
+          <p>${info.humidity}%</p>
       `;
       forecastContainer.appendChild(forecastItem);
   });
