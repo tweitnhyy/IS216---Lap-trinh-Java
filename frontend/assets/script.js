@@ -1,10 +1,35 @@
-document
-  .getElementById("searchInput")
-  .addEventListener("keydown", function (event) {
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const districtList = document.getElementById("districtList");
+
+  // Gán sự kiện Enter để tìm kiếm thời tiết
+  searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       fetchWeather();
     }
   });
+
+  // Gán sự kiện click cho từng mục trong danh sách
+  districtList.querySelectorAll("li").forEach((item) => {
+    item.addEventListener("click", function () {
+      searchInput.value = this.textContent; // Điền giá trị vào ô tìm kiếm
+      districtList.style.maxHeight = "0"; // Ẩn danh sách sau khi chọn
+      fetchWeather(); // Tự động tìm kiếm sau khi chọn
+    });
+  });
+
+  // Ẩn danh sách khi nhấn ra ngoài
+  document.addEventListener("click", function (event) {
+    if (!document.querySelector(".search-wrapper").contains(event.target)) {
+      districtList.style.maxHeight = "0";
+    }
+  });
+
+  // Hiển thị danh sách khi nhấn vào ô tìm kiếm
+  searchInput.addEventListener("focus", function () {
+    districtList.style.maxHeight = "300px"; // Mở dropdown khi nhấn vào ô input
+  });
+});
 
 async function fetchWeather() {
   const city = document.getElementById("searchInput").value.trim();
