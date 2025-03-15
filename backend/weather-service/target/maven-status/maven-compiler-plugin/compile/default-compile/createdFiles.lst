@@ -1,0 +1,6 @@
+com/skycast/weather_service/config/WeatherConfig.class
+com/skycast/weather_service/dto/WeatherResponse.class
+com/skycast/weather_service/controller/WeatherController.class
+com/skycast/weather_service/service/WeatherService.class
+com/skycast/weather_service/WeatherServiceApplication.class
+com/skycast/weather_service/service/WeatherClient.class

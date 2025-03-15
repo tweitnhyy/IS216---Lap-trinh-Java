@@ -1,88 +1,62 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+<head>
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <link
-      rel="shortcut icon"
-      href="./img/weather-favicon.png"
-      type="image/x-icon"
-    />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <title>SkyCast - Thời tiết</title>
-  </head>
-
-  <body>
-    <video autoplay loop muted width="100px" height="100px">
-      <source src="./assets/background.mp4" type="video/mp4" />
+        rel="shortcut icon"
+        href="./img/weather-favicon.png"
+        type="image/x-icon"
+     />
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="./assets/style.css" />
+     <title>SkyCast - Thời tiết</title>
+</head>
+        
+<body>
+    <video autoplay loop muted>
+        <source src="./assets/background.mp4" type="video/mp4" />
     </video>
+     
+    <div id="weatherContainer" class="content">
+        <h1>SkyCast</h1>
+        <p>Thời tiết theo thời gian thực</p>
+         
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Nhập địa điểm..."
+                autocomplete="off"
+            >
+            <button id="searchButton">
+                <i class="fas fa-search"></i>
+            </button>      
+        </div>
+         
+        <div id="current-weather">
+            <h2 id="location">---</h2>
+            <img 
+                id="weatherIcon" 
+                src="assets/default-weather.png" 
+                alt="Weather Icon" 
+                style="display: none;"
+            />
+            <p>Nhiệt độ: <span id="temperature">_ _ _</span>°C</p>
+            <p>Độ ẩm: <span id="humidity">_ _ _</span>%</p>
+            <p>Gió: <span id="windSpeed">_ _ _</span> km/h</p>
+            <p id="status">Đang cập nhật...</p>
+        </div>
+        
+        <h2>Dự báo thời tiết trong 5 ngày kế tiếp</h2>
+        <p id="forecast-status" style="color: white;">Đang cập nhật...</p>
+        <div id="weeklyForecast" class="forecast-container"></div>
 
-    <div class="content">
-      <h1>SkyCast</h1>
-      <p>Thời tiết theo thời gian thực</p>
-
-      <!-- SEARCH - CONTAINER -->
-    <div class="search-wrapper">
-      <div class="search-container">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Nhập vị trí hoặc chọn ở danh sách dưới"
-          autocomplete="off"
-        />
-        <button onclick="fetchWeather()">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-
-      <!-- DROPDOWN LIST -->
-      <ul id="districtList" class="dropdown-list">
-        <li data-value="thu-duc">Thủ Đức</li>
-        <li data-value="quan-1">Quận 1</li>
-        <li data-value="quan-22">Quận 2</li>
-        <li data-value="quan-3">Quận 3</li>
-        <li data-value="quan-4">Quận 4</li>
-        <li data-value="quan-5">Quận 5</li>
-        <li data-value="quan-6">Quận 6</li>
-        <li data-value="quan-7">Quận 7</li>
-        <li data-value="quan-8">Quận 8</li>
-        <li data-value="quan-9">Quận 9</li>
-        <li data-value="quan-10">Quận 10</li>
-        <li data-value="quan-11">Quận 11</li>
-        <li data-value="quan-12">Quận 12</li>
-        <li data-value="tan-binh">Tân Bình</li>
-        <li data-value="tan-phu">Tân Phú</li>
-        <li data-value="binh-thanh">Bình Thạnh</li>
-        <li data-value="phu-nhuan">Phú Nhuận</li>
-        <li data-value="go-vap">Gò Vấp</li>
-        <li data-value="binh-tan">Bình Tân</li>
-        <li data-value="cu-chi">Củ Chi</li>
-        <li data-value="hoc-mon">Hóc Môn</li>
-        <li data-value="nha-be">Nhà Bè</li>
-        <li data-value="binh-chanh">Bình Chánh</li>
-      </ul>
     </div>
-
-      <!-- WEATHER - INFO -->
-      <div class="weather-info">
-        <h2 id="location">--</h2>
-        <img
-          id="weatherIcon"
-          src="assets/default-weather.png"
-          alt="Weather Icon"
-          style="display: none"
-        />
-        <p>Nhiệt độ: <span id="temperature">_ _</span>°C</p>
-        <p>Độ ẩm: <span id="humidity">_ _</span>%</p>
-        <p>Gió: <span id="windSpeed">_ _</span> km/h</p>
-        <p id="status">Đang cập nhật...</p>
-      </div>
-    </div>
-
+     
     <script src="./assets/script.js"></script>
-  </body>
+</body>
 </html>

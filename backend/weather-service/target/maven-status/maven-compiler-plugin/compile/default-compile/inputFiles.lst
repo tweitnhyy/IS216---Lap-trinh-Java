@@ -1,0 +1,6 @@
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/WeatherServiceApplication.java
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/config/WeatherConfig.java
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/controller/WeatherController.java
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/dto/WeatherResponse.java
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/service/WeatherClient.java
+/Users/nguyen/IS216---Lap-trinh-Java/backend/weather-service/src/main/java/com/skycast/weather_service/service/WeatherService.java
