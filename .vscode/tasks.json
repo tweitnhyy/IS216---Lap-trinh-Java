@@ -1,0 +1,55 @@
+// Setup tự động cho frontend và backend
+// >Run task --> Start All
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Backend - Weather Service",
+      "type": "shell",
+      "command": "mvn spring-boot:run",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "backend/weather-service"
+      }
+    },
+    {
+      "label": "Start Backend - Location Service",
+      "type": "shell",
+      "command": "mvn spring-boot:run",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "backend/location-service"
+      }
+    },
+    {
+      "label": "Start Frontend",
+      "type": "shell",
+      "command": "npx live-server --port=5501",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "options": {
+        "cwd": "frontend"
+      }
+    },
+    {
+      "label": "Start All",
+      "dependsOn": [
+        "Start Frontend",
+        "Start Backend - Weather Service",
+        "Start Backend - Location Service"
+      ],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

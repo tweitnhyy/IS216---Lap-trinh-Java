@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "geonames.api.username",
+      "type": "java.lang.String",
+      "description": "A description for 'geonames.api.username'"
+    },
+    {
+      "name": "geonames.api.url",
+      "type": "java.lang.String",
+      "description": "A description for 'geonames.api.url'"
+    }
+  ]
+}
