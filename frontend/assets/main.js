@@ -2,6 +2,8 @@ const WEATHER_API_URL = "http://localhost:8080/api/weather"; // weather-service 
 const LOCATION_API_URL = "http://localhost:8081/api/locations"; // location-service api
 
 let hasSelectedLocation = false; // Biến để kiểm tra người dùng đã chọn địa điểm
+let debounceTimer;
+const searchCache = {}; // Lưu kết quả tìm kiếm trước đó
 
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
@@ -13,18 +15,44 @@ document.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener("keydown", handleEnterPress);
 
   // Xử lý khi nhập liệu vào ô tìm kiếm
+  // function handleInput() {
+  //   const query = searchInput.value.trim();
+
+  //   // Xử lí việc nhập của user
+  //   if (query.length > 2 && !hasSelectedLocation) {
+  //     fetch(`${LOCATION_API_URL}/suggest?query=${encodeURIComponent(query)}`)
+  //       .then((response) => response.json())
+  //       .then((data) => updateSuggestions(data))
+  //       .catch((error) => console.error("Lỗi fetch:", error));
+  //   } else {
+  //     suggestionsList.style.display = "none";
+  //   }
+  // }
+
   function handleInput() {
+    clearTimeout(debounceTimer); // Xóa bộ đếm thời gian cũ
     const query = searchInput.value.trim();
 
-    // Xử lí việc nhập của user
-    if (query.length > 2 && !hasSelectedLocation) {
+    if (query.length < 2) {
+      suggestionsList.style.display = "none";
+      return;
+    }
+
+    // Kiểm tra cache trước khi gọi API
+    if (searchCache[query]) {
+      updateSuggestions(searchCache[query]);
+      return;
+    }
+
+    debounceTimer = setTimeout(() => {
       fetch(`${LOCATION_API_URL}/suggest?query=${encodeURIComponent(query)}`)
         .then((response) => response.json())
-        .then((data) => updateSuggestions(data))
+        .then((data) => {
+          searchCache[query] = data; // Lưu vào cache
+          updateSuggestions(data);
+        })
         .catch((error) => console.error("Lỗi fetch:", error));
-    } else {
-      suggestionsList.style.display = "none";
-    }
+    }, 100);
   }
 
   // Cập nhật danh sách gợi ý địa điểm
