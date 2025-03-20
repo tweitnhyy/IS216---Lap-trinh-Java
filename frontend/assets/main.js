@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(debounceTimer); // Xóa bộ đếm thời gian cũ
     const query = searchInput.value.trim();
 
-    if (query.length < 2) {
+    if (query.length === 0) {
       suggestionsList.style.display = "none";
       return;
     }
