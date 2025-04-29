@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lịch sử đặt vé</title>
+</head>
+<body>
+    <h1>Lịch sử đặt vé</h1>
+    <ul>
+        <li th:each="booking : ${bookings}">
+            <span th:text="${booking.concertName}">Tên concert</span> -
+            <span th:text="${booking.quantity}">Số lượng</span> vé
+        </li>
+    </ul>
+</body>
+</html>

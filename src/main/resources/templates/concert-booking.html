@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đặt vé concert</title>
+</head>
+<body>
+    <h1>Đặt vé concert</h1>
+    <form method="post" th:action="@{/booking}">
+        <input type="hidden" name="concertId" th:value="${concert.id}" />
+        <label>Số lượng vé:</label>
+        <input type="number" name="quantity" required />
+        <button type="submit">Đặt vé</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Concert</title>
+</head>
+<body>
+    <h1>Danh sách Concert</h1>
+    <ul>
+        <li th:each="concert : ${concerts}">
+            <a th:href="@{'/concert/' + ${concert.id}}"
+               th:text="${concert.name}">Tên Concert</a>
+        </li>
+    </ul>
+</body>
+</html>
