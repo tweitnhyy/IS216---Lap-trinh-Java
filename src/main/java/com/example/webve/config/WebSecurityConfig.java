@@ -35,9 +35,9 @@ public class WebSecurityConfig {
                 .loginPage("/login")
                 .permitAll()
             .and()
-            .oauth2Login() // <-- thêm dòng này để bật Google login
-                .loginPage("/login")
-            .and()
+            // .oauth2Login() // <-- thêm dòng này để bật Google login
+            //     .loginPage("/login")
+            // .and()
             .logout()
                 .logoutSuccessHandler(customLogoutSuccessHandler) // Sử dụng CustomLogoutSuccessHandler
                 .permitAll();
