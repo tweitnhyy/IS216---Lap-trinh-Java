@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Concert</title>
+</head>
+<body>
+    <h1>Concert List</h1>
+    <ul>
+        <li th:each="concert : ${concerts}">
+            <span th:text="${concert.name}"></span> - 
+            <span th:text="${concert.date}"></span> @ 
+            <span th:text="${concert.location}"></span> - 
+            <a th:href="@{/book/{id}(id=${concert.id})}">Book Ticket</a>
+        </li>
+    </ul>
+</body>
+</html>

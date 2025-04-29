@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Ticket</title>
+\\
+</head>
+<body>
+    <h1>Book Ticket for <span th:text="${concert.name}"></span></h1>
+    <form th:action="@{/book/{id}(id=${concert.id})}" method="post" th:object="${ticket}">
+        <label>Your Name:</label>
+        <input type="text" th:field="*{customerName}" required>
+        <button type="submit">Book</button>
+    </form>
+</body>
+</html>
