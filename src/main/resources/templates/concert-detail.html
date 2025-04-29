@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi tiết Concert</title>
+</head>
+<body>
+    <h1 th:text="${concert.name}">Tên concert</h1>
+    <p><strong>Ngày tổ chức:</strong> <span th:text="${concert.date}"></span></p>
+    <p><strong>Địa điểm:</strong> <span th:text="${concert.location}"></span></p>
+    <a th:href="@{'/concert/' + ${concert.id} + '/book'}">Đặt vé</a>
+</body>
+</html>
