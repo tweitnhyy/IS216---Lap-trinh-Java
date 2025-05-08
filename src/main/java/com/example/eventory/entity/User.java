@@ -2,6 +2,9 @@ package com.example.eventory.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Users")
@@ -9,14 +12,10 @@ import lombok.Data;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "username", unique = true, nullable = false)
-    private String username;
-
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password_hash", nullable = false)
@@ -24,4 +23,10 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role;
+
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "last_login")
+    private Timestamp lastLogin;
 }

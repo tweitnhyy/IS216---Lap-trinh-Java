@@ -10,8 +10,6 @@ public class Ticket {
 
     @Id
     @Column(name = "ticket_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticket_seq")
-    @SequenceGenerator(name = "ticket_seq", sequenceName = "ticket_seq", allocationSize = 1)
     private String ticketId;
 
     @Column(name = "order_id", nullable = false)

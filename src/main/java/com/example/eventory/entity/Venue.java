@@ -10,8 +10,6 @@ public class Venue {
 
     @Id
     @Column(name = "venue_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venue_seq")
-    @SequenceGenerator(name = "venue_seq", sequenceName = "venue_seq", allocationSize = 1)
     private String venueId;
 
     @Column(name = "name", nullable = false)

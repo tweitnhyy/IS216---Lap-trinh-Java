@@ -11,8 +11,6 @@ public class TicketType {
 
     @Id
     @Column(name = "ticket_type_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ticket_type_seq")
-    @SequenceGenerator(name = "ticket_type_seq", sequenceName = "ticket_type_seq", allocationSize = 1)
     private String ticketTypeId;
 
     @Column(name = "event_id", nullable = false)

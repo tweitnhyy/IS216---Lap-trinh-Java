@@ -10,8 +10,6 @@ public class Waitlist {
 
     @Id
     @Column(name = "waitlist_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "waitlist_seq")
-    @SequenceGenerator(name = "waitlist_seq", sequenceName = "waitlist_seq", allocationSize = 1)
     private String waitlistId;
 
     @Column(name = "email", unique = true, nullable = false)

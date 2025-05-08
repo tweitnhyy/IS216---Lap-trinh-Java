@@ -10,8 +10,6 @@ public class Category {
 
     @Id
     @Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_seq")
-    @SequenceGenerator(name = "category_seq", sequenceName = "category_seq", allocationSize = 1)
     private String categoryId;
 
     @Column(name = "name", nullable = false)

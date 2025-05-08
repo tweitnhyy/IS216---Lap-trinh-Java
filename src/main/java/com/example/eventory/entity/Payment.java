@@ -10,8 +10,6 @@ public class Payment {
 
     @Id
     @Column(name = "payment_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payment_seq")
-    @SequenceGenerator(name = "payment_seq", sequenceName = "payment_seq", allocationSize = 1)
     private String paymentId;
 
     @Column(name = "order_id", nullable = false)
