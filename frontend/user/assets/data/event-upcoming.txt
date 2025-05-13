@@ -1,0 +1,86 @@
+[
+  {
+    "img": "assets/img/event-upcoming1.jpg",
+    "month": "MAY",
+    "day": "01",
+    "title": "Countdown Summer Fest 2025 - Hồ Tràm",
+    "desc": "Chào hè cực cháy cùng dàn DJ quốc tế tại Hồ Tràm, Bà Rịa – Vũng Tàu."
+  },
+  {
+    "img": "assets/img/event-upcoming2.jpg",
+    "month": "MAY",
+    "day": "04",
+    "title": "Rap Việt All Star Live Concert 2025 - TP.HCM",
+    "desc": "Sân khấu bùng nổ với Binz, Rhymastic, Suboi và dàn sao Rap Việt."
+  },
+  {
+    "img": "assets/img/event-upcoming3.jpg",
+    "month": "MAY",
+    "day": "10",
+    "title": "Mono Live Tour - Hà Nội",
+    "desc": "Show diễn đầu tiên trong chuỗi tour toàn quốc của MONO."
+  },
+  {
+    "img": "assets/img/event-upcoming4.jpg",
+    "month": "MAY",
+    "day": "18",
+    "title": "Vietnam Tattoo Expo 2025 - Hà Nội",
+    "desc": "Lễ hội hình xăm lớn nhất Việt Nam với các nghệ sĩ quốc tế."
+  },
+  {
+    "img": "assets/img/event-upcoming5.jpg",
+    "month": "MAY",
+    "day": "24",
+    "title": "ASEAN Music Showcase Festival 2025 - Đà Nẵng",
+    "desc": "Festival âm nhạc khu vực Đông Nam Á, lần đầu tổ chức tại Việt Nam."
+  },
+  {
+    "img": "assets/img/event-upcoming6.jpg",
+    "month": "JUN",
+    "day": "01",
+    "title": "Lễ hội Trái cây Nam Bộ 2025 - Suối Tiên",
+    "desc": "Tham quan - ẩm thực - diễu hành trái cây cực hấp dẫn tại TP.HCM."
+  },
+  {
+    "img": "assets/img/event-upcoming7.jpg",
+    "month": "Apr",
+    "day": "05",
+    "title": "Workshop: Làm đồ thủ công",
+    "desc": "Tham gia workshop làm đồ thủ công để tạo ra những sản phẩm độc đáo từ chính đôi tay của bạn!"
+  },
+  {
+    "img": "assets/img/event-upcoming8.jpg",
+    "month": "Apr",
+    "day": "10",
+    "title": "Ngày hội ẩm thực Foodie Fest",
+    "desc": "Thưởng thức các món ăn đặc sắc từ khắp nơi trên thế giới tại Foodie Fest 2025."
+  },
+  {
+    "img": "assets/img/event-upcoming9.jpg",
+    "month": "Apr",
+    "day": "15",
+    "title": "Triển lãm xe hơi Auto Show 2025",
+    "desc": "Khám phá những mẫu xe mới nhất và công nghệ tiên tiến tại Auto Show 2025."
+  },
+  {
+    "img": "assets/img/event-upcoming10.jpg",
+    "month": "Apr",
+    "day": "20",
+    "title": "Hội thảo khởi nghiệp Startup Summit",
+    "desc": "Gặp gỡ các chuyên gia và học hỏi kinh nghiệm khởi nghiệp từ những người thành công."
+  },
+  {
+    "img": "assets/img/event-upcoming11.jpg",
+    "month": "Apr",
+    "day": "25",
+    "title": "Lễ hội hoa xuân Spring Blossom",
+    "desc": "Thưởng ngoạn vẻ đẹp của các loài hoa mùa xuân tại Lễ hội hoa xuân 2025."
+  },
+  {
+    "img": "assets/img/event-upcoming12.jpg",
+    "month": "May",
+    "day": "25",
+    "title": "Hội thảo nhiếp ảnh Photography Workshop",
+    "desc": "Học kỹ năng chụp ảnh chuyên nghiệp từ các nhiếp ảnh gia nổi tiếng."
+  }
+]
