@@ -18,41 +18,57 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ===== Login Popup (chỉ áp dụng cho index.html) =====
+// ===== Login Popup and Related Popups =====
 document.addEventListener("DOMContentLoaded", () => {
+  // Khai báo các phần tử DOM
   const loginPopup = document.getElementById("loginPopup");
   const loginBtn = document.getElementById("loginBtn");
   const createEventBtn = document.getElementById("createEventBtn");
-  const closePopup = document.getElementById("closePopup");
+  const promoCreateEventBtn = document.getElementById("promoCreateEventBtn");
+  const closeLoginPopup = document.getElementById("closePopup"); // Sửa ID để khớp với HTML
+
+  const forgotPasswordPopup = document.getElementById("forgotPasswordPopup");
+  const signupPopup = document.getElementById("signupPopup");
+  const closeForgotPopup = document.getElementById("closeForgotPopup");
+  const closeSignupPopup = document.getElementById("closeSignupPopup");
   const continueBtn = document.getElementById("continueBtn");
-  let redirectAfterLogin = "index.html"; // Mặc định chuyển hướng về trang chính
+  const forgotPasswordLink = document.querySelector(".forgot-password"); // Sử dụng class thay vì ID
+  const signupLink = document.querySelector(".signup-link a"); // Sử dụng class và thẻ a
+  const backToLogin = document.getElementById("backToLogin");
+  const backToLoginFromSignup = document.getElementById("backToLoginFromSignup");
+  const resetPasswordBtn = document.getElementById("resetPasswordBtn");
+  const signupBtn = document.getElementById("signupBtn");
 
-  if (
-    loginPopup &&
-    closePopup &&
-    continueBtn &&
-    window.location.pathname.includes("index.html")
-  ) {
+  let redirectAfterLogin = "home.html"; // Mặc định chuyển hướng về trang chính
+
+  // Kiểm tra các phần tử cơ bản để mở popup
+  if (loginPopup && loginBtn && createEventBtn && promoCreateEventBtn && closeLoginPopup) {
     // Mở popup khi nhấn "Login"
-    if (loginBtn) {
-      loginBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        redirectAfterLogin = "index.html";
-        loginPopup.style.display = "flex";
-      });
-    }
+    loginBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      redirectAfterLogin = "home.html";
+      loginPopup.style.display = "flex";
+      console.log("Login button clicked, popup should be visible");
+    });
 
-    // Mở popup khi nhấn "Tạo sự kiện"
-    if (createEventBtn) {
-      createEventBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        redirectAfterLogin = "pages/create-event.html";
-        loginPopup.style.display = "flex";
-      });
-    }
+    // Mở popup khi nhấn "Tạo sự kiện" trong header
+    createEventBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      redirectAfterLogin = "pages/create-event.html";
+      loginPopup.style.display = "flex";
+      console.log("Create Event button clicked, popup should be visible");
+    });
 
-    // Đóng popup khi nhấn nút "X"
-    closePopup.addEventListener("click", () => {
+    // Mở popup khi nhấn "Tạo sự kiện" trong khung quảng cáo
+    promoCreateEventBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      redirectAfterLogin = "pages/create-event.html";
+      loginPopup.style.display = "flex";
+      console.log("Promo Create Event button clicked, popup should be visible");
+    });
+
+    // Đóng popup đăng nhập khi nhấn "X"
+    closeLoginPopup.addEventListener("click", () => {
       loginPopup.style.display = "none";
     });
 
@@ -62,29 +78,175 @@ document.addEventListener("DOMContentLoaded", () => {
         loginPopup.style.display = "none";
       }
     });
-
-    // Xử lý đăng nhập ảo
-    continueBtn.addEventListener("click", () => {
-      loginPopup.style.display = "none";
-      window.location.href = redirectAfterLogin;
+  } else {
+    console.error("Một hoặc nhiều phần tử cơ bản để mở popup không được tìm thấy!");
+    console.log({
+      loginPopup: !!loginPopup,
+      loginBtn: !!loginBtn,
+      createEventBtn: !!createEventBtn,
+      promoCreateEventBtn: !!promoCreateEventBtn,
+      closeLoginPopup: !!closeLoginPopup,
     });
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const pwdInput = document.getElementById("passwordInput");
-  const toggleBtn = document.querySelector(".toggle-password");
-  const icon = toggleBtn.querySelector(".material-symbols-rounded");
+  // Xử lý các popup liên quan (Quên mật khẩu, Tạo tài khoản)
+  if (
+    forgotPasswordPopup &&
+    signupPopup &&
+    closeForgotPopup &&
+    closeSignupPopup &&
+    continueBtn &&
+    forgotPasswordLink &&
+    signupLink &&
+    backToLogin &&
+    backToLoginFromSignup &&
+    resetPasswordBtn &&
+    signupBtn
+  ) {
+    // Xử lý đăng nhập ảo
+    continueBtn.addEventListener("click", () => {
+      const emailInput = document.getElementById("emailInput").value;
+      const passwordInput = document.getElementById("passwordInput").value;
+      if (emailInput && passwordInput) {
+        loginPopup.style.display = "none";
+        window.location.href = redirectAfterLogin;
+      } else {
+        alert("Vui lòng điền đầy đủ email và mật khẩu!");
+      }
+    });
 
-  toggleBtn.addEventListener("click", () => {
-    const isPwd = pwdInput.type === "password";
-    pwdInput.type = isPwd ? "text" : "password";
-    icon.textContent = isPwd ? "visibility" : "visibility_off";
-    toggleBtn.setAttribute(
-      "aria-label",
-      isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
-    );
-  });
+    // Mở popup "Quên mật khẩu"
+    forgotPasswordLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      loginPopup.style.display = "none";
+      forgotPasswordPopup.style.display = "flex";
+    });
+
+    // Mở popup "Tạo tài khoản ngay"
+    signupLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      loginPopup.style.display = "none";
+      signupPopup.style.display = "flex";
+    });
+
+    // Đóng popup "Quên mật khẩu" khi nhấn "X"
+    closeForgotPopup.addEventListener("click", () => {
+      forgotPasswordPopup.style.display = "none";
+    });
+
+    // Đóng popup "Tạo tài khoản" khi nhấn "X"
+    closeSignupPopup.addEventListener("click", () => {
+      signupPopup.style.display = "none";
+    });
+
+    // Đóng popup "Quên mật khẩu" khi nhấn ra ngoài
+    forgotPasswordPopup.addEventListener("click", (e) => {
+      if (e.target === forgotPasswordPopup) {
+        forgotPasswordPopup.style.display = "none";
+      }
+    });
+
+    // Đóng popup "Tạo tài khoản" khi nhấn ra ngoài
+    signupPopup.addEventListener("click", (e) => {
+      if (e.target === signupPopup) {
+        signupPopup.style.display = "none";
+      }
+    });
+
+    // Xử lý gửi yêu cầu quên mật khẩu (ảo)
+    resetPasswordBtn.addEventListener("click", () => {
+      const forgotEmail = document.getElementById("forgotEmailInput").value;
+      if (forgotEmail) {
+        alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
+        forgotPasswordPopup.style.display = "none";
+        loginPopup.style.display = "flex";
+      } else {
+        alert("Vui lòng nhập email!");
+      }
+    });
+
+    // Xử lý đăng ký tài khoản (ảo)
+    signupBtn.addEventListener("click", () => {
+      const signupEmail = document.getElementById("signupEmailInput").value;
+      const signupPassword = document.getElementById("signupPasswordInput").value;
+      const signupConfirmPassword = document.getElementById("signupConfirmPasswordInput").value;
+
+      if (signupEmail && signupPassword && signupConfirmPassword) {
+        if (signupPassword === signupConfirmPassword) {
+          alert("Tài khoản cho " + signupEmail + " đã được tạo thành công!");
+          signupPopup.style.display = "none";
+          loginPopup.style.display = "flex";
+        } else {
+          alert("Mật khẩu và xác nhận mật khẩu không khớp!");
+        }
+      } else {
+        alert("Vui lòng điền đầy đủ thông tin!");
+      }
+    });
+
+    // Quay lại đăng nhập từ "Quên mật khẩu"
+    backToLogin.addEventListener("click", (e) => {
+      e.preventDefault();
+      forgotPasswordPopup.style.display = "none";
+      loginPopup.style.display = "flex";
+    });
+
+    // Quay lại đăng nhập từ "Tạo tài khoản"
+    backToLoginFromSignup.addEventListener("click", (e) => {
+      e.preventDefault();
+      signupPopup.style.display = "none";
+      loginPopup.style.display = "flex";
+    });
+
+    // Toggle mật khẩu cho đăng nhập
+    const pwdInput = document.getElementById("passwordInput");
+    const toggleBtn = document.querySelector(".toggle-password");
+    if (pwdInput && toggleBtn) {
+      const icon = toggleBtn.querySelector(".material-symbols-rounded");
+      toggleBtn.addEventListener("click", () => {
+        const isPwd = pwdInput.type === "password";
+        pwdInput.type = isPwd ? "text" : "password";
+        icon.textContent = isPwd ? "visibility" : "visibility_off";
+        toggleBtn.setAttribute(
+          "aria-label",
+          isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+        );
+      });
+    }
+
+    // Toggle mật khẩu cho đăng ký
+    const signupPwdInput = document.getElementById("signupPasswordInput");
+    const signupConfirmPwdInput = document.getElementById("signupConfirmPasswordInput");
+    const signupToggleBtn = document.querySelector(".toggle-signup-password");
+    if (signupPwdInput && signupConfirmPwdInput && signupToggleBtn) {
+      const signupIcon = signupToggleBtn.querySelector(".material-symbols-rounded");
+      signupToggleBtn.addEventListener("click", () => {
+        const isPwd = signupPwdInput.type === "password";
+        signupPwdInput.type = isPwd ? "text" : "password";
+        signupConfirmPwdInput.type = isPwd ? "text" : "password";
+        signupIcon.textContent = isPwd ? "visibility" : "visibility_off";
+        signupToggleBtn.setAttribute(
+          "aria-label",
+          isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+        );
+      });
+    }
+  } else {
+    console.warn("Một hoặc nhiều phần tử popup liên quan không được tìm thấy, nhưng popup chính vẫn hoạt động.");
+    console.log({
+      forgotPasswordPopup: !!forgotPasswordPopup,
+      signupPopup: !!signupPopup,
+      closeForgotPopup: !!closeForgotPopup,
+      closeSignupPopup: !!closeSignupPopup,
+      continueBtn: !!continueBtn,
+      forgotPasswordLink: !!forgotPasswordLink,
+      signupLink: !!signupLink,
+      backToLogin: !!backToLogin,
+      backToLoginFromSignup: !!backToLoginFromSignup,
+      resetPasswordBtn: !!resetPasswordBtn,
+      signupBtn: !!signupBtn,
+    });
+  }
 });
 
 // ===== banner section =====
