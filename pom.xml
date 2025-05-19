@@ -41,6 +41,17 @@
     		<version>6.2.0.Final</version>
 		</dependency>
 		<dependency>
+        	<groupId>com.oracle.database.jdbc</groupId>
+    		<artifactId>ojdbc11</artifactId>
+    		<version>21.3.0.0</version>
+    	</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version> <!-- Bạn có thể sử dụng phiên bản mới nhất nếu cần -->
+		</dependency>
+
+		<dependency>
     		<groupId>javax.servlet</groupId>
     		<artifactId>javax.servlet-api</artifactId>
     		<version>4.0.1</version> <!-- Hoặc phiên bản mới hơn -->

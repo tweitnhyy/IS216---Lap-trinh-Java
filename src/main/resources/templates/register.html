@@ -6,9 +6,6 @@
 <body>
     <h2>Đăng ký tài khoản</h2>
     <form th:action="@{/register}" th:object="${user}" method="post">
-        <label>Tên người dùng:</label>
-        <input type="text" th:field="*{username}" required />
-        <br/>
         <label>Email:</label>
         <input type="email" th:field="*{email}" required />
         <br/>

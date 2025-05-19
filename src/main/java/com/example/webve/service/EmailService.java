@@ -1,12 +1,23 @@
 package com.example.webve.service;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    public void send(String to, String email) {
-        // Logic gửi email
-        System.out.println("Gửi email đến: " + to);
-        System.out.println("Nội dung email: " + email);
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void send(String to, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Đặt lại mật khẩu");
+        message.setText(text);
+        mailSender.send(message);
     }
 }
