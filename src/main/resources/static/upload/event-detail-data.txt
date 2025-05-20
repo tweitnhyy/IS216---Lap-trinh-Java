@@ -1,0 +1,503 @@
+[
+  {
+    "id": "babymonster",
+    "title": "BABYMONSTER - Hello Monsters Tour",
+    "city": "TP.HCM",
+    "poster": "assets/img/poster1.jpg",
+    "poster_sub": "assets/img/poster1_sub.jpg",
+    "video": "assets/img/banner1.mp4",
+    "intro": "BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.",
+    "event_info": {
+      "date": "2025-05-31",
+      "time": "18:00",
+      "location": "SECC, Quận 7, TP.HCM"
+    },
+    "ticket_sale": {
+      "start_date": "2025-04-15",
+      "end_date": "2025-05-30"
+    },
+    "special_experience": [
+      "Tặng poster BABYMONSTER",
+      "Nhận sticker độc quyền",
+      "Photo zone check-in"
+    ],
+    "promotion": {
+      "description": "Mua 4 vé được giảm 10%",
+      "condition": "Áp dụng cho cùng loại vé, cùng đơn hàng"
+    },
+    "organizer": {
+      "name": "Live Nation Vietnam",
+      "logo": "/assets/img/brands/mec.png"
+    },
+    "tickets": [
+      {
+        "type": "VIP PACKAGE - L",
+        "price": 5500000,
+        "quantity": 200
+      },
+      {
+        "type": "CAT 1 - L",
+        "price": 4200000,
+        "quantity": 200
+      },
+      {
+        "type": "CAT 2 - L",
+        "price": 3400000,
+        "quantity": 150
+      },
+      {
+        "type": "CAT 3 - L",
+        "price": 2800000,
+        "quantity": 0
+      }
+    ]
+  },
+  {
+    "id": "bts-seoul",
+    "title": "BTS - Map Of The Soul Tour",
+    "city": "Hà Nội",
+    "poster": "assets/img/poster-bts.jpg",
+    "video": "assets/img/bts.mp4",
+    "intro": "BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.",
+    "event_info": {
+      "date": "2025-06-12",
+      "time": "19:30",
+      "location": "SVĐ Mỹ Đình, Hà Nội"
+    },
+    "ticket_sale": {
+      "start_date": "2025-05-01",
+      "end_date": "2025-06-11"
+    },
+    "special_experience": [
+      "Tặng lightstick phiên bản đặc biệt",
+      "Thẻ thành viên sự kiện",
+      "Được bốc thăm ký tên"
+    ],
+    "promotion": {
+      "description": "Giảm 5% cho học sinh, sinh viên",
+      "condition": "Xuất trình thẻ sinh viên còn hiệu lực"
+    },
+    "organizer": {
+      "name": "Big Hit Music",
+      "logo": "assets/brands/bighit-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "ARMY VIP",
+        "price": 6000000,
+        "quantity": 300
+      },
+      {
+        "type": "GENERAL",
+        "price": 3500000,
+        "quantity": 1000
+      }
+    ]
+  },
+  {
+    "id": "exid-live",
+    "title": "EXID - 2025 World Tour",
+    "city": "Đà Nẵng",
+    "poster": "assets/img/poster3.jpg",
+    "video": "assets/img/banner3.mp4",
+    "intro": "EXID tổ chức đêm nhạc cháy bỏng tại Việt Nam với những bản hit huyền thoại.",
+    "event_info": {
+      "date": "2025-06-20",
+      "time": "20:00",
+      "location": "Sân vận động Chi Lăng, Đà Nẵng"
+    },
+    "ticket_sale": {
+      "start_date": "2025-05-10",
+      "end_date": "2025-06-19"
+    },
+    "special_experience": [
+      "Meet & Greet với EXID",
+      "Photo Card giới hạn"
+    ],
+    "promotion": {
+      "description": "Giảm 10% cho nhóm từ 5 người trở lên",
+      "condition": "Đăng ký theo nhóm cùng lúc"
+    },
+    "organizer": {
+      "name": "EXID Entertainment",
+      "logo": "assets/img/brands/spotify.jpg"
+    },
+    "tickets": [
+      {
+        "type": "PREMIUM",
+        "price": 4200000,
+        "quantity": 250
+      },
+      {
+        "type": "STANDARD",
+        "price": 2500000,
+        "quantity": 750
+      }
+    ]
+  },
+  {
+    "id": "soobin-concert",
+    "title": "SOOBIN Live Concert 2025",
+    "city": "TP.HCM",
+    "poster": "assets/img/poster2.jpg",
+    "video": "assets/img/banner2.mp4",
+    "intro": "SOOBIN tổ chức show diễn solo cực kỳ đặc biệt nhân dịp kỷ niệm sự nghiệp.",
+    "event_info": {
+      "date": "2025-07-01",
+      "time": "19:00",
+      "location": "Nhà hát Hòa Bình, TP.HCM"
+    },
+    "ticket_sale": {
+      "start_date": "2025-05-20",
+      "end_date": "2025-06-30"
+    },
+    "special_experience": [
+      "Gặp gỡ ký tặng SOOBIN",
+      "Poster giới hạn"
+    ],
+    "promotion": {
+      "description": "Tặng vé parking miễn phí",
+      "condition": "Cho đơn đặt từ 2 vé trở lên"
+    },
+    "organizer": {
+      "name": "SpaceSpeakers Group",
+      "logo": "assets/img/brands/tiktok.jpg"
+    },
+    "tickets": [
+      {
+        "type": "SOOBIN ZONE",
+        "price": 2800000,
+        "quantity": 400
+      },
+      {
+        "type": "STANDARD",
+        "price": 1800000,
+        "quantity": 600
+      }
+    ]
+  },
+  {
+    "id": "iu-world-tour",
+    "title": "IU World Tour 2025",
+    "city": "Hà Nội",
+    "poster": "assets/img/poster-iu.jpg",
+    "video": "assets/img/iu.mp4",
+    "intro": "IU mang tour diễn toàn cầu trở lại Việt Nam với những bản tình ca bất hủ.",
+    "event_info": {
+      "date": "2025-07-15",
+      "time": "20:00",
+      "location": "SVĐ Mỹ Đình, Hà Nội"
+    },
+    "ticket_sale": {
+      "start_date": "2025-06-01",
+      "end_date": "2025-07-14"
+    },
+    "special_experience": [
+      "Tặng lightstick IU",
+      "Photo zone cực đẹp"
+    ],
+    "promotion": {
+      "description": "Tặng voucher mua album",
+      "condition": "Check-in tại sự kiện"
+    },
+    "organizer": {
+      "name": "Edam Entertainment",
+      "logo": "assets/img/brands/youtube.jpg"
+    },
+    "tickets": [
+      {
+        "type": "VIP",
+        "price": 5000000,
+        "quantity": 300
+      },
+      {
+        "type": "REGULAR",
+        "price": 2500000,
+        "quantity": 1200
+      }
+    ]
+  },
+  {
+    "id": "blackpink-encore",
+    "title": "BLACKPINK Encore Tour - Vietnam",
+    "city": "TP.HCM",
+    "poster": "assets/img/poster-blackpink-encore.jpg",
+    "poster_sub": "assets/img/poster-blackpink-encore_sub.jpg",
+    "video": "assets/img/banner4.mp4",
+    "intro": "BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.",
+    "event_info": {
+      "date": "2025-07-25",
+      "time": "19:00",
+      "location": "Sân vận động Thống Nhất, TP.HCM"
+    },
+    "ticket_sale": {
+      "start_date": "2025-06-10",
+      "end_date": "2025-07-24"
+    },
+    "special_experience": [
+      "VIP Soundcheck Experience",
+      "Tặng card member BP"
+    ],
+    "promotion": {
+      "description": "Tặng áo thun BLACKPINK cho 500 vé đầu tiên",
+      "condition": "Chỉ áp dụng VIP"
+    },
+    "organizer": {
+      "name": "YG Entertainment",
+      "logo": "assets/img/brands/yg-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "VIP",
+        "price": 8500000,
+        "quantity": 500
+      },
+      {
+        "type": "STANDARD",
+        "price": 4000000,
+        "quantity": 1500
+      }
+    ]
+  },
+  {
+    "id": "twice2025",
+    "title": "TWICE 5th World Tour - Vietnam",
+    "city": "TP.HCM",
+    "poster": "assets/img/poster-twice.jpg",
+    "video": "assets/img/twice.mp4",
+    "intro": "TWICE lần đầu tiên tổ chức world tour tại Việt Nam, hứa hẹn bùng nổ cảm xúc.",
+    "event_info": {
+      "date": "2025-08-10",
+      "time": "19:30",
+      "location": "SVĐ Quân khu 7, TP.HCM"
+    },
+    "ticket_sale": {
+      "start_date": "2025-06-20",
+      "end_date": "2025-08-09"
+    },
+    "special_experience": [
+      "Soundcheck package",
+      "Tặng postcard TWICE"
+    ],
+    "promotion": {
+      "description": "Giảm 10% cho khách mua từ 5 vé",
+      "condition": "Áp dụng đơn đặt mua cùng lúc"
+    },
+    "organizer": {
+      "name": "JYP Entertainment",
+      "logo": "assets/img/brands/jyp-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "VIP",
+        "price": 7200000,
+        "quantity": 400
+      },
+      {
+        "type": "STANDARD",
+        "price": 3900000,
+        "quantity": 1400
+      }
+    ]
+  },
+  {
+    "id": "jack-concert",
+    "title": "Jack - J97 Comeback Live 2025",
+    "city": "Cần Thơ",
+    "poster": "assets/img/poster-jack.jpg",
+    "video": "assets/img/jack.mp4",
+    "intro": "Jack J97 comeback với đại nhạc hội bùng nổ tại miền Tây.",
+    "event_info": {
+      "date": "2025-09-05",
+      "time": "19:00",
+      "location": "Công viên Lưu Hữu Phước, Cần Thơ"
+    },
+    "ticket_sale": {
+      "start_date": "2025-07-10",
+      "end_date": "2025-09-04"
+    },
+    "special_experience": [
+      "Photo cùng Jack",
+      "Nhận giftset độc quyền"
+    ],
+    "promotion": {
+      "description": "Giảm 5% khi mua combo 4 vé",
+      "condition": "Chỉ áp dụng vé tiêu chuẩn"
+    },
+    "organizer": {
+      "name": "J97 Music",
+      "logo": "assets/img/brands/j97-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "FANZONE",
+        "price": 2500000,
+        "quantity": 500
+      },
+      {
+        "type": "STANDARD",
+        "price": 1500000,
+        "quantity": 1000
+      }
+    ]
+  },
+  {
+    "id": "sơn-tùng-mtp",
+    "title": "Sky Tour 2025 - Sơn Tùng MTP",
+    "city": "Hà Nội",
+    "poster": "assets/img/poster-sontung.jpg",
+    "video": "assets/img/sontung.mp4",
+    "intro": "Sky Tour 2025 - Sơn Tùng MTP quay trở lại cùng dàn sân khấu hoành tráng nhất năm.",
+    "event_info": {
+      "date": "2025-08-20",
+      "time": "20:00",
+      "location": "SVĐ Mỹ Đình, Hà Nội"
+    },
+    "ticket_sale": {
+      "start_date": "2025-06-30",
+      "end_date": "2025-08-19"
+    },
+    "special_experience": [
+      "VIP lounge với Sơn Tùng",
+      "Nhận poster Sky Tour"
+    ],
+    "promotion": {
+      "description": "Tặng áo Sky Tour cho vé VIP",
+      "condition": "Không áp dụng vé thường"
+    },
+    "organizer": {
+      "name": "M-TP Entertainment",
+      "logo": "assets/img/brands/mtp-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "SKY VIP",
+        "price": 7000000,
+        "quantity": 300
+      },
+      {
+        "type": "STANDARD",
+        "price": 3800000,
+        "quantity": 1200
+      }
+    ]
+  },
+  {
+    "id": "seventeen-world",
+    "title": "Seventeen World Tour 'Follow' - Vietnam",
+    "city": "Hà Nội",
+    "poster": "assets/img/poster-seventeen.jpg",
+    "video": "assets/img/seventeen.mp4",
+    "intro": "SEVENTEEN lần đầu mang 'Follow Tour' đến Việt Nam, fan chuẩn bị quẩy hết mình.",
+    "event_info": {
+      "date": "2025-09-20",
+      "time": "18:30",
+      "location": "SVĐ Hàng Đẫy, Hà Nội"
+    },
+    "ticket_sale": {
+      "start_date": "2025-08-01",
+      "end_date": "2025-09-19"
+    },
+    "special_experience": [
+      "Tham dự tổng duyệt",
+      "Tặng poster Seventeen"
+    ],
+    "promotion": {
+      "description": "Giảm 5% cho học sinh sinh viên",
+      "condition": "Xuất trình thẻ hợp lệ"
+    },
+    "organizer": {
+      "name": "Pledis Entertainment",
+      "logo": "assets/img/brands/pledis-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "VIP ZONE",
+        "price": 6800000,
+        "quantity": 400
+      },
+      {
+        "type": "REGULAR",
+        "price": 3200000,
+        "quantity": 1300
+      }
+    ]
+  },
+  {
+    "id": "kara-festival",
+    "title": "Kara Festival 2025",
+    "city": "TP.HCM",
+    "poster": "assets/img/poster-kara.jpg",
+    "video": "assets/img/kara.mp4",
+    "intro": "Lễ hội âm nhạc và cosplay siêu khủng dành cho giới trẻ Việt Nam.",
+    "event_info": {
+      "date": "2025-10-05",
+      "time": "16:00",
+      "location": "Công viên 23/9, TP.HCM"
+    },
+    "ticket_sale": {
+      "start_date": "2025-08-15",
+      "end_date": "2025-10-04"
+    },
+    "special_experience": [
+      "Free cosplay contest",
+      "Tặng vé tham gia lucky draw"
+    ],
+    "promotion": {
+      "description": "Giảm 20% cho nhóm cosplay trên 5 người",
+      "condition": "Đăng ký nhóm trước 30/9"
+    },
+    "organizer": {
+      "name": "Kara Entertainment",
+      "logo": "assets/img/brands/kara-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "FESTIVAL PASS",
+        "price": 800000,
+        "quantity": 3000
+      }
+    ]
+  },
+  {
+    "id": "aespa-savage",
+    "title": "AESPA - Savage Tour 2025",
+    "city": "Đà Nẵng",
+    "poster": "assets/img/poster-aespa.jpg",
+    "video": "assets/img/aespa.mp4",
+    "intro": "AESPA lần đầu đến Việt Nam với show Savage Tour bùng nổ và mãn nhãn.",
+    "event_info": {
+      "date": "2025-10-15",
+      "time": "20:00",
+      "location": "Sân vận động Chi Lăng, Đà Nẵng"
+    },
+    "ticket_sale": {
+      "start_date": "2025-09-01",
+      "end_date": "2025-10-14"
+    },
+    "special_experience": [
+      "VIP Hi-touch với aespa",
+      "Tặng mini photobook"
+    ],
+    "promotion": {
+      "description": "Giảm 10% khi mua từ 4 vé trở lên",
+      "condition": "Chỉ áp dụng trong 2 tuần đầu mở bán"
+    },
+    "organizer": {
+      "name": "SM Entertainment",
+      "logo": "assets/img/brands/sm-logo.png"
+    },
+    "tickets": [
+      {
+        "type": "VIP",
+        "price": 7500000,
+        "quantity": 300
+      },
+      {
+        "type": "STANDARD",
+        "price": 4000000,
+        "quantity": 1200
+      }
+    ]
+  }
+]
