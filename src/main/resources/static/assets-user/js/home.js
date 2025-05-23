@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong header
     createEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "pages/create-event.html";
+      redirectAfterLogin = "create-event.html";
       loginPopup.style.display = "flex";
       console.log("Create Event button clicked, popup should be visible");
     });
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong khung quảng cáo
     promoCreateEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "pages/create-event.html";
+      redirectAfterLogin = "create-event.html";
       loginPopup.style.display = "flex";
       console.log("Promo Create Event button clicked, popup should be visible");
     });
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
     volumeIcon.textContent = "volume_off";
 
     // Cập nhật href để mở tab mới
-    detailButton.href = `pages/event-detail.html?eventId=${eventItem.id}`;
+    detailButton.href = `event-detail.html?eventId=${eventItem.id}`;
     detailButton.addEventListener("click", (e) => {
       e.preventDefault();
       window.open(detailButton.href, "_blank");
@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
           card.addEventListener("click", () => {
             window.open(
-              `pages/event-detail.html?eventId=${event.id}`,
+              `event-detail.html?eventId=${event.id}`,
               "_blank"
             );
           });
@@ -549,7 +549,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
       card.addEventListener("click", () => {
-        window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
+        window.open(`event-detail.html?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
 
@@ -622,7 +622,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
       card.addEventListener("click", () => {
-        window.open(`pages/event-detail.html?eventId=${event.id}`, "_blank");
+        window.open(`event-detail.html?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
     });

@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetPasswordBtn = document.getElementById("resetPasswordBtn");
   const signupBtn = document.getElementById("signupBtn");
 
-  let redirectAfterLogin = "../home.html"; // Mặc định chuyển hướng về trang chính
+  let redirectAfterLogin = "home.html"; // Mặc định chuyển hướng về trang chính
 
   // Kiểm tra các phần tử cơ bản để mở popup
   if (loginPopup && loginBtn && createEventBtn && closeLoginPopup && buyTicketBtn) {
     // Mở popup khi nhấn "Login"
     loginBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "../home.html";
+      redirectAfterLogin = "home.html";
       loginPopup.style.display = "flex";
       console.log("Login button clicked, popup should be visible");
     });
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong header
     createEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "../pages/create-event.html";
+      redirectAfterLogin = "create-event.html";
       loginPopup.style.display = "flex";
       console.log("Create Event button clicked, popup should be visible");
     });
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     buyTicketBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const eventId = new URLSearchParams(location.search).get("eventId");
-      redirectAfterLogin = eventId ? `../pages/buy-ticket.html?eventId=${eventId}` : "../pages/buy-ticket.html";
+      redirectAfterLogin = eventId ? `buy-ticket.html?eventId=${eventId}` : "buy-ticket.html";
       loginPopup.style.display = "flex";
 
       // Hiệu ứng ripple
