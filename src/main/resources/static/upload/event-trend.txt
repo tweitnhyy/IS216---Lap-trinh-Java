@@ -1,0 +1,62 @@
+[
+  {
+    "img": "assets/img/poster1.jpg",
+    "rank": 1,
+    "title": "BABYMONSTER - Hello Monsters Tour",
+    "date": "2025-05-31"
+  },
+  {
+    "img": "assets/img/poster-bts.jpg",
+    "rank": 2,
+    "title": "BTS - Map Of The Soul Tour",
+    "date": "2025-06-12"
+  },
+  {
+    "img": "assets/img/poster3.jpg",
+    "rank": 3,
+    "title": "EXID - 2025 World Tour",
+    "date": "2025-06-20"
+  },
+  {
+    "img": "assets/img/poster2.jpg",
+    "rank": 4,
+    "title": "SOOBIN Live Concert 2025",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event5.jpg",
+    "rank": 5,
+    "title": "IU Golden Hour Concert - Seoul",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event6.jpg",
+    "rank": 6,
+    "title": "Mono Live Tour 2025 - Đà Nẵng",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event7.jpg",
+    "rank": 7,
+    "title": "Zing Music Awards 2025 - TP.HCM",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event8.jpg",
+    "rank": 8,
+    "title": "Rap Việt All Stars - TP.HCM",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event9.jpg",
+    "rank": 9,
+    "title": "ASEAN Music Festival 2025 - Đà Nẵng",
+    "date": "2025-07-01"
+  },
+  {
+    "img": "assets/img/event10.jpg",
+    "rank": 10,
+    "title": "Lễ hội EDM Hồ Tràm - Summer Vibes",
+    "date": "2025-07-01"
+  }
+]

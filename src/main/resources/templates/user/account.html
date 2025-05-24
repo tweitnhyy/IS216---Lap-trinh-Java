@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Praise&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icon -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Assets -->
+    <link rel="stylesheet" href="/assets-user/css/acount.css" />
+    <script src="/assets-user/js/account.js"></script>
+    <title>Tài khoản</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="" alt="EvenTory Logo" />
+            <h1>EvenTory</h1>
+          </a>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
+          <button>
+            <span class="material-symbols-rounded">search</span>
+          </button>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#" id="createEventBtn">Tạo sự kiện</a>
+          <a href="#">Mua vé</a>
+          <a href="/contact">Liên hệ</a>
+          <div class="avatar-dropdown">
+            <div class="avatar">
+              <img src="/upload/avatar/avatar.jpg" alt="User Avatar" />
+            </div>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item active">
+                <span class="material-symbols-rounded">person</span>
+                Tài khoản
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded">star</span>
+                Vé đã mua
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded">event</span>
+                Sự kiện của tôi
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded logout">logout</span>
+                Đăng xuất
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="account-page">
+      <h2>Thông tin tài khoản</h2>
+      <hr />
+
+      <!-- Avatar -->
+      <div class="profile-pic-upload">
+        <img
+          id="avatarPreview"
+          class="avatar-large"
+          src="/upload/avatar/avatar.jpg"
+          alt="Avatar hiện tại"
+        />
+        <label
+          for="avatarInput"
+          class="upload-btn"
+          aria-label="Thay ảnh đại diện"
+        >
+          <span class="material-symbols-rounded">edit</span>
+        </label>
+        <input
+          id="avatarInput"
+          type="file"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+
+      <!-- Information -->
+      <form class="account-form">
+        <div class="form-group">
+          <label for="fullname">Họ và tên</label>
+          <input id="fullname" type="text" value="Lee Sang-hyeok" />
+        </div>
+
+        <div class="form-group phone-group">
+          <label for="phone-number">Số điện thoại</label>
+          <input id="phone-number" type="tel" value="0123456789" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" value="info@t1.gg" />
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Ngày sinh</label>
+          <div class="date-wrapper">
+            <input id="dob" type="date" value="1996-05-07" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Giới tính</label>
+          <div class="gender-options">
+            <label><input type="radio" name="gender" checked /> Nam</label>
+            <label><input type="radio" name="gender" /> Nữ</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-save">Lưu</button>
+      </form>
+    </main>
+  </body>
+</html>

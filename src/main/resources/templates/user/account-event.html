@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Praise&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icon -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Assets -->
+    <link rel="stylesheet" href="/assets-user/css/acount.css" />
+    <script src="/assets-user/css/acount.js" defer></script>
+    <title>Sự kiện của tôi</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="" alt="EvenTory Logo" />
+            <h1>EvenTory</h1>
+          </a>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
+          <button>
+            <span class="material-symbols-rounded">search</span>
+          </button>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#" id="createEventBtn">Tạo sự kiện</a>
+          <a href="#">Mua vé</a>
+          <a href="/contact">Liên hệ</a>
+          <div class="avatar-dropdown">
+            <div class="avatar">
+              <img src="/upload/avatar/avatar.jpg" alt="User Avatar" />
+            </div>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded">person</span>
+                Tài khoản
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded">star</span>
+                Vé đã mua
+              </a>
+              <a href="#" class="dropdown-item active">
+                <span class="material-symbols-rounded">event</span>
+                Sự kiện của tôi
+              </a>
+              <a href="#" class="dropdown-item">
+                <span class="material-symbols-rounded logout">logout</span>
+                Đăng xuất
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT: Sự kiện của tôi ===== -->
+    <main class="my-events-page">
+      <h2>Sự kiện của tôi</h2>
+      <hr />
+
+      <div class="filters">
+        <button class="filter-btn active">Sắp tới</button>
+        <button class="filter-btn">Đã qua</button>
+        <button class="filter-btn">Chờ duyệt</button>
+        <button class="filter-btn">Nháp</button>
+      </div>
+
+      <div class="events-grid"></div>
+    </main>
+  </body>
+</html>
