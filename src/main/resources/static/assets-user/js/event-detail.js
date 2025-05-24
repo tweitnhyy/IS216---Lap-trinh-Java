@@ -1,3 +1,4 @@
+
 // ===== header =====
 let lastScrollY = window.pageYOffset;
 const header = document.querySelector(".site-header");
@@ -37,14 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetPasswordBtn = document.getElementById("resetPasswordBtn");
   const signupBtn = document.getElementById("signupBtn");
 
-  let redirectAfterLogin = "home.html"; // Mặc định chuyển hướng về trang chính
+  let redirectAfterLogin = "/home"; // Mặc định chuyển hướng về trang chính
 
   // Kiểm tra các phần tử cơ bản để mở popup
   if (loginPopup && loginBtn && createEventBtn && closeLoginPopup && buyTicketBtn) {
     // Mở popup khi nhấn "Login"
     loginBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "home.html";
+      redirectAfterLogin = "/";
       loginPopup.style.display = "flex";
       console.log("Login button clicked, popup should be visible");
     });
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong header
     createEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "create-event.html";
+      redirectAfterLogin = "/create-event";
       loginPopup.style.display = "flex";
       console.log("Create Event button clicked, popup should be visible");
     });
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     buyTicketBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const eventId = new URLSearchParams(location.search).get("eventId");
-      redirectAfterLogin = eventId ? `buy-ticket.html?eventId=${eventId}` : "buy-ticket.html";
+      redirectAfterLogin = eventId ? `/buy-ticket?eventId=${eventId}` : "/buy-ticket";
       loginPopup.style.display = "flex";
 
       // Hiệu ứng ripple
@@ -272,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let events;
   try {
-    const res = await fetch("../assets/data/event-detail-data.txt");
+    const res = await fetch("/upload/event-detail-data.txt");
     console.log("Fetch status:", res.status, res.statusText);
 
     const text = await res.text();
@@ -369,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 10. Nút mua vé
   document.getElementById(
     "buy-ticket-btn"
-  ).href = `/buy-ticket.html?eventId=${ev.id}`;
+  ).href = `/buy-ticket?eventId=${ev.id}`;
 
   // 11. Tab switcher
   document.querySelectorAll(".event-tabs .tab").forEach((tab) => {
@@ -440,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     card.addEventListener("click", () => {
-      window.location.href = `event-detail.html?eventId=${event.id}`;
+      window.location.href = `/event-detail?eventId=${event.id}`;
     });
     suggestionTrack.appendChild(card);
   });
