@@ -3,9 +3,9 @@
     "id": "babymonster",
     "title": "BABYMONSTER - Hello Monsters Tour",
     "city": "TP.HCM",
-    "poster": "upload/event/poster1.jpg",
-    "poster_sub": "upload/event/poster1_sub.jpg",
-    "video": "upload/event/banner1.mp4",
+    "poster": "upload/event/poster_babymonster_1.jpg",
+    "poster_sub": "upload/event/poster_babymonster_2.jpg",
+    "video": "upload/event/teaser_babymonster.mp4",
     "intro": "BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.",
     "event_info": {
       "date": "2025-05-31",
@@ -27,7 +27,7 @@
     },
     "organizer": {
       "name": "Live Nation Vietnam",
-      "logo": "upload/brands/mec.png"
+      "logo": "upload/brand/mercedes-benz.png"
     },
     "tickets": [
       {
@@ -56,7 +56,7 @@
     "id": "bts-seoul",
     "title": "BTS - Map Of The Soul Tour",
     "city": "Hà Nội",
-    "poster": "upload/event/poster-bts.jpg",
+    "poster": "upload/event/poster_bts_1.jpg",
     "video": "upload/event/bts.mp4",
     "intro": "BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.",
     "event_info": {
@@ -79,7 +79,7 @@
     },
     "organizer": {
       "name": "Big Hit Music",
-      "logo": "assets/brands/bighit-logo.png"
+      "logo": "upload/brand/bighit-logo.png"
     },
     "tickets": [
       {
@@ -98,8 +98,8 @@
     "id": "exid-live",
     "title": "EXID - 2025 World Tour",
     "city": "Đà Nẵng",
-    "poster": "assets/img/poster3.jpg",
-    "video": "assets/img/banner3.mp4",
+    "poster": "upload/event/poster_exid_1.jpg",
+    "video": "upload/event/teaser_exid.mp4",
     "intro": "EXID tổ chức đêm nhạc cháy bỏng tại Việt Nam với những bản hit huyền thoại.",
     "event_info": {
       "date": "2025-06-20",
@@ -120,7 +120,7 @@
     },
     "organizer": {
       "name": "EXID Entertainment",
-      "logo": "assets/img/brands/spotify.jpg"
+      "logo": "upload/brand/spotify.jpg"
     },
     "tickets": [
       {
@@ -139,8 +139,8 @@
     "id": "soobin-concert",
     "title": "SOOBIN Live Concert 2025",
     "city": "TP.HCM",
-    "poster": "assets/img/poster2.jpg",
-    "video": "assets/img/banner2.mp4",
+    "poster": "upload/event/poster_soobin_1.jpg",
+    "video": "upload/event/teaser_soobin.mp4",
     "intro": "SOOBIN tổ chức show diễn solo cực kỳ đặc biệt nhân dịp kỷ niệm sự nghiệp.",
     "event_info": {
       "date": "2025-07-01",
@@ -161,7 +161,7 @@
     },
     "organizer": {
       "name": "SpaceSpeakers Group",
-      "logo": "assets/img/brands/tiktok.jpg"
+      "logo": "upload/brand/tiktok.jpg"
     },
     "tickets": [
       {
@@ -180,8 +180,8 @@
     "id": "iu-world-tour",
     "title": "IU World Tour 2025",
     "city": "Hà Nội",
-    "poster": "assets/img/poster-iu.jpg",
-    "video": "assets/img/iu.mp4",
+    "poster": "upload/event/poster_iu_1.jpg",
+    "video": "upload/event/teaser_iu.mp4",
     "intro": "IU mang tour diễn toàn cầu trở lại Việt Nam với những bản tình ca bất hủ.",
     "event_info": {
       "date": "2025-07-15",
@@ -202,7 +202,7 @@
     },
     "organizer": {
       "name": "Edam Entertainment",
-      "logo": "assets/img/brands/youtube.jpg"
+      "logo": "upload/brand/youtube.jpg"
     },
     "tickets": [
       {
@@ -221,9 +221,9 @@
     "id": "blackpink-encore",
     "title": "BLACKPINK Encore Tour - Vietnam",
     "city": "TP.HCM",
-    "poster": "assets/img/poster-blackpink-encore.jpg",
-    "poster_sub": "assets/img/poster-blackpink-encore_sub.jpg",
-    "video": "assets/img/banner4.mp4",
+    "poster": "upload/event/poster_blackpink_1.jpg",
+    "poster_sub": "upload/event/poster_blackpink_2.jpg",
+    "video": "upload/event/teaser_blackpink.mp4",
     "intro": "BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.",
     "event_info": {
       "date": "2025-07-25",
@@ -244,7 +244,7 @@
     },
     "organizer": {
       "name": "YG Entertainment",
-      "logo": "assets/img/brands/yg-logo.png"
+      "logo": "upload/brand/yg-logo.png"
     },
     "tickets": [
       {
@@ -263,8 +263,8 @@
     "id": "twice2025",
     "title": "TWICE 5th World Tour - Vietnam",
     "city": "TP.HCM",
-    "poster": "assets/img/poster-twice.jpg",
-    "video": "assets/img/twice.mp4",
+    "poster": "upload/event/poster_twice_1.jpg",
+    "video": "upload/event/teaser_twice.mp4",
     "intro": "TWICE lần đầu tiên tổ chức world tour tại Việt Nam, hứa hẹn bùng nổ cảm xúc.",
     "event_info": {
       "date": "2025-08-10",
@@ -285,7 +285,7 @@
     },
     "organizer": {
       "name": "JYP Entertainment",
-      "logo": "assets/img/brands/jyp-logo.png"
+      "logo": "upload/brand/jyp-logo.png"
     },
     "tickets": [
       {
@@ -304,8 +304,8 @@
     "id": "jack-concert",
     "title": "Jack - J97 Comeback Live 2025",
     "city": "Cần Thơ",
-    "poster": "assets/img/poster-jack.jpg",
-    "video": "assets/img/jack.mp4",
+    "poster": "upload/event/poster_jack_1.jpg",
+    "video": "upload/event/teaser_jack.mp4",
     "intro": "Jack J97 comeback với đại nhạc hội bùng nổ tại miền Tây.",
     "event_info": {
       "date": "2025-09-05",
@@ -326,7 +326,7 @@
     },
     "organizer": {
       "name": "J97 Music",
-      "logo": "assets/img/brands/j97-logo.png"
+      "logo": "upload/brand/j97-logo.png"
     },
     "tickets": [
       {
@@ -345,8 +345,8 @@
     "id": "sơn-tùng-mtp",
     "title": "Sky Tour 2025 - Sơn Tùng MTP",
     "city": "Hà Nội",
-    "poster": "assets/img/poster-sontung.jpg",
-    "video": "assets/img/sontung.mp4",
+    "poster": "upload/event/poster_sontung_1.jpg",
+    "video": "upload/event/teaser_sontung.mp4",
     "intro": "Sky Tour 2025 - Sơn Tùng MTP quay trở lại cùng dàn sân khấu hoành tráng nhất năm.",
     "event_info": {
       "date": "2025-08-20",
@@ -367,7 +367,7 @@
     },
     "organizer": {
       "name": "M-TP Entertainment",
-      "logo": "assets/img/brands/mtp-logo.png"
+      "logo": "upload/brand/mtp-logo.png"
     },
     "tickets": [
       {
@@ -386,8 +386,8 @@
     "id": "seventeen-world",
     "title": "Seventeen World Tour 'Follow' - Vietnam",
     "city": "Hà Nội",
-    "poster": "assets/img/poster-seventeen.jpg",
-    "video": "assets/img/seventeen.mp4",
+    "poster": "upload/event/poster_seventeen.jpg",
+    "video": "upload/event/teaser_seventeen.mp4",
     "intro": "SEVENTEEN lần đầu mang 'Follow Tour' đến Việt Nam, fan chuẩn bị quẩy hết mình.",
     "event_info": {
       "date": "2025-09-20",
@@ -408,7 +408,7 @@
     },
     "organizer": {
       "name": "Pledis Entertainment",
-      "logo": "assets/img/brands/pledis-logo.png"
+      "logo": "upload/brand/pledis-logo.png"
     },
     "tickets": [
       {
@@ -427,8 +427,8 @@
     "id": "kara-festival",
     "title": "Kara Festival 2025",
     "city": "TP.HCM",
-    "poster": "assets/img/poster-kara.jpg",
-    "video": "assets/img/kara.mp4",
+    "poster": "upload/event/poster_kara.jpg",
+    "video": "upload/event/teaser_kara.mp4",
     "intro": "Lễ hội âm nhạc và cosplay siêu khủng dành cho giới trẻ Việt Nam.",
     "event_info": {
       "date": "2025-10-05",
@@ -449,7 +449,7 @@
     },
     "organizer": {
       "name": "Kara Entertainment",
-      "logo": "assets/img/brands/kara-logo.png"
+      "logo": "upload/brand/kara-logo.png"
     },
     "tickets": [
       {
@@ -463,8 +463,8 @@
     "id": "aespa-savage",
     "title": "AESPA - Savage Tour 2025",
     "city": "Đà Nẵng",
-    "poster": "assets/img/poster-aespa.jpg",
-    "video": "assets/img/aespa.mp4",
+    "poster": "upload/event/poster_aespa.jpg",
+    "video": "upload/event/teaser_aespa.mp4",
     "intro": "AESPA lần đầu đến Việt Nam với show Savage Tour bùng nổ và mãn nhãn.",
     "event_info": {
       "date": "2025-10-15",
@@ -485,7 +485,7 @@
     },
     "organizer": {
       "name": "SM Entertainment",
-      "logo": "assets/img/brands/sm-logo.png"
+      "logo": "upload/brand/sm-logo.png"
     },
     "tickets": [
       {
