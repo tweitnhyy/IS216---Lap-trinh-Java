@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const locationFilter = document.querySelector(".location-filter");
     let allEvents = [];
   
-    fetch("../assets/data/event-detail-data.txt")
+    fetch("/upload/event-detail-data.txt")
       .then((response) => response.text())
       .then((text) => {
         allEvents = JSON.parse(text);
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         card.addEventListener("click", (e) => {
           if (!e.target.classList.contains("buy-ticket-btn")) {
-            window.open(`event-detail.html?eventId=${event.id}`, "_blank");
+            window.open(`/event-detail?eventId=${event.id}`, "_blank");
           }
         });
         ticketTrack.appendChild(card);
