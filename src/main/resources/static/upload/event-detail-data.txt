@@ -3,9 +3,9 @@
     "id": "babymonster",
     "title": "BABYMONSTER - Hello Monsters Tour",
     "city": "TP.HCM",
-    "poster": "assets/img/poster1.jpg",
-    "poster_sub": "assets/img/poster1_sub.jpg",
-    "video": "assets/img/banner1.mp4",
+    "poster": "upload/event/poster1.jpg",
+    "poster_sub": "upload/event/poster1_sub.jpg",
+    "video": "upload/event/banner1.mp4",
     "intro": "BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.",
     "event_info": {
       "date": "2025-05-31",
@@ -27,7 +27,7 @@
     },
     "organizer": {
       "name": "Live Nation Vietnam",
-      "logo": "/assets/img/brands/mec.png"
+      "logo": "upload/brands/mec.png"
     },
     "tickets": [
       {
@@ -56,8 +56,8 @@
     "id": "bts-seoul",
     "title": "BTS - Map Of The Soul Tour",
     "city": "Hà Nội",
-    "poster": "assets/img/poster-bts.jpg",
-    "video": "assets/img/bts.mp4",
+    "poster": "upload/event/poster-bts.jpg",
+    "video": "upload/event/bts.mp4",
     "intro": "BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.",
     "event_info": {
       "date": "2025-06-12",
