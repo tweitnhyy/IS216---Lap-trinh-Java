@@ -39,14 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetPasswordBtn = document.getElementById("resetPasswordBtn");
   const signupBtn = document.getElementById("signupBtn");
 
-  let redirectAfterLogin = "home.html"; // Mặc định chuyển hướng về trang chính
+  let redirectAfterLogin = "/"; // Mặc định chuyển hướng về trang chính
 
   // Kiểm tra các phần tử cơ bản để mở popup
   if (loginPopup && loginBtn && createEventBtn && promoCreateEventBtn && closeLoginPopup) {
     // Mở popup khi nhấn "Login"
     loginBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "home.html";
+      redirectAfterLogin = "/";
       loginPopup.style.display = "flex";
       console.log("Login button clicked, popup should be visible");
     });
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong header
     createEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "create-event.html";
+      redirectAfterLogin = "/create-event";
       loginPopup.style.display = "flex";
       console.log("Create Event button clicked, popup should be visible");
     });
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong khung quảng cáo
     promoCreateEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "create-event.html";
+      redirectAfterLogin = "/create-event";
       loginPopup.style.display = "flex";
       console.log("Promo Create Event button clicked, popup should be visible");
     });
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "blackpink-encore",
   ];
 
-  fetch("assets/data/event-detail-data.txt")
+  fetch("/upload/event-detail-data.txt")
     .then((response) => response.text())
     .then((text) => {
       allEventData = JSON.parse(text);
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
     volumeIcon.textContent = "volume_off";
 
     // Cập nhật href để mở tab mới
-    detailButton.href = `event-detail.html?eventId=${eventItem.id}`;
+    detailButton.href = `/event-detail?eventId=${eventItem.id}`;
     detailButton.addEventListener("click", (e) => {
       e.preventDefault();
       window.open(detailButton.href, "_blank");
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   moreButtonWrapper.style.display = "block";
 
-  fetch("assets/data/event-detail-data.txt")
+  fetch("/upload/event-detail-data.txt")
     .then((response) => response.text())
     .then((text) => {
       allEvents = JSON.parse(text);
@@ -520,7 +520,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const currentDate = new Date("2025-05-01");
 
   try {
-    const response = await fetch("assets/data/event-detail-data.txt");
+    const response = await fetch("/upload/event-detail-data.txt");
     let trendEvents = await response.json();
 
     trendEvents.sort((a, b) => {
@@ -549,7 +549,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
       card.addEventListener("click", () => {
-        window.open(`event-detail.html?eventId=${event.id}`, "_blank");
+        window.open(`/event-detail?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
 
@@ -592,7 +592,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const scrollAmount = (cardWidth + gap) * cardsToScroll;
 
   try {
-    const response = await fetch("assets/data/event-detail-data.txt");
+    const response = await fetch("/upload/event-detail-data.txt");
     let events = await response.json();
 
     events = events.filter((event) => {
@@ -622,7 +622,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
       card.addEventListener("click", () => {
-        window.open(`event-detail.html?eventId=${event.id}`, "_blank");
+        window.open(`/event-detail?eventId=${event.id}`, "_blank");
       });
       track.appendChild(card);
     });
@@ -643,3 +643,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
+
