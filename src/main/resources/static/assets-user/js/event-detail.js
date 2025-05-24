@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetPasswordBtn = document.getElementById("resetPasswordBtn");
   const signupBtn = document.getElementById("signupBtn");
 
-  let redirectAfterLogin = "/home"; // Mặc định chuyển hướng về trang chính
+  let redirectAfterLogin = "/"; // Mặc định chuyển hướng về trang chính
 
   // Kiểm tra các phần tử cơ bản để mở popup
   if (loginPopup && loginBtn && createEventBtn && closeLoginPopup && buyTicketBtn) {
@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 7. Hình quảng cáo bên phải (hard-coded link)
   const adEl = document.getElementById("event-ad");
-  adEl.src = "../assets/img/qcao.jpg";
+  adEl.src = "/upload/other/qc-portrait.jpg";
   // Hiển thị quảng cáo
   document.querySelector(".event-info-right").style.display = "flex";
 
