@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
           card.addEventListener("click", () => {
             window.open(
-              `event-detail.html?eventId=${event.id}`,
+              `/event-detail?eventId=${event.id}`,
               "_blank"
             );
           });
@@ -643,3 +643,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
+
