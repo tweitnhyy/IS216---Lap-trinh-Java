@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/head :: head"></head>
+  <head th:replace="user/fragments/head :: head"></head>
   <body>
     <!-- ===== HEADER ===== -->
     <header class="site-header">
@@ -21,8 +21,8 @@
 
         <nav class="nav-links">
           <a href="#" id="createEventBtn">Tạo sự kiện</a>
-          <a href="./buy-ticket.html">Mua vé</a>
-          <a href="./contact.html">Liên hệ</a>
+          <a href="/buy-ticket">Mua vé</a>
+          <a href="/contact">Liên hệ</a>
           <button class="btn-login" id="loginBtn">Login</button>
         </nav>
       </div>
@@ -34,7 +34,7 @@
         <div class="login-header">
           <h2>Đăng nhập</h2>
           <img
-            src="../../static/upload/other/shiba_hello.png"
+            src="/upload/other/shiba_hello.png"
             alt="Mascot"
             class="header-mascot"
           />
@@ -73,7 +73,7 @@
             </div>
             <div class="social-login-wrapper">
               <button class="google-login-btn">
-                <img src="../../static/upload/other/Google.png" alt="Google Icon" />
+                <img src="/upload/other/Google.png" alt="Google Icon" />
               </button>
             </div>
           </div>
@@ -87,7 +87,7 @@
         <div class="login-header">
           <h2>Quên mật khẩu</h2>
           <img
-            src="../../static/upload/other/shiba_sad.png"
+            src="/upload/other/shiba_sad.png"
             alt="Mascot"
             class="header-mascot"
           />
@@ -121,7 +121,7 @@
         <div class="login-header">
           <h2>Tạo tài khoản mới</h2>
           <img
-            src="../../static/upload/other/shiba_hihi.png"
+            src="/upload/other/shiba_hihi.png"
             alt="Mascot"
             class="header-mascot"
           />
@@ -182,14 +182,14 @@
             muted
             loop
             preload="metadata"
-            poster="../../static/upload/event/poster_babymonster_1.jpg"
+            poster="/upload/event/poster_babymonster_1.jpg"
           >
-            <source src="../../static/upload/event/teaser_babymonster.mp4" type="video/mp4" />
+            <source src="/upload/event/teaser_babymonster.mp4" type="video/mp4" />
           </video>
 
           <a
             id="detailButton"
-            href="./event-detail.html?eventId=babymonster"
+            href="./event-detail.?eventId=babymonster"
             class="banner-detail btn-default"
           >
             Xem chi tiết
@@ -238,7 +238,7 @@
       <section class="promo-section">
         <div class="promo-wrapper">
           <div class="promo-image">
-            <img src="../../static/upload/other/partner.png" alt="Promo Illustration" />
+            <img src="/upload/other/partner.png" alt="Promo Illustration" />
           </div>
           <div class="promo-content">
             <p>
@@ -276,7 +276,7 @@
         <div class="ad-wrapper">
           <div class="ad-border-wrapper">
             <div class="ad-image">
-              <img src="../../static/upload/other/ad-landscape.jpg" alt="Ad image" />
+              <img src="/upload/other/ad-landscape.jpg" alt="Ad image" />
             </div>
           </div>
         </div>
@@ -309,54 +309,54 @@
         </div>
         <div class="wrapper">
           <div class="itemLeft">
-            <img src="../../static/upload/brand/bidv.png" alt="BIDV" />
+            <img src="/upload/brand/bidv.png" alt="BIDV" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/hsbc.png" alt="HSBC" />
+            <img src="/upload/brand/hsbc.png" alt="HSBC" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/logitech.png" alt="Logitech" />
+            <img src="/upload/brand/logitech.png" alt="Logitech" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/malto.png" alt="Malto" />
+            <img src="/upload/brand/malto.png" alt="Malto" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/mercedes-benz.png" alt="MercedesBenz" />
+            <img src="/upload/brand/mercedes-benz.png" alt="MercedesBenz" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/mobifone.png" alt="Mobifone" />
+            <img src="/upload/brand/mobifone.png" alt="Mobifone" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/coca-cola.png" alt="CocaCola" />
+            <img src="/upload/brand/coca-cola.png" alt="CocaCola" />
           </div>
           <div class="itemLeft">
-            <img src="../../static/upload/brand/yamaha.png" alt="Yamaha" />
+            <img src="/upload/brand/yamaha.png" alt="Yamaha" />
           </div>
         </div>
         <div class="wrapper">
           <div class="itemRight">
-            <img src="../../static/upload/brand/samsung.png" alt="Samsung" />
+            <img src="/upload/brand/samsung.png" alt="Samsung" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/sony.png" alt="Sony" />
+            <img src="/upload/brand/sony.png" alt="Sony" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/spotify.png" alt="Spotify" />
+            <img src="/upload/brand/spotify.png" alt="Spotify" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/tiger-beer.png" alt="TigerBeer" />
+            <img src="/upload/brand/tiger-beer.png" alt="TigerBeer" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/viettel.png" alt="Viettel" />
+            <img src="/upload/brand/viettel.png" alt="Viettel" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/warner-music.png" alt="WarnerMusic" />
+            <img src="/upload/brand/warner-music.png" alt="WarnerMusic" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/youtube.png" alt="Youtube" />
+            <img src="/upload/brand/youtube.png" alt="Youtube" />
           </div>
           <div class="itemRight">
-            <img src="../../static/upload/brand/audi.png" alt="Audi" />
+            <img src="/upload/brand/audi.png" alt="Audi" />
           </div>
         </div>
       </section>
@@ -367,7 +367,7 @@
       <div class="footer-container">
         <div class="footer-col">
           <div class="footer-logo">
-            <img src="../../static/upload/logo/logo-eventory.png" alt="Logo" />
+            <img src="/upload/logo/logo-eventory.png" alt="Logo" />
             <p>EvenTory</p>
           </div>
           <p class="footer-desc">
@@ -440,6 +440,6 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="../../static/assets-user/js/home.js"></script>
+    <script src="/assets-user/js/home.js"></script>
   </body>
 </html>
