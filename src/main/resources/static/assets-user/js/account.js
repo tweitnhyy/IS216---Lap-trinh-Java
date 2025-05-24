@@ -53,7 +53,7 @@ document.querySelectorAll(".btn-save").forEach((btn) => {
 
 // ===== ACOUNT-TICKET =====
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("../assets/data/event-detail-data.txt")
+  fetch("/upload/event-detail-data.txt")
     .then((res) =>
       res.ok ? res.json() : Promise.reject("Không load được data")
     )
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = document.querySelectorAll(".filter-btn");
 
   // Fetch và phân loại dữ liệu
-  fetch("../assets/data/event-detail-data.txt")
+  fetch("/upload/event-detail-data.txt")
     .then((res) =>
       res.ok ? res.json() : Promise.reject("Không load được data")
     )
