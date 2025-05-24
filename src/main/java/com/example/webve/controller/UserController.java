@@ -23,4 +23,8 @@ public class UserController {
     public String contact() {
         return "user/contact"; // Trả về template create-event.html
     }
+    @GetMapping("/event-detail")
+    public String eventDetail() {
+        return "user/event-detail"; // Trả về template create-event.html
+    }
 }
