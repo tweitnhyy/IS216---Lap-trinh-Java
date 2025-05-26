@@ -27,4 +27,8 @@ public class UserController {
     public String eventDetail() {
         return "user/event-detail"; // Trả về template create-event.html
     }
+    @GetMapping("/purchase-ticket")
+    public String purchaseTicket () {
+        return "user/purchase-ticket"; // Trả về template purchase-ticket.html
+    }
 }

@@ -1,4 +1,3 @@
-// ===== header =====
 let lastScrollY = window.pageYOffset;
 const header = document.querySelector(".site-header");
 
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     buyTicketBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const eventId = new URLSearchParams(location.search).get("eventId");
-      redirectAfterLogin = eventId ? `/buy-ticket?eventId=${eventId}` : "/buy-ticket";
+      redirectAfterLogin = eventId ? `/purchase-ticket?eventId=${eventId}` : "/purchase-ticket";
       loginPopup.style.display = "flex";
 
       // Hiệu ứng ripple
@@ -369,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 10. Nút mua vé
   document.getElementById(
     "buy-ticket-btn"
-  ).href = `/buy-ticket?eventId=${ev.id}`;
+  ).href = `/purchase-ticket?eventId=${ev.id}`;
 
   // 11. Tab switcher
   document.querySelectorAll(".event-tabs .tab").forEach((tab) => {
@@ -383,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ===== event suggetion section =====
+  // ===== event suggestion section =====
   // 1. Lấy eventId từ URL
   if (!eventId) {
     console.error("Không tìm thấy eventId cho section Gợi ý");
