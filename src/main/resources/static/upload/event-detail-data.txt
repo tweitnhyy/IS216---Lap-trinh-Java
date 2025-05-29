@@ -57,6 +57,7 @@
     "title": "BTS - Map Of The Soul Tour",
     "city": "Hà Nội",
     "poster": "upload/event/poster_bts_1.jpg",
+    "poster_sub": "upload/event/poster_bts_2.jpg",
     "video": "upload/event/bts.mp4",
     "intro": "BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.",
     "event_info": {
@@ -99,6 +100,7 @@
     "title": "EXID - 2025 World Tour",
     "city": "Đà Nẵng",
     "poster": "upload/event/poster_exid_1.jpg",
+    "poster_sub": "upload/event/poster_exid_2.jpg",
     "video": "upload/event/teaser_exid.mp4",
     "intro": "EXID tổ chức đêm nhạc cháy bỏng tại Việt Nam với những bản hit huyền thoại.",
     "event_info": {
@@ -140,6 +142,7 @@
     "title": "SOOBIN Live Concert 2025",
     "city": "TP.HCM",
     "poster": "upload/event/poster_soobin_1.jpg",
+    "poster_sub": "upload/event/poster_soobin_2.jpg",
     "video": "upload/event/teaser_soobin.mp4",
     "intro": "SOOBIN tổ chức show diễn solo cực kỳ đặc biệt nhân dịp kỷ niệm sự nghiệp.",
     "event_info": {
@@ -181,6 +184,7 @@
     "title": "IU World Tour 2025",
     "city": "Hà Nội",
     "poster": "upload/event/poster_iu_1.jpg",
+    "poster_sub": "upload/event/poster_iu_2.jpg",
     "video": "upload/event/teaser_iu.mp4",
     "intro": "IU mang tour diễn toàn cầu trở lại Việt Nam với những bản tình ca bất hủ.",
     "event_info": {
@@ -264,6 +268,7 @@
     "title": "TWICE 5th World Tour - Vietnam",
     "city": "TP.HCM",
     "poster": "upload/event/poster_twice_1.jpg",
+    "poster_sub": "upload/event/poster_twice_2.jpg",
     "video": "upload/event/teaser_twice.mp4",
     "intro": "TWICE lần đầu tiên tổ chức world tour tại Việt Nam, hứa hẹn bùng nổ cảm xúc.",
     "event_info": {
@@ -305,6 +310,7 @@
     "title": "Jack - J97 Comeback Live 2025",
     "city": "Cần Thơ",
     "poster": "upload/event/poster_jack_1.jpg",
+    "poster_sub": "upload/event/poster_jack_2.jpg",
     "video": "upload/event/teaser_jack.mp4",
     "intro": "Jack J97 comeback với đại nhạc hội bùng nổ tại miền Tây.",
     "event_info": {
@@ -346,6 +352,7 @@
     "title": "Sky Tour 2025 - Sơn Tùng MTP",
     "city": "Hà Nội",
     "poster": "upload/event/poster_sontung_1.jpg",
+    "poster_sub": "upload/event/poster_sontung_2.jpg",
     "video": "upload/event/teaser_sontung.mp4",
     "intro": "Sky Tour 2025 - Sơn Tùng MTP quay trở lại cùng dàn sân khấu hoành tráng nhất năm.",
     "event_info": {
@@ -386,7 +393,8 @@
     "id": "seventeen-world",
     "title": "Seventeen World Tour 'Follow' - Vietnam",
     "city": "Hà Nội",
-    "poster": "upload/event/poster_seventeen.jpg",
+    "poster": "upload/event/poster_seventeen_1.jpg",
+    "poster_sub": "upload/event/poster_seventeen_2.jpg",
     "video": "upload/event/teaser_seventeen.mp4",
     "intro": "SEVENTEEN lần đầu mang 'Follow Tour' đến Việt Nam, fan chuẩn bị quẩy hết mình.",
     "event_info": {
@@ -427,7 +435,7 @@
     "id": "kara-festival",
     "title": "Kara Festival 2025",
     "city": "TP.HCM",
-    "poster": "upload/event/poster_kara.jpg",
+    "poster": "upload/event/poster_kara_1.jpg",
     "video": "upload/event/teaser_kara.mp4",
     "intro": "Lễ hội âm nhạc và cosplay siêu khủng dành cho giới trẻ Việt Nam.",
     "event_info": {
@@ -463,7 +471,8 @@
     "id": "aespa-savage",
     "title": "AESPA - Savage Tour 2025",
     "city": "Đà Nẵng",
-    "poster": "upload/event/poster_aespa.jpg",
+    "poster": "upload/event/poster_aespa_1.jpg",
+    "poster_sub": "upload/event/poster_aespa_2.jpg",
     "video": "upload/event/teaser_aespa.mp4",
     "intro": "AESPA lần đầu đến Việt Nam với show Savage Tour bùng nổ và mãn nhãn.",
     "event_info": {
