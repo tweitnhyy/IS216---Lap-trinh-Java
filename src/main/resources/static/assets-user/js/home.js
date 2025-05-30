@@ -105,14 +105,42 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
     // Xử lý đăng nhập ảo
     continueBtn.addEventListener("click", () => {
-      const emailInput = document.getElementById("emailInput").value;
-      const passwordInput = document.getElementById("passwordInput").value;
-      if (emailInput && passwordInput) {
-        loginPopup.style.display = "none";
-        window.location.href = redirectAfterLogin;
-      } else {
-        alert("Vui lòng điền đầy đủ email và mật khẩu!");
-      }
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value;
+      if (email && password) {
+        fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        })
+            .then(response => {
+              console.log("Login response:", response);
+              if (!response.ok) return response.text().then(text => { throw new Error(`Status: ${response.status}, Message: ${text}`); });
+              return response.json();
+            })
+            .then(data => {
+              console.log("Login data:", data);
+              const token = data.token;
+              if (!token || token.split(".").length !== 3) throw new Error("Invalid token format");
+              localStorage.setItem("jwtToken", token);
+              loginPopup.style.display = "none";
+              setTimeout(() => {
+                checkLoginStatus()
+                    .then(() => {
+                      window.location.href = redirectAfterLogin;
+                    })
+                    .catch(error => {
+                      console.error("Post-login check failed:", error);
+                      alert("Không thể xác thực tài khoản: " + error.message);
+                      window.location.href = "/";
+                    });
+              }, 0);
+            })
+            .catch(error => {
+              console.error("Login error:", error);
+              alert("Đăng nhập thất bại: " + error.message);
+            });
+      } else alert("Vui lòng điền đầy đủ!");
     });
 
     // Mở popup "Quên mật khẩu"
@@ -173,15 +201,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (signupEmail && signupPassword && signupConfirmPassword) {
         if (signupPassword === signupConfirmPassword) {
-          alert("Tài khoản cho " + signupEmail + " đã được tạo thành công!");
-          signupPopup.style.display = "none";
-          loginPopup.style.display = "flex";
-        } else {
-          alert("Mật khẩu và xác nhận mật khẩu không khớp!");
-        }
-      } else {
-        alert("Vui lòng điền đầy đủ thông tin!");
-      }
+          const username = email.split("@")[0];
+          fetch("/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, email, password }),
+          })
+              .then(response => {
+                console.log("Signup response:", response);
+                if (!response.ok) return response.text().then(text => { throw new Error(`Status: ${response.status}, Message: ${text}`); });
+                return response.text();
+              })
+              .then(() => {
+                alert("Đăng ký thành công!");
+                signupPopup.style.display = "none";
+                loginPopup.style.display = "flex";
+              })
+              .catch(error => {
+                console.error("Signup error:", error);
+                alert("Đăng ký thất bại: " + error.message);
+              });
+        } else alert("Mật khẩu không khớp!");
+      } else alert("Điền đầy đủ!");
     });
 
     // Quay lại đăng nhập từ "Quên mật khẩu"
