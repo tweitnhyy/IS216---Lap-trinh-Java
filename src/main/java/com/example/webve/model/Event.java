@@ -22,6 +22,9 @@ import java.util.List;
         @Column(name = "title", nullable = false)
         private String title;
 
+        @Column(name = "user_id", nullable = false)
+        private String userId;
+
         @Column(name = "format")
         private String format; // Hình thức sự kiện (offline/online)
 

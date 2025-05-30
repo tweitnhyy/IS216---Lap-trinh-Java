@@ -9,6 +9,7 @@ import java.util.List;
 public class EventDTO {
     private String eventId;
     private String title;
+    private String userId;
     private String format; // Hình thức sự kiện (offline/online)
     private String location; // Gộp số nhà, đường, phường/xã, quận/huyện, tên địa điểm
     private String city; // Tỉnh/Thành để truy vấn
