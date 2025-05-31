@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<Event, String> {
     // Bạn có thể thêm các phương thức tùy chỉnh ở đây nếu cần
     // Tìm sự kiện theo eventId
     Event findByEventId(String eventId);
 
     String findByTitle(String title);
+    
 }

@@ -183,15 +183,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Xử lý gửi yêu cầu quên mật khẩu (ảo)
     resetPasswordBtn.addEventListener("click", () => {
-      const forgotEmail = document.getElementById("forgotEmailInput").value;
-      if (forgotEmail) {
-        alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
-        forgotPasswordPopup.style.display = "none";
-        loginPopup.style.display = "flex";
-      } else {
-        alert("Vui lòng nhập email!");
-      }
-    });
+  const forgotEmail = document.getElementById("forgotEmailInput").value.trim();
+  if (!forgotEmail) {
+    alert("Vui lòng nhập email!");
+    return;
+  }
+
+  fetch("/api/auth/forgot-password", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email: forgotEmail })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
+      forgotPasswordPopup.style.display = "none";
+      loginPopup.style.display = "flex";
+    } else if (response.status === 404) {
+      alert("Email không tồn tại trong hệ thống.");
+    } else {
+      alert("Đã xảy ra lỗi khi gửi yêu cầu. Vui lòng thử lại.");
+    }
+  })
+  .catch(error => {
+    console.error("Lỗi khi gửi yêu cầu forgot password:", error);
+    alert("Không thể kết nối tới máy chủ.");
+  });
+});
+
 
     // Xử lý đăng ký tài khoản (ảo)
     signupBtn.addEventListener("click", () => {
@@ -201,12 +222,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (signupEmail && signupPassword && signupConfirmPassword) {
         if (signupPassword === signupConfirmPassword) {
-          const username = email.split("@")[0];
+          const username = signupEmail.split("@")[0];
           fetch("/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password }),
-          })
+            body: JSON.stringify({ username, email: signupEmail, password: signupPassword }),
+        })
+          
               .then(response => {
                 console.log("Signup response:", response);
                 if (!response.ok) return response.text().then(text => { throw new Error(`Status: ${response.status}, Message: ${text}`); });
@@ -684,4 +706,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Lỗi tải dữ liệu sự kiện đặc biệt:", error);
   }
 });
-

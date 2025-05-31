@@ -1,5 +1,6 @@
 package com.example.webve.dto;
 
+import java.sql.Timestamp;
 
 import lombok.Data;
 import com.example.webve.model.User;
@@ -11,6 +12,8 @@ public class UserDTO {
     private String email;
     private String password;
     private String role;
+    private String resetToken;
+    private Timestamp resetTokenExpiry;
 
     public User toEntity() {
         User entity = new User();
@@ -18,6 +21,8 @@ public class UserDTO {
         entity.setPasswordHash(this.password); // Sẽ được mã hóa trong service
         entity.setUsername(this.username);
         entity.setRole(this.role);
+        entity.setResetToken(this.resetToken);
+        entity.setResetTokenExpiry(this.resetTokenExpiry);
         return entity;
     }
 
@@ -26,6 +31,9 @@ public class UserDTO {
         dto.setEmail(entity.getEmail());
         dto.setUsername(entity.getUsername());
         dto.setRole(entity.getRole());
+        dto.setResetToken(entity.getResetToken());
+        dto.setResetTokenExpiry(entity.getResetTokenExpiry());
         return dto;
     }
+
 }

@@ -31,4 +31,9 @@ public class UserController {
     public String purchaseTicket () {
         return "user/purchase-ticket"; // Trả về template purchase-ticket.html
     }
+    @GetMapping("/reset-password")
+    public String showResetPasswordPage() {
+        // trả về tên view trong thư mục templates/reset-password.html (nếu dùng Thymeleaf)
+        return "user/reset-password";
+    }
 }

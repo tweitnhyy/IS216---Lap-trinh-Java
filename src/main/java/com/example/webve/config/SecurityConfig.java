@@ -1,7 +1,6 @@
 package com.example.webve.config;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,14 +11,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -28,15 +23,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
                                 "/assets-user/**", "/event-detail/**", "/api/events/**",
-                                "/contact", "/buy-ticket", "/event-detail/").permitAll()
-                        .requestMatchers("/account/**", "/create-event/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                                "/contact", "/buy-ticket", "/forgot-password", "/purchase-ticket","/reset-password", "/create-event/**").permitAll() // Cho phép tất cả các endpoint này
+                        .requestMatchers("/account/**").hasRole("USER") // Cần xác thực cho các endpoint này
+                        .requestMatchers("/admin/**").hasRole("ADMIN") // Cần xác thực cho admin
+                        .anyRequest().permitAll() // Cho phép tất cả các yêu cầu khác
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Không sử dụng session
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -49,16 +43,20 @@ public class SecurityConfig {
                             response.getWriter().write("{\"error\": \"Forbidden\", \"message\": \"" + accessDeniedException.getMessage() + "\"}");
                         })
                 )
+                .oauth2Login(oauth2 -> oauth2
+                    
+                    .defaultSuccessUrl("/", true) // chuyển hướng sau khi đăng nhập thành công
+                )
                 .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // Giữ lại nếu bạn vẫn cần mã hóa mật khẩu
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+        return authenticationConfiguration.getAuthenticationManager(); // Giữ lại nếu bạn vẫn cần xác thực
     }
 }

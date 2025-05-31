@@ -1,7 +1,7 @@
 package com.example.webve.controller;
 
-import com.example.webve.dto.AuthResponse;
 import com.example.webve.dto.UserDTO;
+import com.example.webve.repository.AuthResponse;
 import com.example.webve.service.AuthService;
 import com.example.webve.service.JwtService;
 import org.slf4j.Logger;
@@ -97,4 +97,39 @@ public class AuthController {
         // Giả định trả về nội dung HTML hoặc dữ liệu JSON
         return ResponseEntity.ok("Access granted");
     }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody UserDTO userDTO) {
+        String email = userDTO.getEmail();
+        logger.info("Forgot password request for email: {}", email);
+        boolean isSent = authService.initiatePasswordReset(email);
+        if (isSent) {
+            return ResponseEntity.ok("Yêu cầu đặt lại mật khẩu đã được gửi tới email.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email không tồn tại trong hệ thống.");
+        }
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordRequest request) {
+        logger.info("Reset password attempt for token: {}", request.getToken());
+        boolean result = authService.resetPassword(request.getToken(), request.getNewPassword());
+        if (result) {
+            return ResponseEntity.ok("Đổi mật khẩu thành công.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token không hợp lệ hoặc đã hết hạn.");
+        }
+    }
+
+    // DTO nội bộ cho reset password
+    public static class ResetPasswordRequest {
+        private String token;
+        private String newPassword;
+
+        public String getToken() { return token; }
+        public void setToken(String token) { this.token = token; }
+
+        public String getNewPassword() { return newPassword; }
+        public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
+    }
+
 }

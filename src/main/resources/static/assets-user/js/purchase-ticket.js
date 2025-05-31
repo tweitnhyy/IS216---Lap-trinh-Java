@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       redirectAfterLogin = "/create-event";
       loginPopup.style.display = "flex";
     });
+    
 
     closeLoginPopup.addEventListener("click", () => {
       loginPopup.style.display = "none";
