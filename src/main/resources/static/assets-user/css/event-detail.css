@@ -1,6 +1,5 @@
 :root {
-  --font-logo: "Praise", cursive;
-  --font-logo-2: "Oleo Script", system-ui;
+  --font-logo: "Oleo Script", system-ui;
   --font-primary: "Roboto", sans-serif;
 
   --color-primary: #a72a7c;
@@ -113,7 +112,7 @@ footer {
 }
 .logo a h1 {
   margin: 0;
-  font-family: var(--font-logo-2);
+  font-family: var(--font-logo);
   color: white;
 }
 
@@ -840,16 +839,18 @@ footer h4 {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 15px;
 }
-.footer-logo img {
+/* .footer-logo img {
   width: 40px;
   height: 40px;
   margin-bottom: 15px;
   border: 1px solid white;
   border-radius: 50%;
-}
+} */
 .footer-logo p {
-  font-family: var(--font-logo-2);
+  margin: 0;
+  font-family: var(--font-logo);
   font-size: 28px;
   font-weight: bold;
   background: var(--gradient-primary);
@@ -1021,7 +1022,3 @@ footer h4 {
 .footer-copy strong {
   color: white;
 }
-
-
-  
-  

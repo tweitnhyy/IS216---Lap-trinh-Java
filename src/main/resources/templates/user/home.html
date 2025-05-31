@@ -1,43 +1,21 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/home.css" />
+    <title>Trang chủ</title>
+  </head>
+
   <body>
     <!-- ===== HEADER ===== -->
-    <header class="site-header">
-      <div class="container">
-        <div class="logo">
-          <a href="#">
-            <img src="/upload/other/logo.jpg" alt="EvenTory Logo" style="max-height: 50px; vertical-align: middle;" />
-            <h1>EvenTory</h1>
-          </a>
-        </div>
-
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
-          <button>
-            <span class="material-symbols-rounded">search</span>
-          </button>
-        </div>
-
-        <nav class="nav-links">
-          <a href="#" id="createEventBtn">Tạo sự kiện</a>
-          <a href="/buy-ticket">Mua vé</a>
-          <a href="/contact">Liên hệ</a>
-          <button class="btn-login" id="loginBtn">Login</button>
-        </nav>
-      </div>
-    </header>
+    <header th:replace="user/fragments/header-guest :: header-guest"></header>
 
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">
       <div class="login-popup-content">
         <div class="login-header">
           <h2>Đăng nhập</h2>
-          <img
-            src="/upload/other/shiba_hello.png"
-            alt="Mascot"
-            class="header-mascot"
-          />
+          <img src="/upload/other/shiba_hello.png" alt="Mascot" class="header-mascot" />
           <span class="close-popup" id="closePopup">×</span>
         </div>
 
@@ -48,18 +26,9 @@
               <label for="emailInput">Email hoặc số điện thoại</label>
             </div>
             <div class="inputGroup">
-              <input
-                type="password"
-                id="passwordInput"
-                required
-                autocomplete="off"
-              />
+              <input type="password" id="passwordInput" required autocomplete="off" />
               <label for="passwordInput">Mật khẩu</label>
-              <button
-                type="button"
-                class="toggle-password"
-                aria-label="Hiển thị mật khẩu"
-              >
+              <button type="button" class="toggle-password" aria-label="Hiển thị mật khẩu">
                 <span class="material-symbols-rounded"> visibility_off </span>
               </button>
             </div>
@@ -86,22 +55,13 @@
       <div class="login-popup-content">
         <div class="login-header">
           <h2>Quên mật khẩu</h2>
-          <img
-            src="/upload/other/shiba_sad.png"
-            alt="Mascot"
-            class="header-mascot"
-          />
+          <img src="/upload/other/shiba_sad.png" alt="Mascot" class="header-mascot" />
           <span class="close-popup" id="closeForgotPopup">×</span>
         </div>
         <div class="login-body">
           <div class="login-form">
             <div class="inputGroup">
-              <input
-                type="text"
-                id="forgotEmailInput"
-                required
-                autocomplete="off"
-              />
+              <input type="text" id="forgotEmailInput" required autocomplete="off" />
               <label for="forgotEmailInput">Email</label>
             </div>
             <button class="continue-btn" id="resetPasswordBtn">
@@ -120,47 +80,24 @@
       <div class="login-popup-content">
         <div class="login-header">
           <h2>Tạo tài khoản mới</h2>
-          <img
-            src="/upload/other/shiba_hihi.png"
-            alt="Mascot"
-            class="header-mascot"
-          />
+          <img src="/upload/other/shiba_hihi.png" alt="Mascot" class="header-mascot" />
           <span class="close-popup" id="closeSignupPopup">×</span>
         </div>
         <div class="login-body">
           <div class="login-form">
             <div class="inputGroup">
-              <input
-                type="text"
-                id="signupEmailInput"
-                required
-                autocomplete="off"
-              />
+              <input type="text" id="signupEmailInput" required autocomplete="off" />
               <label for="signupEmailInput">Email</label>
             </div>
             <div class="inputGroup">
-              <input
-                type="password"
-                id="signupPasswordInput"
-                required
-                autocomplete="off"
-              />
+              <input type="password" id="signupPasswordInput" required autocomplete="off" />
               <label for="signupPasswordInput">Mật khẩu</label>
-              <button
-                type="button"
-                class="toggle-signup-password"
-                aria-label="Hiển thị mật khẩu"
-              >
+              <button type="button" class="toggle-signup-password" aria-label="Hiển thị mật khẩu">
                 <span class="material-symbols-rounded"> visibility_off </span>
               </button>
             </div>
             <div class="inputGroup">
-              <input
-                type="password"
-                id="signupConfirmPasswordInput"
-                required
-                autocomplete="off"
-              />
+              <input type="password" id="signupConfirmPasswordInput" required autocomplete="off" />
               <label for="signupConfirmPasswordInput">Xác nhận mật khẩu</label>
             </div>
             <button class="continue-btn" id="signupBtn">Đăng ký</button>
@@ -177,21 +114,11 @@
       <!-- Banner section -->
       <section class="banner-section">
         <div class="banner-wrapper">
-          <video
-            id="bannerVideo"
-            muted
-            loop
-            preload="metadata"
-            poster="/upload/event/poster_babymonster_1.jpg"
-          >
+          <video id="bannerVideo" muted loop preload="metadata" poster="/upload/event/poster_babymonster_1.jpg">
             <source src="/upload/event/teaser_babymonster.mp4" type="video/mp4" />
           </video>
 
-          <a
-            id="detailButton"
-            href="./event-detail.?eventId=babymonster"
-            class="banner-detail btn-default"
-          >
+          <a id="detailButton" href="./event-detail.?eventId=babymonster" class="banner-detail btn-default">
             Xem chi tiết
           </a>
 
@@ -217,19 +144,11 @@
         <div class="event-more-btn">
           <button class="more-button">
             <span class="button-text">Xem thêm</span>
-            <span class="material-symbols-rounded button-icon"
-              >expand_more</span
-            >
+            <span class="material-symbols-rounded button-icon">expand_more</span>
           </button>
-          <button
-            class="more-button collapse-button"
-            id="collapseButton"
-            style="display: none"
-          >
+          <button class="more-button collapse-button" id="collapseButton" style="display: none">
             <span class="button-text">Thu gọn</span>
-            <span class="material-symbols-rounded button-icon"
-              >expand_less</span
-            >
+            <span class="material-symbols-rounded button-icon">expand_less</span>
           </button>
         </div>
       </section>
@@ -248,9 +167,7 @@
               Chọn một lần - cả thế giới ngước nhìn<br />
               Tạo sự kiện ngay - vì khoảnh khắc của bạn xứng đáng được nhớ
             </p>
-            <a href="#" id="promoCreateEventBtn" class="promo-button"
-              >Tạo sự kiện</a
-            >
+            <a href="#" id="promoCreateEventBtn" class="promo-button">Tạo sự kiện</a>
           </div>
         </div>
       </section>
@@ -301,7 +218,7 @@
       <!-- Infinity logo section -->
       <section class="infinite-logo-section">
         <div class="infinite-title">
-          <h2>🌟 Đồng hành cùng những thương hiệu hàng đầu 🌟</h2>
+          <h2>✨ Đồng hành cùng những thương hiệu hàng đầu 🎉</h2>
           <p>
             Chúng tôi tự hào đã hợp tác với các thương hiệu tiên phong, định
             hình xu hướng ngành. Dưới đây chỉ là một vài cái tên nổi bật!
@@ -363,82 +280,8 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="site-footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <img src="/upload/other/logo.jpg" alt="Logo" />
-            <p>EvenTory</p>
-          </div>
-          <p class="footer-desc">
-            EvenTory – Nơi khởi đầu của những trải nghiệm sống động. Từ ý tưởng
-            đến hiện thực, từ khoảnh khắc đến ký ức – chúng tôi luôn đồng hành
-            cùng bạn trong từng sự kiện.
-            <br />🌟 Kết nối với chúng tôi để cập nhật tin tức mới và khám phá
-            những câu chuyện đằng sau mỗi buổi diễn.
-          </p>
-          <div class="footer-contact">
-            <p>
-              <span class="material-symbols-rounded">mail</span>
-              <a href="mailto:@gmail.com">@gmail.com</a>
-            </p>
-            <p>
-              <span class="material-symbols-rounded">location_on</span>
-              Khu phố 6, phường Linh Trung, TP. Thủ Đức, TP. Hồ Chí Minh
-            </p>
-          </div>
-        </div>
+    <footer th:replace="user/fragments/footer :: footer"></footer>
 
-        <div class="footer-col footer-menu">
-          <h4 class="footer-title">Chính sách và bảo mật</h4>
-          <ul class="footer-links">
-            <li>
-              <a
-                href="https://sites.google.com/gm.uit.edu.vn/z10/%C4%91%E1%BB%93-%C3%A1n/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn"
-                >Quy chế hoạt động</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://sites.google.com/gm.uit.edu.vn/z10/gi%E1%BB%9Bi-thi%E1%BB%87u/v%E1%BB%81-nh%C3%B3m"
-                >Về chúng tôi</a
-              >
-            </li>
-            <li><a href="#">Điều khoản</a></li>
-            <li><a href="#">Trung tâm hỗ trợ</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-title">
-            Đăng kí để nhận email về các sự kiện sớm nhất
-          </h4>
-          <form class="footer-form">
-            <div class="input-wrapper">
-              <span class="material-symbols-rounded">mail</span>
-              <input type="email" placeholder="Email" />
-            </div>
-            <button type="submit">
-              <span class="material-symbols-rounded">send</span>
-            </button>
-          </form>
-          <div class="footer-socials">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <hr class="footer-divider" />
-
-      <p class="footer-copy">
-        Copyright &copy; 2025 <strong>EvenTory by Z10</strong>. All rights
-        reserved.
-      </p>
-    </footer>
-
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="/assets-user/js/home.js"></script>
   </body>

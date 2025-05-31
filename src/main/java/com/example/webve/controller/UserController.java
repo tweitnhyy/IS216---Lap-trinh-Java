@@ -10,7 +10,6 @@ public class UserController {
     public String home() {
         return "user/home";
     }
-
     @GetMapping("/buy-ticket")
     public String buyTicket() {
         return "user/buy-ticket";
@@ -30,5 +29,23 @@ public class UserController {
     @GetMapping("/purchase-ticket")
     public String purchaseTicket () {
         return "user/purchase-ticket"; // Trả về template purchase-ticket.html
+    }
+
+    @GetMapping("/account")
+    public String account () {
+        return "user/account";
+    }
+    @GetMapping("/account-ticket")
+    public String accountTicket () {
+        return "user/account-ticket";
+    }
+    @GetMapping("/account-event")
+    public String accountEvent () {
+        return "user/account-event";
+    }
+
+    @GetMapping("/admin")
+    public String admin () {
+        return "admin/admin";
     }
 }
