@@ -201,11 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (signupEmail && signupPassword && signupConfirmPassword) {
         if (signupPassword === signupConfirmPassword) {
-          const username = email.split("@")[0];
+          const username = signupEmail.split("@")[0];
           fetch("/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password }),
+            body: JSON.stringify({ username, email: signupEmail, password:signupPassword }),
           })
               .then(response => {
                 console.log("Signup response:", response);

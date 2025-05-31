@@ -22,8 +22,9 @@ import java.util.List;
         @Column(name = "title", nullable = false)
         private String title;
 
-        @Column(name = "user_id", nullable = false)
-        private String userId;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", nullable = false)
+        private User user;
 
         @Column(name = "format")
         private String format; // Hình thức sự kiện (offline/online)
@@ -75,6 +76,7 @@ import java.util.List;
 
         @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
         private List<TicketType> ticketTypes;
+
 
         @PrePersist
         protected void onCreate() {

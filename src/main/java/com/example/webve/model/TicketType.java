@@ -14,11 +14,7 @@ public class TicketType {
 
     @Id
     @Column(name = "ticket_type_id")
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String ticketTypeId;
-
-    @Column(name = "event_id", nullable = false)
-    private String eventId;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -45,7 +41,7 @@ public class TicketType {
     private Timestamp updatedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "event_id", referencedColumnName = "event_id", insertable = false, updatable = false)
+    @JoinColumn(name = "event_id", referencedColumnName = "event_id")
     private Event event;
 
     @PrePersist

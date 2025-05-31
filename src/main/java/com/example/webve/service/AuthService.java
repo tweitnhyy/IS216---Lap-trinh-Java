@@ -5,6 +5,7 @@ import com.example.webve.model.User;
 import com.example.webve.model.UserSessions;
 import com.example.webve.repository.UserRepository;
 import com.example.webve.repository.UserSessionRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
     public void register(UserDTO userDTO) {
         if (userDTO.getUsername() == null || userDTO.getUsername().trim().isEmpty()) {
@@ -116,6 +117,11 @@ public class AuthService {
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRole());
+        userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setDob(user.getDob());
+        userDTO.setGender(user.getGender());
+        userDTO.setFullName(user.getFullName());
+
         return userDTO;
     }
 
@@ -129,5 +135,21 @@ public class AuthService {
         } else {
             logger.warn("No session found for token: {}", token);
         }
+    }
+
+    @Transactional
+    public UserDTO updateUserProfile(String userId, UserDTO userDTO) {
+        // Tìm User theo userId
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            throw new IllegalArgumentException("User with ID " + userId + " not found");
+        }
+        User user = userOptional.get();
+        user.setFullName(userDTO.getFullName());
+        user.setDob(userDTO.getDob());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setGender(userDTO.getGender());
+        userRepository.save(user);
+        return userDTO;
     }
 }

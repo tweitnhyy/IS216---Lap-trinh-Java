@@ -6,8 +6,6 @@ import java.sql.Timestamp;
 
 @Data
 public class TicketTypeDTO {
-    private String ticketTypeId;
-    private String eventId;
     private String type; // Tên vé
     private Integer price; // Giá vé
     private Integer quantity; // Tổng số vé

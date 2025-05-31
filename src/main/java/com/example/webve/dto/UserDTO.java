@@ -4,6 +4,10 @@ package com.example.webve.dto;
 import lombok.Data;
 import com.example.webve.model.User;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
 @Data
 public class UserDTO {
     private String userId;
@@ -11,6 +15,12 @@ public class UserDTO {
     private String email;
     private String password;
     private String role;
+    private String fullName;
+    private Date dob;
+    private String phoneNumber;
+    private String gender;
+    private Timestamp lastLogin;
+    private List<String> eventIds;
 
     public User toEntity() {
         User entity = new User();

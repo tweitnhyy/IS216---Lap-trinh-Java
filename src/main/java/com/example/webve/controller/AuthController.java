@@ -4,6 +4,7 @@ import com.example.webve.dto.AuthResponse;
 import com.example.webve.dto.UserDTO;
 import com.example.webve.service.AuthService;
 import com.example.webve.service.JwtService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,20 +82,9 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/api/create-event")
-    public ResponseEntity<String> getCreateEventPage(@RequestHeader("Authorization") String authHeader) {
-        logger.info("Accessing create-event page with Authorization header: {}", authHeader);
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            logger.warn("No valid Authorization header found");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Unauthorized\", \"message\": \"Missing or invalid Authorization header\"}");
-        }
-        String token = authHeader.substring(7).trim();
-        String userId = jwtService.extractUserId(token);
-        if (userId == null || !jwtService.isTokenValid(token, userId)) {
-            logger.warn("Invalid or expired token for userId: {}", userId);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Unauthorized\", \"message\": \"Invalid or expired token\"}");
-        }
-        // Giả định trả về nội dung HTML hoặc dữ liệu JSON
-        return ResponseEntity.ok("Access granted");
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<UserDTO> updateUserProfile(@PathVariable String userId, @Valid @RequestBody UserDTO userDTO) {
+        UserDTO updatedUser = authService.updateUserProfile(userId, userDTO);
+        return ResponseEntity.ok(updatedUser);
     }
 }

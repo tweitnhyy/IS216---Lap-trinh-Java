@@ -3,6 +3,7 @@ package com.example.webve.dto;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,8 +16,8 @@ public class EventDTO {
     private String city; // Tỉnh/Thành để truy vấn
     private Timestamp startDateTime; // Gộp ngày & giờ bắt đầu
     private Timestamp endDateTime; // Gộp ngày & giờ kết thúc
-    private Timestamp ticketSaleStart; // Thời gian mở bán vé chung cho sự kiện
-    private Timestamp ticketSaleEnd; // Thời gian đóng bán vé chung cho sự kiện
+    private Date ticketSaleStart; // Thời gian mở bán vé chung cho sự kiện
+    private Date ticketSaleEnd; // Thời gian đóng bán vé chung cho sự kiện
     private String poster;
     private String posterSub;
     private String video;

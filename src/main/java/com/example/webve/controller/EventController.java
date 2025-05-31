@@ -3,8 +3,10 @@ package com.example.webve.controller;
 import com.example.webve.dto.EventCreationDTO;
 import com.example.webve.dto.EventDTO;
 import com.example.webve.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,9 +17,9 @@ public class EventController {
     private EventService eventService;
 
     // API tạo sự kiện
-    @PostMapping
-    public ResponseEntity<EventDTO> createEvent(@RequestBody EventCreationDTO creationDTO) {
-        EventDTO createdEvent = eventService.createEvent(creationDTO.getEventDTO(), creationDTO.getTicketTypeDTOs());
+    @PostMapping("/create-events/{userId}")
+    public ResponseEntity<EventDTO> createEvent(@RequestBody EventCreationDTO creationDTO, @PathVariable String userId) {
+        EventDTO createdEvent = eventService.createEvent(creationDTO.getEventDTO(), creationDTO.getTicketTypeDTOs(), userId);
         return ResponseEntity.ok(createdEvent);
     }
 
