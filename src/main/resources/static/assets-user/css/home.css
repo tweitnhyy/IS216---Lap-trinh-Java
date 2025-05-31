@@ -1491,15 +1491,17 @@ footer h4 {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 15px;
 }
-.footer-logo img {
+/* .footer-logo img {
   width: 40px;
   height: 40px;
   margin-bottom: 15px;
   border: 1px solid white;
   border-radius: 50%;
-}
+} */
 .footer-logo p {
+  margin: 0;
   font-family: var(--font-logo);
   font-size: 28px;
   font-weight: bold;

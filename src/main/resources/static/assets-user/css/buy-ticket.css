@@ -1,13 +1,12 @@
 /* ticket section */
 .ticket-section {
   background-color: #fff1f1;
-  padding: 48px 0;
-  font-family: sans-serif;
+  padding: 32px 0;
 }
 
 .ticket-section .section-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 500;
   color: #a72a7c;
   margin: 0 auto 16px;
   display: flex;
