@@ -1,5 +1,6 @@
 :root {
-  --font-logo: "Oleo Script", system-ui;
+  --font-logo: "Praise", cursive;
+  --font-logo-2: "Oleo Script", system-ui;
   --font-primary: "Roboto", sans-serif;
 
   --color-primary: #a72a7c;
@@ -197,6 +198,7 @@ footer {
   position: relative;
   overflow: hidden;
 }
+
 .btn-login:hover {
   background: linear-gradient(
     135deg,
@@ -382,8 +384,8 @@ footer {
 }
 
 .back-link a {
-  color: var(--color-primary); 
-  text-decoration: none; 
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 .divider {
@@ -1673,4 +1675,18 @@ footer h4 {
 
 .footer-copy strong {
   color: white;
+}
+
+#headerUser, #headerGuest {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+#headerUser[style*="display: block"] {
+  z-index: 11; /* Ưu tiên headerUser khi hiển thị */
+}
+#headerGuest[style*="display: block"] {
+  z-index: 11; /* Ưu tiên headerGuest khi hiển thị */
 }

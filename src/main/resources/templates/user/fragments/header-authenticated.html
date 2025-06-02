@@ -1,4 +1,4 @@
-<div th:fragment="header-authenticated">
+<header th:fragment="header-authenticated">
     <style>
         :root {
             --font-logo: "Praise", cursive;
@@ -235,10 +235,9 @@
             </div>
 
             <nav class="nav-links">
-                <a th:href="@{/create-event}" th:classappend="${activePage=='create-event'} ? ' active' : ''"
-                    id="createEventBtn">Tạo sự kiện</a>
-                <a th:href="@{/buy-ticket}" th:classappend="${activePage=='buy-ticket'} ? ' active' : ''">Kho vé</a>
-                <a href="/contact">Liên hệ</a>
+                    <a href="#" id="createEventBtn" class ="nav-link">Tạo sự kiện</a>
+                    <a href="/buy-ticket">Mua vé</a>
+                    <a href="/contact">Liên hệ</a>
                 <div class="avatar-dropdown">
                     <div class="avatar">
                         <img src="/upload/avatar/avatar.jpg" alt="User Avatar" />
@@ -256,7 +255,7 @@
                             <span class="material-symbols-rounded">event</span>
                             Sự kiện của tôi
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="dropdown-item" id="logoutBtn">
                             <span class="material-symbols-rounded logout">logout</span>
                             Đăng xuất
                         </a>
@@ -302,4 +301,4 @@
             }
         });
     </script>
-</div>
+</header>

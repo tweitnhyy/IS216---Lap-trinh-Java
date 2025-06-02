@@ -1,21 +1,55 @@
+
 // ===== header =====
-document.addEventListener("DOMContentLoaded", () => {
-  let lastScrollY = window.pageYOffset;
-  const header = document.querySelector(".site-header");
+document.addEventListener("DOMContentLoaded", async () => { // Nên là DOMContentLoaded
+  const token = localStorage.getItem("jwtToken");
+  console.warn("Token:", token);
+  const headerUser = document.getElementById("headerUser");
+  const headerGuest = document.getElementById("headerGuest");
 
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.pageYOffset;
+  // QUAN TRỌNG: Chọn phần tử header chính
+  // Cách 1: Nếu header của bạn là thẻ <header> duy nhất hoặc đầu tiên
+  const activeHeader = document.querySelector('header');
+  // Cách 2: Nếu header của bạn có một ID cụ thể, ví dụ id="mainSiteHeader"
+  // const activeHeader = document.getElementById('mainSiteHeader');
 
-    if (currentScrollY <= 0) {
-      header.style.transform = "translateY(0)";
-    } else if (currentScrollY > lastScrollY) {
-      header.style.transform = "translateY(-100%)";
+  console.log("headerUser:", headerUser); // Kiểm tra lại giá trị này
+  console.log("headerGuest:", headerGuest); // Kiểm tra lại giá trị này
+  console.log("activeHeader:", activeHeader); // Kiểm tra xem activeHeader có được chọn đúng không
+
+  if (headerUser && headerGuest) {
+    if (token) {
+      headerUser.style.display = "block"; // Hoặc "flex" tùy theo CSS của bạn
+      headerGuest.style.display = "none";
     } else {
-      header.style.transform = "translateY(0)";
+      headerUser.style.display = "none";
+      headerGuest.style.display = "block"; // Hoặc "flex"
     }
+  } else {
+    console.warn("Không tìm thấy headerUser hoặc headerGuest trong DOM. Vui lòng kiểm tra ID trong HTML!");
+  }
 
-    lastScrollY = currentScrollY;
-  });
+  // ===== Ẩn/hiện khi cuộn =====
+  // Chỉ thực hiện nếu activeHeader được tìm thấy
+  if (activeHeader) {
+    let lastScrollY = window.pageYOffset;
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.pageYOffset;
+
+      if (currentScrollY <= 0) {
+        activeHeader.style.transform = "translateY(0)";
+      } else if (currentScrollY > lastScrollY) {
+        // Cuộn xuống, ẩn header
+        activeHeader.style.transform = "translateY(-100%)";
+      } else {
+        // Cuộn lên, hiện header
+        activeHeader.style.transform = "translateY(0)";
+      }
+      lastScrollY = currentScrollY;
+    });
+  } else {
+    console.warn("Không tìm thấy phần tử 'activeHeader' để thực hiện hiệu ứng cuộn.");
+  }
 });
 
 // ===== Login Popup and Related Popups =====
@@ -38,9 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToLoginFromSignup = document.getElementById("backToLoginFromSignup");
   const resetPasswordBtn = document.getElementById("resetPasswordBtn");
   const signupBtn = document.getElementById("signupBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
 
   let redirectAfterLogin = "/"; // Mặc định chuyển hướng về trang chính
 
+  logoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    redirectAfterLogin = "/";
+    fetchWithToken("/api/auth/logout", { method: "POST" })
+        .then(response => {
+          console.log("Logout response:", response);
+          if (!response.ok) throw new Error(`Logout failed! Status: ${response.status}`);
+          localStorage.removeItem("jwtToken");
+          window.location.reload();
+        })
+        .catch(error => {
+          console.error("Logout error:", error);
+          alert("Đăng xuất thất bại: " + error.message);
+        });
+  });
   // Kiểm tra các phần tử cơ bản để mở popup
   if (loginPopup && loginBtn && createEventBtn && promoCreateEventBtn && closeLoginPopup) {
     // Mở popup khi nhấn "Login"
@@ -54,17 +104,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mở popup khi nhấn "Tạo sự kiện" trong header
     createEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "/create-event";
-      loginPopup.style.display = "flex";
-      console.log("Create Event button clicked, popup should be visible");
+      const token = localStorage.getItem("jwtToken");
+      if (token) {
+        window.location.href = "/create-event";
+      }
+      else {
+        redirectAfterLogin = "/create-event";
+        loginPopup.style.display = "flex";
+        console.log("Create Event button clicked, popup should be visible");
+      }
     });
 
     // Mở popup khi nhấn "Tạo sự kiện" trong khung quảng cáo
     promoCreateEventBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      redirectAfterLogin = "/create-event";
-      loginPopup.style.display = "flex";
-      console.log("Promo Create Event button clicked, popup should be visible");
+      const token = localStorage.getItem("jwtToken");
+      if (token) {
+        window.location.href = "/create-event";
+      }
+      else {
+        redirectAfterLogin = "/create-event";
+        loginPopup.style.display = "flex";
+        console.log("Create Event button clicked, popup should be visible");
+      }
     });
 
     // Đóng popup đăng nhập khi nhấn "X"
@@ -91,17 +153,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Xử lý các popup liên quan (Quên mật khẩu, Tạo tài khoản)
   if (
-    forgotPasswordPopup &&
-    signupPopup &&
-    closeForgotPopup &&
-    closeSignupPopup &&
-    continueBtn &&
-    forgotPasswordLink &&
-    signupLink &&
-    backToLogin &&
-    backToLoginFromSignup &&
-    resetPasswordBtn &&
-    signupBtn
+      forgotPasswordPopup &&
+      signupPopup &&
+      closeForgotPopup &&
+      closeSignupPopup &&
+      continueBtn &&
+      forgotPasswordLink &&
+      signupLink &&
+      backToLogin &&
+      backToLoginFromSignup &&
+      resetPasswordBtn &&
+      signupBtn
   ) {
     // Xử lý đăng nhập ảo
     continueBtn.addEventListener("click", () => {
@@ -123,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
               const token = data.token;
               if (!token || token.split(".").length !== 3) throw new Error("Invalid token format");
               localStorage.setItem("jwtToken", token);
-              loginPopup.style.display = "none";
               setTimeout(() => {
                 checkLoginStatus()
                     .then(() => {
@@ -183,15 +244,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Xử lý gửi yêu cầu quên mật khẩu (ảo)
     resetPasswordBtn.addEventListener("click", () => {
-      const forgotEmail = document.getElementById("forgotEmailInput").value;
-      if (forgotEmail) {
-        alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
-        forgotPasswordPopup.style.display = "none";
-        loginPopup.style.display = "flex";
-      } else {
+      const forgotEmail = document.getElementById("forgotEmailInput").value.trim();
+      if (!forgotEmail) {
         alert("Vui lòng nhập email!");
+        return;
       }
+
+      fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: forgotEmail })
+      })
+          .then(response => {
+            if (response.ok) {
+              alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
+              forgotPasswordPopup.style.display = "none";
+              loginPopup.style.display = "flex";
+            } else if (response.status === 404) {
+              alert("Email không tồn tại trong hệ thống.");
+            } else {
+              alert("Đã xảy ra lỗi khi gửi yêu cầu. Vui lòng thử lại.");
+            }
+          })
+          .catch(error => {
+            console.error("Lỗi khi gửi yêu cầu forgot password:", error);
+            alert("Không thể kết nối tới máy chủ.");
+          });
     });
+
 
     // Xử lý đăng ký tài khoản (ảo)
     signupBtn.addEventListener("click", () => {
@@ -205,8 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
           fetch("/api/auth/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email: signupEmail, password:signupPassword }),
+            body: JSON.stringify({ username, email: signupEmail, password: signupPassword }),
           })
+
               .then(response => {
                 console.log("Signup response:", response);
                 if (!response.ok) return response.text().then(text => { throw new Error(`Status: ${response.status}, Message: ${text}`); });
@@ -249,8 +332,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pwdInput.type = isPwd ? "text" : "password";
         icon.textContent = isPwd ? "visibility" : "visibility_off";
         toggleBtn.setAttribute(
-          "aria-label",
-          isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+            "aria-label",
+            isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
         );
       });
     }
@@ -267,8 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
         signupConfirmPwdInput.type = isPwd ? "text" : "password";
         signupIcon.textContent = isPwd ? "visibility" : "visibility_off";
         signupToggleBtn.setAttribute(
-          "aria-label",
-          isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
+            "aria-label",
+            isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu"
         );
       });
     }
@@ -310,23 +393,23 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   fetch("/upload/event-detail-data.txt")
-    .then((response) => response.text())
-    .then((text) => {
-      allEventData = JSON.parse(text);
-      loadBanner(0);
+      .then((response) => response.text())
+      .then((text) => {
+        allEventData = JSON.parse(text);
+        loadBanner(0);
 
-      dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-          const index = parseInt(dot.dataset.index, 10);
-          if (index !== currentIndex) {
-            loadBanner(index);
-          }
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const index = parseInt(dot.dataset.index, 10);
+            if (index !== currentIndex) {
+              loadBanner(index);
+            }
+          });
         });
+      })
+      .catch((error) => {
+        console.error("Lỗi khi tải file event data:", error);
       });
-    })
-    .catch((error) => {
-      console.error("Lỗi khi tải file event data:", error);
-    });
 
   function loadBanner(index) {
     const targetId = selectedIds[index];
@@ -388,14 +471,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentDate = new Date("2025-05-03"); // Ngày hiện tại
 
   if (
-    !moreButton ||
-    !moreButtonWrapper ||
-    !buttonIcon ||
-    !buttonText ||
-    !eventSection
+      !moreButton ||
+      !moreButtonWrapper ||
+      !buttonIcon ||
+      !buttonText ||
+      !eventSection
   ) {
     console.error(
-      "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'."
+        "Không tìm thấy nút 'Xem thêm', các thành phần của nó, hoặc section 'event-upcoming-section'."
     );
     return;
   }
@@ -403,39 +486,39 @@ document.addEventListener("DOMContentLoaded", () => {
   moreButtonWrapper.style.display = "block";
 
   fetch("/upload/event-detail-data.txt")
-    .then((response) => response.text())
-    .then((text) => {
-      allEvents = JSON.parse(text);
+      .then((response) => response.text())
+      .then((text) => {
+        allEvents = JSON.parse(text);
 
-      // Lọc các sự kiện có ngày diễn ra trong tương lai
-      allEvents = allEvents.filter((event) => {
-        const eventDate = new Date(event.event_info.date);
-        return eventDate >= currentDate;
-      });
-
-      // Sắp xếp theo ngày tăng dần (gần nhất trước)
-      allEvents.sort((a, b) => {
-        const dateA = new Date(a.event_info.date);
-        const dateB = new Date(b.event_info.date);
-        return dateA - dateB;
-      });
-
-      console.log(
-        `Đã tải ${allEvents.length} sự kiện từ event-detail-data.txt (Sự kiện sắp tới)`
-      );
-
-      const renderEvents = (eventList) => {
-        container.innerHTML = "";
-        eventList.forEach((event) => {
+        // Lọc các sự kiện có ngày diễn ra trong tương lai
+        allEvents = allEvents.filter((event) => {
           const eventDate = new Date(event.event_info.date);
-          const month = eventDate
-            .toLocaleString("default", { month: "short" })
-            .toUpperCase();
-          const day = eventDate.getDate();
+          return eventDate >= currentDate;
+        });
 
-          const card = document.createElement("div");
-          card.className = "event-card";
-          card.innerHTML = `
+        // Sắp xếp theo ngày tăng dần (gần nhất trước)
+        allEvents.sort((a, b) => {
+          const dateA = new Date(a.event_info.date);
+          const dateB = new Date(b.event_info.date);
+          return dateA - dateB;
+        });
+
+        console.log(
+            `Đã tải ${allEvents.length} sự kiện từ event-detail-data.txt (Sự kiện sắp tới)`
+        );
+
+        const renderEvents = (eventList) => {
+          container.innerHTML = "";
+          eventList.forEach((event) => {
+            const eventDate = new Date(event.event_info.date);
+            const month = eventDate
+                .toLocaleString("default", { month: "short" })
+                .toUpperCase();
+            const day = eventDate.getDate();
+
+            const card = document.createElement("div");
+            card.className = "event-card";
+            card.innerHTML = `
             <img src="${event.poster}" alt="${event.title}">
             <div class="event-info">
               <div class="event-date">
@@ -449,61 +532,61 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           `;
-          card.addEventListener("click", () => {
-            window.open(
-              `/event-detail?eventId=${event.id}`,
-              "_blank"
-            );
+            card.addEventListener("click", () => {
+              window.open(
+                  `/event-detail?eventId=${event.id}`,
+                  "_blank"
+              );
+            });
+            container.appendChild(card);
           });
-          container.appendChild(card);
-        });
-      };
+        };
 
-      const initialEvents = allEvents.slice(0, displayedEvents);
-      renderEvents(initialEvents);
+        const initialEvents = allEvents.slice(0, displayedEvents);
+        renderEvents(initialEvents);
 
-      if (allEvents.length <= eventsPerLoad) {
-        moreButtonWrapper.style.display = "none";
-      } else {
-        moreButtonWrapper.style.display = "block";
-      }
-
-      moreButton.addEventListener("click", () => {
-        if (!isExpanded) {
-          renderEvents(allEvents);
-
-          const newIconExpand = document.createElement("span");
-          newIconExpand.className = "material-symbols-rounded button-icon";
-          newIconExpand.textContent = "expand_less";
-          buttonIcon.replaceWith(newIconExpand);
-          buttonIcon = newIconExpand;
-
-          buttonText.textContent = "Thu gọn";
-          moreButton.classList.add("collapsed");
-          isExpanded = true;
+        if (allEvents.length <= eventsPerLoad) {
+          moreButtonWrapper.style.display = "none";
         } else {
-          const initialEvents = allEvents.slice(0, displayedEvents);
-          renderEvents(initialEvents);
-
-          const newIconCollapse = document.createElement("span");
-          newIconCollapse.className = "material-symbols-rounded button-icon";
-          newIconCollapse.textContent = "expand_more";
-          buttonIcon.replaceWith(newIconCollapse);
-          buttonIcon = newIconCollapse;
-
-          buttonText.textContent = "Xem thêm";
-          moreButton.classList.remove("collapsed");
-
-          eventSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-          isExpanded = false;
+          moreButtonWrapper.style.display = "block";
         }
+
+        moreButton.addEventListener("click", () => {
+          if (!isExpanded) {
+            renderEvents(allEvents);
+
+            const newIconExpand = document.createElement("span");
+            newIconExpand.className = "material-symbols-rounded button-icon";
+            newIconExpand.textContent = "expand_less";
+            buttonIcon.replaceWith(newIconExpand);
+            buttonIcon = newIconExpand;
+
+            buttonText.textContent = "Thu gọn";
+            moreButton.classList.add("collapsed");
+            isExpanded = true;
+          } else {
+            const initialEvents = allEvents.slice(0, displayedEvents);
+            renderEvents(initialEvents);
+
+            const newIconCollapse = document.createElement("span");
+            newIconCollapse.className = "material-symbols-rounded button-icon";
+            newIconCollapse.textContent = "expand_more";
+            buttonIcon.replaceWith(newIconCollapse);
+            buttonIcon = newIconCollapse;
+
+            buttonText.textContent = "Xem thêm";
+            moreButton.classList.remove("collapsed");
+
+            eventSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            isExpanded = false;
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Lỗi tải dữ liệu sự kiện sắp diễn ra:", error);
+        moreButtonWrapper.style.display = "block";
       });
-    })
-    .catch((error) => {
-      console.error("Lỗi tải dữ liệu sự kiện sắp diễn ra:", error);
-      moreButtonWrapper.style.display = "block";
-    });
 });
 
 // ===== promotional section =====
@@ -548,10 +631,10 @@ promoBtn.addEventListener("mouseenter", () => {
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("carouselTrack");
   const nextBtn = document.querySelector(
-    ".event-trend-section .carousel-nav.next"
+      ".event-trend-section .carousel-nav.next"
   );
   const prevBtn = document.querySelector(
-    ".event-trend-section .carousel-nav.prev"
+      ".event-trend-section .carousel-nav.prev"
   );
   let scrollPosition = 0;
   const cardWidth = 230;
@@ -621,10 +704,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 document.addEventListener("DOMContentLoaded", async () => {
   const track = document.getElementById("specialTrack");
   const nextBtn = document.querySelector(
-    ".event-special-section .carousel-nav.next"
+      ".event-special-section .carousel-nav.next"
   );
   const prevBtn = document.querySelector(
-    ".event-special-section .carousel-nav.prev"
+      ".event-special-section .carousel-nav.prev"
   );
   let scrollPosition = 0;
   const cardWidth = 270;
@@ -638,8 +721,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     events = events.filter((event) => {
       return event.tickets.some(
-        (ticket) =>
-          ticket.type.toLowerCase().includes("vip") || ticket.price >= 5000000
+          (ticket) =>
+              ticket.type.toLowerCase().includes("vip") || ticket.price >= 5000000
       );
     });
 
@@ -685,3 +768,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+const fetchWithToken = (url, options = {}) => {
+  if (!options.headers) options.headers = {};
+  const token = localStorage.getItem("jwtToken");
+  if (token) options.headers["Authorization"] = `Bearer ${token}`;
+  return fetch(url, options);
+};
+
+const checkLoginStatus = async () => {
+  const token = localStorage.getItem("jwtToken");
+  if (!token) {
+    console.log("Chưa đăng nhập (không có token).");
+    return false;
+  }
+  try {
+    const response = await fetch("/api/auth/user", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      console.log("Token không hợp lệ hoặc đã hết hạn.");
+      localStorage.removeItem("jwtToken");
+      return false;
+    }
+    console.log("Đã đăng nhập.");
+    return true;
+  } catch (error) {
+    console.error("Lỗi kiểm tra đăng nhập:", error);
+    return false;
+  }
+};

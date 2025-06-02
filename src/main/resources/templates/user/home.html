@@ -4,11 +4,15 @@
   <head>
     <link rel="stylesheet" href="/assets-user/css/home.css" />
     <title>Trang chủ</title>
+
+
   </head>
 
   <body>
-    <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+  <!-- ===== HEADER ===== -->
+  <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+  <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
+
 
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">

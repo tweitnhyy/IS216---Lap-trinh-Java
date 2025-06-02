@@ -13,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -28,9 +31,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
                                 "/assets-user/**", "/event-detail/**", "/api/events/**",
-                                "/contact", "/buy-ticket", "/event-detail/").permitAll()
-                        .requestMatchers("/account/**", "/create-event/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                "/contact","/account", "/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", "/purchase-ticket/**").permitAll()
+                        .requestMatchers("/api/auth/update/**", "/api/events/create-events/**").hasRole("user")
+                        .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

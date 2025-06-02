@@ -19,22 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // xử lí dropdown của avatar
-document.addEventListener("DOMContentLoaded", () => {
-  const avatarWrap = document.querySelector(".avatar-dropdown");
-  if (!avatarWrap) return;
-  const menu = avatarWrap.querySelector(".dropdown-menu");
 
-  avatarWrap.addEventListener("click", (e) => {
-    e.stopPropagation();
-    menu.classList.toggle("show");
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!avatarWrap.contains(e.target)) {
-      menu.classList.remove("show");
-    }
-  });
-});
 
 // preview ảnh & video
 document.addEventListener("DOMContentLoaded", () => {
