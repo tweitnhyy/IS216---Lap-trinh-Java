@@ -1,70 +1,92 @@
 package com.example.webve.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-public class Event {
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String name;
-    private String description;
-    private String location;
-    private String date; // Bạn có thể sử dụng LocalDate hoặc LocalDateTime nếu cần
+    @Getter
+    @Setter
+    @Entity
+    @Table(name = "Events")
+    public class Event {
 
-    // Constructor
-    public Event() {}
+        @Id
+        @Column(name = "event_id")
+        private String eventId;
 
-    public Event(String name, String description, String location, String date) {
-        this.name = name;
-        this.description = description;
-        this.location = location;
-        this.date = date;
+        @Column(name = "title", nullable = false)
+        private String title;
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", nullable = false)
+        private User user;
+
+        @Column(name = "format")
+        private String format; // Hình thức sự kiện (offline/online)
+
+        @Column(name = "city", nullable = false)
+        private String city;    // Tỉnh/Thành để truy vấn
+
+        @Column(name = "poster")
+        private String poster;
+
+        @Column(name = "poster_sub")
+        private String posterSub;
+
+        @Column(name = "video")
+        private String video;
+
+        @Column(name = "description", columnDefinition = "CLOB")
+        private String description; // Gộp mô tả sự kiện và sơ đồ chỗ ngồi
+
+        @Column(name = "start_date_time")
+        private Timestamp startDateTime;
+
+        @Column(name = "end_date_time")
+        private Timestamp endDateTime;
+
+        @Column(name = "location")
+        private String location;  // Gộp số nhà, đường, phường/xã, quận/huyện, tên địa điểm
+
+        @Column(name = "ticket_sale_start")
+        private Date ticketSaleStart;
+
+        @Column(name = "ticket_sale_end")
+        private Date ticketSaleEnd;
+
+        @Column(name = "organizer_name")
+        private String organizerName;
+
+        @Column(name = "organizer_logo")
+        private String organizerLogo;
+
+        @Column(name = "created_at", updatable = false)
+        private Timestamp createdAt;
+
+        @Column(name = "updated_at")
+        private Timestamp updatedAt;
+
+        @Column(name = "organizer_description", columnDefinition = "CLOB")
+        private String organizerDescription;
+
+        @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+        private List<TicketType> ticketTypes;
+
+
+        @PrePersist
+        protected void onCreate() {
+            createdAt = new Timestamp(System.currentTimeMillis());
+            updatedAt = new Timestamp(System.currentTimeMillis());
+        }
+
+        @PreUpdate
+        protected void onUpdate() {
+            updatedAt = new Timestamp(System.currentTimeMillis());
+        }
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-}
