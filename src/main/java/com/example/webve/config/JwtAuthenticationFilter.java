@@ -31,8 +31,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // Bỏ qua các endpoint công khai
         if (path.startsWith("/api/auth/") || path.equals("/") || path.equals("/home")
                 || path.equals("/api/home") || path.startsWith("/assets-user/") || path.startsWith("/api/events/")
-                || path.startsWith("/upload/") || path.startsWith("/event-detail") || path.startsWith("/api/events") || path.startsWith("/account")
-                || path.startsWith("/contact") || path.startsWith("/buy-ticket") || path.equals("/create-event") || path.equals("/purchase-ticket")) {
+                || path.startsWith("/event-detail") || path.startsWith("/api/events") || path.startsWith("/account")
+                || path.startsWith("/contact") || path.startsWith("/buy-ticket") || path.equals("/create-event") || path.equals("/purchase-ticket")
+        || path.startsWith("/api/upload")) {
             logger.info("Permitting request without authentication: {}", path);
             filterChain.doFilter(request, response);
             return;
