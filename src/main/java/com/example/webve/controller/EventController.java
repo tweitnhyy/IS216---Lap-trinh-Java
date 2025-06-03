@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
@@ -40,5 +42,47 @@ public class EventController {
     public ResponseEntity<EventDTO> getEventById(@PathVariable String eventId) {
         EventDTO eventDTO = eventService.getEventById(eventId);
         return ResponseEntity.ok(eventDTO);
+    }
+
+    // API lấy danh sách sự kiện có video không null
+    @GetMapping("/no-auth/video-events")
+    public ResponseEntity<List<EventDTO>> getVideoEvents() {
+        try {
+            List<EventDTO> events = eventService.getVideoEvents();
+            if (events.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(events);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
+    // API lấy danh sách sự kiện sắp diễn ra
+    @GetMapping("/no-auth/upcoming")
+    public ResponseEntity<List<EventDTO>> getUpcomingEvents() {
+        try {
+            List<EventDTO> events = eventService.getUpcomingEvents();
+            if (events.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(events);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/no-auth/random")
+    public ResponseEntity<List<EventDTO>> getRandomEvents() {
+        try {
+            List<EventDTO> events = eventService.getRandomEvents();
+            if (events.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(events);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

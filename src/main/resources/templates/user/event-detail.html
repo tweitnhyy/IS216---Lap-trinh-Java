@@ -7,7 +7,8 @@
   </head>
   <body>
     <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+    <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
 
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">
