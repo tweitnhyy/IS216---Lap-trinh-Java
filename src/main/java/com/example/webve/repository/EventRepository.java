@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<Event, String> {
     // Bạn có thể thêm các phương thức tùy chỉnh ở đây nếu cần
     // Tìm sự kiện theo eventId
     Optional<Event> findByEventId(String eventId);
