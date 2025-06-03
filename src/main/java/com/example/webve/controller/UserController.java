@@ -48,4 +48,9 @@ public class UserController {
     public String admin () {
         return "admin/admin";
     }
+
+    @GetMapping("/reset-password")
+    public String reset () {
+        return "user/reset-password";
+    }
 }
