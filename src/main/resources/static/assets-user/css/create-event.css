@@ -973,3 +973,21 @@ select {
   font-size: 20px;
   color: #2b2b2b;
 }
+.input-error {
+  border: 1px solid red;
+  animation: shake 0.2s linear 1;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => { // Nên là DOMConte
 
   // QUAN TRỌNG: Chọn phần tử header chính
   // Cách 1: Nếu header của bạn là thẻ <header> duy nhất hoặc đầu tiên
-  const activeHeader = document.querySelector('header');
+  let activeHeader = document.querySelector('header');
   // Cách 2: Nếu header của bạn có một ID cụ thể, ví dụ id="mainSiteHeader"
   // const activeHeader = document.getElementById('mainSiteHeader');
 
@@ -20,9 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => { // Nên là DOMConte
     if (token) {
       headerUser.style.display = "block"; // Hoặc "flex" tùy theo CSS của bạn
       headerGuest.style.display = "none";
+
     } else {
       headerUser.style.display = "none";
       headerGuest.style.display = "block"; // Hoặc "flex"
+
     }
   } else {
     console.warn("Không tìm thấy headerUser hoặc headerGuest trong DOM. Vui lòng kiểm tra ID trong HTML!");

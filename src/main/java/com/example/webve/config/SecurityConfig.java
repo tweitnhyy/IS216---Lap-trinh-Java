@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
-                                "/assets-user/**", "/event-detail/**", "/api/events/**",
+                                "/assets-user/**", "/event-detail/**", "/api/events/**", "/api/location/**",
                                 "/contact","/account", "/api/upload","/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", "/purchase-ticket/**").permitAll()
                         .requestMatchers("/api/auth/update/**", "/api/events/create-events/**").hasRole("user")
                         .requestMatchers("/admin/**").hasRole("admin")

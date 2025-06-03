@@ -164,7 +164,7 @@
               </div>
               <!-- Poster sự kiện (nhiều) -->
               <div class="upload-area" data-type="poster">
-                <input type="file" accept="image/*" multiple />
+                <input type="file" accept="image/*"  />
                 <span>+</span>
                 <p>Poster sự kiện</p>
                 <div class="preview-list"></div>
@@ -179,7 +179,8 @@
             <div class="two-cols">
               <div>
                 <label for="event-name">Tên sự kiện</label>
-                <input id="event-name" type="text" placeholder="Tên sự kiện" />
+                <input id="event-name" class="required" type="text" placeholder="Tên sự kiện" />
+                <div class="error-message"></div>
               </div>
               <div>
                 <label>Hình thức sự kiện</label>
@@ -199,36 +200,39 @@
             <!-- Địa điểm -->
             <div>
               <label for="loc-name">Tên địa điểm</label>
-              <input id="loc-name" type="text" placeholder="Tên địa điểm" />
+              <input id="loc-name" class="required" type="text" placeholder="Tên địa điểm" />
+              <div class="error-message"></div>
             </div>
             <div class="two-cols">
               <div class="select-wrapper">
                 <label for="province">Tỉnh/Thành</label>
                 <select id="province">
-                  <option>TP. Hồ Chí Minh</option>
-                  <option>Hà Nội</option>
+                  <option value="">--Chọn</option>
                 </select>
                 <span class="material-symbols-rounded select-arrow">expand_more</span>
+                <div class="error-message" id="province-error"></div>
               </div>
               <div class="select-wrapper">
                 <label for="district">Quận/Huyện</label>
-                <select id="district">
-                  <option>Quận 1</option>
+                <select id="district" disabled>
+                  <option value="">--Chọn</option>
                 </select>
                 <span class="material-symbols-rounded select-arrow">expand_more</span>
+                <div class="error-message" id="district-error"></div>
               </div>
             </div>
             <div class="two-cols">
               <div class="select-wrapper">
                 <label for="ward">Phường/Xã</label>
-                <select id="ward">
-                  <option>Phường 12</option>
+                <select id="ward" disabled>
+                  <option value="">--Chọn</option>
                 </select>
                 <span class="material-symbols-rounded select-arrow">expand_more</span>
+                <div class="error-message" id="ward-error"></div>
               </div>
               <div>
                 <label for="address">Số nhà, đường</label>
-                <input id="address" type="text" placeholder="46A Nguyễn Thị Định" />
+                <input id="address" type="text" placeholder="Điền số nhà, tên đường" />
               </div>
             </div>
 
@@ -236,21 +240,25 @@
             <div class="two-cols">
               <div>
                 <label for="start-date">Ngày bắt đầu</label>
-                <input id="start-date" type="date" />
+                <input id="start-date" class="required" type="date" />
+                <div class="error-message"></div>
               </div>
               <div>
                 <label for="end-date">Ngày kết thúc</label>
-                <input id="end-date" type="date" />
+                <input id="end-date" class="required" type="date" />
+                <div class="error-message" ></div>
               </div>
             </div>
             <div class="two-cols">
               <div>
                 <label for="start-time">Giờ bắt đầu</label>
-                <input id="start-time" type="time" />
+                <input id="start-time" class="required" type="time" />
+                <div class="error-message" ></div>
               </div>
               <div>
                 <label for="end-time">Giờ kết thúc</label>
-                <input id="end-time" type="time" />
+                <input id="end-time" class="required" type="time" />
+                <div class="error-message"></div>
               </div>
             </div>
           </div>
@@ -258,7 +266,8 @@
           <!-- Mô tả -->
           <div>
             <h3>Mô tả sự kiện</h3>
-            <textarea id="description" rows="6" placeholder="Nhập mô tả..."></textarea>
+            <textarea id="description" class="required" rows="6" placeholder="Nhập mô tả..."></textarea>
+            <div class="error-message"></div>
           </div>
 
           <!-- Thông tin Ban tổ chức -->
@@ -267,12 +276,13 @@
             <div class="two-cols">
               <div>
                 <label for="org-name">Tên Ban tổ chức</label>
-                <input id="org-name" type="text" placeholder="Tên Ban tổ chức" />
+                <input id="org-name" class="required" type="text" placeholder="Tên Ban tổ chức" />
+                <div class="error-message"></div>
               </div>
               <div class="upload-wrapper">
                 <label for="org-logo">Logo</label>
                 <div class="upload-area" data-type="org-logo">
-                  <input type="file" accept="image/*" />
+                  <input id="org-logo" type="file" accept="image/*" />
                   <span>+</span>
                   <p>Thêm Logo Ban tổ chức</p>
                 </div>
@@ -280,7 +290,8 @@
             </div>
             <div>
               <label for="org-desc">Mô tả Ban tổ chức</label>
-              <textarea id="org-desc" rows="4" placeholder="Thông tin về ban tổ chức"></textarea>
+              <textarea id="org-desc" class="required" rows="4" placeholder="Thông tin về ban tổ chức"></textarea>
+              <div class="error-message" ></div>
             </div>
           </div>
 
@@ -318,42 +329,50 @@
 
                 <div class="two-cols">
                   <div>
-                    <label for="ticket-name">Tên loại vé</label>
-                    <input id="ticket-name" name="ticket-name[]" type="text" placeholder="Tên vé" />
+                    <label for="ticket-name-1">Tên loại vé</label>
+                    <input id="ticket-name-1" class="required" name="ticket-name[]" type="text" placeholder="Tên vé" />
+                    <div class="error-message" ></div>
                   </div>
                   <div>
-                    <label for="ticket-qty">Tổng số vé</label>
-                    <input id="ticket-qty" name="ticket-qty[]" type="number" min="1" placeholder="Số lượng" />
-                  </div>
-                </div>
-                <div class="two-cols">
-                  <div>
-                    <label for="ticket-price">Giá vé</label>
-                    <input id="ticket-price" name="ticket-price[]" type="text" placeholder="0" />
-                  </div>
-                  <div>
-                    <label for="ticket-max">Số vé tối đa / lượt order</label>
-                    <input id="ticket-max" name="ticket-max[]" type="number" min="1" placeholder="Tối đa" />
+                    <label for="ticket-qty-1">Tổng số vé</label>
+                    <input id="ticket-qty-1" class="required" name="ticket-qty[]" type="number" min="1" placeholder="Số lượng" />
+                    <div class="error-message"></div>
                   </div>
                 </div>
                 <div class="two-cols">
                   <div>
-                    <label for="open-date">Ngày mở vé</label>
-                    <input id="open-date" name="open-date[]" type="date" />
+                    <label for="ticket-price-1">Giá vé</label>
+                    <input id="ticket-price-1" class="required" name="ticket-price[]" type="text" placeholder="0" />
+                    <div class="error-message"></div>
                   </div>
                   <div>
-                    <label for="close-date">Ngày đóng vé</label>
-                    <input id="close-date" name="close-date[]" type="date" />
+                    <label for="ticket-max-1">Số vé tối đa / lượt order</label>
+                    <input id="ticket-max-1" class="required" name="ticket-max[]" type="number" min="1" placeholder="Tối đa" />
+                    <div class="error-message"></div>
                   </div>
                 </div>
                 <div class="two-cols">
                   <div>
-                    <label for="open-time">Giờ mở vé</label>
-                    <input id="open-time" name="open-time[]" type="time" />
+                    <label for="open-date-1">Ngày mở vé</label>
+                    <input id="open-date-1" class="required" name="open-date[]" type="date" />
+                    <div class="error-message" ></div>
                   </div>
                   <div>
-                    <label for="close-time">Giờ đóng vé</label>
-                    <input id="close-time" name="close-time[]" type="time" />
+                    <label for="close-date-1">Ngày đóng vé</label>
+                    <input id="close-date-1" class="required" name="close-date[]" type="date" />
+                    <div class="error-message" ></div>
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div>
+                    <label for="open-time-1">Giờ mở vé</label>
+                    <input id="open-time-1" class="required" name="open-time[]" type="time" />
+                    <div class="error-message"></div>
+                  </div>
+                  <div>
+                    <label for="close-time-1">Giờ đóng vé</label>
+                    <input id="close-time-1" class="required" name="close-time[]" type="time" />
+                    <div class="error-message" ></div>
                   </div>
                 </div>
               </div>
@@ -366,7 +385,6 @@
               </button>
             </div>
           </div>
-
           <!-- Prev & Next -->
           <div class="actions">
             <button type="button" class="btn-prev">

@@ -36,8 +36,8 @@ CREATE TABLE EVENTS (
                         START_DATE_TIME TIMESTAMP(6),
                         END_DATE_TIME TIMESTAMP(6),
                         LOCATION VARCHAR2(255 BYTE),
-                        TICKET_SALE_START DATE,
-                        TICKET_SALE_END DATE,
+                        TICKET_SALE_START TIMESTAMP(6), -- Đổi KDL
+                        TICKET_SALE_END TIMESTAMP(6), -- Đổi KDL
                         ORGANIZER_NAME VARCHAR2(100 BYTE),
                         ORGANIZER_LOGO VARCHAR2(255 BYTE),
                         CREATED_AT TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP,
