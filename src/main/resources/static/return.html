@@ -13,7 +13,10 @@
         const responseCode = urlParams.get("vnp_ResponseCode");
         const amount = urlParams.get("vnp_Amount") / 100;
         const txnRef = urlParams.get("vnp_TxnRef");
-
+        const error = urlParams.get("error");
+        if (error === "invalid_hash") {
+            document.getElementById("message").innerHTML = "❌ Dữ liệu không hợp lệ hoặc bị giả mạo.";
+        }
         let message;
         if (responseCode === "00") {
             message = `🎉 Giao dịch thành công!<br> Mã đơn hàng: ${txnRef}<br> Số tiền: ${amount.toLocaleString('vi-VN')} VND`;

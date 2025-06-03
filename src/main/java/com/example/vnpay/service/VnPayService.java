@@ -33,7 +33,7 @@ public class VnPayService {
     private String secretKey;
 
     public String createPaymentUrl(PaymentRequest request, HttpServletRequest servletRequest) {
-        String vnp_TxnRef = request.getOrderId();
+        String vnp_TxnRef = "45fad5a7-ce85-4107-be41-47d2338b8033"; // UUID.randomUUID().toString();
         String vnp_OrderInfo = request.getOrderInfo();
         String vnp_Amount = String.valueOf(request.getAmount().multiply(BigDecimal.valueOf(100)).intValue());
 
