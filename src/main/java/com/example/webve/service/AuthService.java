@@ -1,5 +1,6 @@
 package com.example.webve.service;
 
+import com.example.webve.service.EmailService;
 import com.example.webve.dto.UserDTO;
 import com.example.webve.model.User;
 import com.example.webve.model.UserSessions;
@@ -34,6 +35,9 @@ public class AuthService {
     private UserSessionRepository userSessionRepository;
 
     @Autowired
+    private EmailService emailService;
+
+    @Autowired
     private JwtService jwtService;
 
     @Autowired
@@ -43,6 +47,8 @@ public class AuthService {
     private AuthenticationManager authenticationManager;
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
+
+    private static final long RESET_TOKEN_EXPIRY_MINUTES = 60;
 
     public void register(UserDTO userDTO) {
         if (userDTO.getUsername() == null || userDTO.getUsername().trim().isEmpty()) {
@@ -152,4 +158,71 @@ public class AuthService {
         userRepository.save(user);
         return userDTO;
     }
+    /**
+     * Tạo reset token và gửi email đặt lại mật khẩu.
+     * Trả về true nếu email tồn tại, false nếu không tìm thấy.
+     */
+    public boolean initiatePasswordReset(String email) {
+    Optional<User> userOpt = userRepository.findByEmail(email);
+    if (userOpt.isEmpty()) {
+        logger.warn("Forgot password requested for non-existing email: {}", email);
+        return false;
+    }
+    User user = userOpt.get();
+
+    String resetToken = UUID.randomUUID().toString();
+    LocalDateTime expiryTime = LocalDateTime.now().plusMinutes(RESET_TOKEN_EXPIRY_MINUTES);
+
+    user.setResetToken(resetToken);
+    user.setResetTokenExpiry(Timestamp.valueOf(expiryTime));
+    userRepository.save(user);
+
+    // Gửi email reset password
+    String resetLink = "http://http://localhost:8080/reset-password?token=" + resetToken; // đổi domain cho đúng
+    String subject = "Yêu cầu đặt lại mật khẩu";
+    String body = "Bạn nhận được email này vì có yêu cầu đặt lại mật khẩu.\n\n" +
+                  "Vui lòng click vào link dưới đây để đặt lại mật khẩu (có hiệu lực trong 60 phút):\n" +
+                  resetLink + "\n\n" +
+                  "Nếu bạn không yêu cầu, hãy bỏ qua email này.";
+
+    emailService.sendSimpleEmail(email, subject, body);
+
+    logger.info("Password reset token generated and email sent to {}", email);
+
+    return true;
+}
+
+
+    /**
+     * Kiểm tra token và đổi mật khẩu mới nếu hợp lệ.
+     * Trả về true nếu thành công, false nếu token không hợp lệ hoặc hết hạn.
+     */
+    public boolean resetPassword(String token, String newPassword) {
+        Optional<User> userOpt = userRepository.findByResetToken(token);
+        if (userOpt.isEmpty()) {
+            logger.warn("Reset password attempt with invalid token: {}", token);
+            return false;
+        }
+        User user = userOpt.get();
+
+        Timestamp expiry = user.getResetTokenExpiry();
+        if (expiry == null || expiry.before(Timestamp.valueOf(LocalDateTime.now()))) {
+            logger.warn("Reset password attempt with expired token: {}", token);
+            return false;
+        }
+
+        if (newPassword == null || newPassword.length() < 6) {
+            logger.warn("Reset password attempt with invalid new password length");
+            return false;
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(newPassword));
+        user.setResetToken(null);
+        user.setResetTokenExpiry(null);
+        userRepository.save(user);
+
+        logger.info("Password reset successfully for user: {}", user.getEmail());
+        return true;
+    }
+
 }
