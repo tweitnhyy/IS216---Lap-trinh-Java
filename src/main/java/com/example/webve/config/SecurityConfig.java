@@ -31,7 +31,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
                                 "/assets-user/**", "/event-detail/**", "/api/events/**",
-                                "/contact","/account", "/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", "/purchase-ticket/**").permitAll()
+                                "/contact", "/contact/send",
+                                "/account", "/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", "/purchase-ticket/**").permitAll()
                         .requestMatchers("/api/auth/update/**", "/api/events/create-events/**").hasRole("user")
                         .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()

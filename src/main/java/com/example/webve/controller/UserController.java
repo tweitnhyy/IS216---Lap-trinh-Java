@@ -18,10 +18,10 @@ public class UserController {
     public String createEvent() {
         return "user/create-event"; // Trả về template create-event.html
     }
-    @GetMapping("/contact")
-    public String contact() {
-        return "user/contact"; // Trả về template create-event.html
-    }
+    // @GetMapping("/contact")
+    // public String contact() {
+    //     return "user/contact";
+    // }
     @GetMapping("/event-detail")
     public String eventDetail() {
         return "user/event-detail"; // Trả về template create-event.html

@@ -208,20 +208,28 @@
         </div>
         <div class="card contact-form">
           <h2>Gửi tin nhắn</h2>
-          <form>
+
+          <div th:if="${successMessage != null}" style="color: green;">
+            <p th:text="${successMessage}"></p>
+          </div>
+          <div th:if="${errorMessage != null}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+          </div>
+
+          <form th:action="@{/contact/send}" method="post">
             <label for="name">Họ và tên</label>
             <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required />
-
+        
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Nhập email" required />
-
+        
             <label for="subject">Chủ đề</label>
             <input type="text" id="subject" name="subject" placeholder="Chủ đề" required />
-
+        
             <label for="message">Nội dung</label>
             <textarea id="message" name="message" rows="6" placeholder="Nội dung tin nhắn" required></textarea>
-
-            <button type="button">Gửi</button>
+        
+            <button type="submit">Gửi</button>
           </form>
         </div>
       </div>
