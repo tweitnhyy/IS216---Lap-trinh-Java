@@ -14,8 +14,10 @@ public class EmailService {
     /**
      * Gửi email đơn giản (text only)
      */
-    public void sendSimpleEmail(String toEmail, String subject, String body) {
+    public void sendSimpleEmail(String replyTo, String toEmail, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("tuyetnhiktvn@gmail.com");   // Tài khoản authenticate với SMTP
+        message.setReplyTo(replyTo);                 // Email user nhập
         message.setTo(toEmail);
         message.setSubject(subject);
         message.setText(body);

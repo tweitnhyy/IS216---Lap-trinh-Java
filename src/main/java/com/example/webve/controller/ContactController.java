@@ -25,12 +25,12 @@ public class ContactController {
     @PostMapping("/send")
     public String handleContactSubmit(
             @RequestParam("name") String name,
-            @RequestParam("email") String email,
+            @RequestParam("email") String email,    // Địa chỉ người gửi
             @RequestParam("subject") String subject,
             @RequestParam("message") String message,
             RedirectAttributes redirectAttrs
     ) {
-        String recipient = "tuyetnhiktvn@gmail.com"; // Địa chỉ công ty Eventory
+        String recipient = "eventory.z10@gmail.com";
         String mailSubject = "[Liên hệ từ trang web] " + subject;
         String mailContent = String.format(
             "Bạn có tin nhắn mới từ trang Liên hệ:\n\n" +
@@ -42,7 +42,7 @@ public class ContactController {
         );
 
         try {
-            emailService.sendSimpleEmail(recipient, mailSubject, mailContent);
+            emailService.sendSimpleEmail(email, recipient, mailSubject, mailContent);
             redirectAttrs.addFlashAttribute("successMessage", "Gửi thành công! Chúng tôi sẽ liên hệ sớm.");
         } catch (Exception ex) {
             ex.printStackTrace();
