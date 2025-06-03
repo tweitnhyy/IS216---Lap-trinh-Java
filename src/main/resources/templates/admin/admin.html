@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="admin/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-admin/css/admin.css" />
+    <title>Admin</title>
+  </head>
+  <body style="background-color: #fff0f1; color: #333; overflow-x: hidden;">
+    <!-- Header -->
+    <header class="header p-3 d-flex justify-content-between align-items-center shadow-sm">
+      <div class="logo">
+        <h4 class="text-white mb-0">Eventory Admin</h4>
+      </div>
+      <div class="header-right d-flex align-items-center">
+        <a href="#" class="text-white me-3 position-relative">
+          <i class="fas fa-bell fa-lg"></i>
+          <span class="badge bg-danger rounded-circle position-absolute top-0 end-0" style="font-size: 0.7em;">3</span>
+        </a>
+        <div class="avatar dropdown">
+          <a href="#" class="d-flex align-items-center text-white dropdown-toggle" id="avatarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://via.placeholder.com/40" alt="Admin Avatar" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+            <span>Admin</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="avatarDropdown">
+            <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="d-flex">
+      <aside class="sidebar bg-dark text-white p-4 vh-100 d-none d-md-block" style="width: 250px; transition: all 0.3s ease;">
+        <h2 class="fs-4 fw-bold mb-4 text-center">Admin Panel <i class="fas fa-tachometer-alt animate-pulse"></i></h2>
+        <nav>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#dashboard" class="nav-link text-white hover-bg d-flex align-items-center"><i class="fas fa-chart-line me-2"></i> Dashboard</a></li>
+            <li class="nav-item mb-2">
+              <a href="#user-management" class="nav-link text-white hover-bg d-flex align-items-center toggle-sub-menu">
+                <i class="fas fa-users me-2"></i> Duyệt tài khoản
+                <i class="fas fa-chevron-down ms-auto arrow-icon"></i>
+              </a>
+              <ul class="nav flex-column ms-3 mt-1 sub-menu" style="display: none;">
+                <li class="nav-item"><a href="#approve" class="nav-link text-white hover-bg-sub d-flex align-items-center"><i class="fas fa-check me-2"></i> Duyệt</a></li>
+                <li class="nav-item"><a href="#user-list" class="nav-link text-white hover-bg-sub d-flex align-items-center"><i class="fas fa-list me-2"></i> Danh sách</a></li>
+              </ul>
+            </li>
+            <li class="nav-item mb-2"><a href="#event-management" class="nav-link text-white hover-bg d-flex align-items-center"><i class="fas fa-calendar-alt me-2"></i> Sự kiện</a></li>
+            <li class="nav-item mb-2"><a href="#statistics" class="nav-link text-white hover-bg d-flex align-items-center"><i class="fas fa-chart-pie me-2"></i> Thống kê</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-grow p-4" style="margin-left: 400px; transition: margin-left 0.3s ease; margin-top: 60px;">
+        <!-- Dashboard -->
+        <section id="dashboard">
+          <h1 class="display-5 fw-bold mb-4 text-primary animate-fade-in">Dashboard <i class="fas fa-tachometer-alt"></i></h1>
+
+          <!-- Row 1: 3 cards -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 animate-pop-in" style="background: linear-gradient(135deg, #db3096, #db623d);">
+                <div class="card-body text-white">
+                  <h5 class="card-title">Tổng tiền hôm nay</h5>
+                  <p class="card-text display-6 mb-0">50,000,000 VNĐ</p>
+                  <p class="text-success">+5% so với tuần trước <i class="fas fa-arrow-up"></i></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 animate-pop-in" style="background: linear-gradient(135deg, #49ddd3, #5463e9);">
+                <div class="card-body text-white">
+                  <h5 class="card-title">Người truy cập hôm nay</h5>
+                  <p class="card-text display-6 mb-0">1,200</p>
+                  <p class="text-danger">-2% so với tuần trước <i class="fas fa-arrow-down"></i></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card shadow-sm h-100 animate-pop-in" style="background: linear-gradient(135deg, #6aecb0, #1e82d4);">
+                <div class="card-body text-white">
+                  <h5 class="card-title">Vé đã bán hôm nay</h5>
+                  <p class="card-text display-6 mb-0">300</p>
+                  <i class="fas fa-ticket-alt float-end animate-spin-slow"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: Combined Chart -->
+          <div class="card shadow-lg mb-4 animate-slide-up">
+            <div class="card-body">
+              <h5 class="card-title">Doanh thu & Vé (5 năm qua) <i class="fas fa-chart-line"></i></h5>
+              <div id="combinedChart" style="width: 100%; height: 400px;"></div>
+            </div>
+          </div>
+
+          <!-- Row 3: 2 Charts -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Doanh thu theo tháng (3 năm) <i class="fas fa-dollar-sign"></i></h5>
+                  <div id="revenueChart" style="width: 100%; height: 300px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Vé đã bán theo tháng (3 năm) <i class="fas fa-ticket-alt"></i></h5>
+                  <div id="ticketsChart" style="width: 100%; height: 300px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Ticket Type Chart -->
+          <div class="card shadow-lg mb-4 animate-slide-up">
+            <div class="card-body">
+              <h5 class="card-title">Loại vé đã bán (Năm nay) <i class="fas fa-pie-chart"></i></h5>
+              <div id="ticketTypeChart" style="width: 100%; height: 300px;"></div>
+            </div>
+          </div>
+
+          <!-- Row 5: Top Organizers & Chart -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Top ban tổ chức <i class="fas fa-users-cog"></i></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th>Số sự kiện</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>1</td><td>Org A</td><td>50</td></tr>
+                      <tr><td>2</td><td>Org B</td><td>30</td></tr>
+                      <tr><td>3</td><td>Org C</td><td>20</td></tr>
+                      <tr><td>4</td><td>Org D</td><td>15</td></tr>
+                      <tr><td>5</td><td>Org E</td><td>10</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Biểu đồ Top ban tổ chức <i class="fas fa-chart-pie"></i></h5>
+                  <div id="orgChart" style="width: 100%; height: 300px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 6: Top Events -->
+          <div class="card shadow-lg mb-4 animate-slide-up">
+            <div class="card-body">
+              <h5 class="card-title">Top sự kiện bán vé chạy nhất <i class="fas fa-trophy"></i></h5>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Tên sự kiện</th>
+                    <th>Ban tổ chức</th>
+                    <th>Thời gian</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>Event A</td><td>Org A</td><td>1/4-10/4</td></tr>
+                  <tr><td>2</td><td>Event B</td><td>Org B</td><td>5/3-15/3</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Row 7: Upcoming Events -->
+          <div class="card shadow-lg mb-4 animate-slide-up">
+            <div class="card-body">
+              <h5 class="card-title">Sự kiện sắp ra mắt <i class="fas fa-calendar-check"></i></h5>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Thời gian</th>
+                    <th>Tên sự kiện</th>
+                    <th>Ban tổ chức</th>
+                    <th>Số vé</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>15/05/2025</td><td>Event New</td><td>Org A</td><td>500</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Row 8: Top Customers & Payment Status -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Top khách hàng chi nhiều nhất <i class="fas fa-user-tag"></i></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>STT</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số tiền</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>1</td><td>User A</td><td>10,000,000 VNĐ</td></tr>
+                      <tr><td>2</td><td>User B</td><td>8,000,000 VNĐ</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card shadow-lg animate-slide-up">
+                <div class="card-body">
+                  <h5 class="card-title">Trạng thái thanh toán <i class="fas fa-credit-card"></i></h5>
+                  <p>Thành công: <span class="badge bg-success animate-pulse">150</span></p>
+                  <p>Lỗi: <span class="badge bg-danger animate-pulse">5</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Approve Section -->
+          <section id="approve" class="mt-5">
+            <h2 class="display-6 fw-bold mb-3 text-info animate-fade-in">Duyệt tài khoản <i class="fas fa-user-check"></i></h2>
+            <div class="d-flex justify-content-between mb-3">
+              <input type="text" placeholder="Tìm kiếm theo tên" class="form-control w-50" />
+              <button class="btn btn-success"><i class="fas fa-file-excel"></i> Xuất Excel</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Email</th>
+                    <th>Họ tên</th>
+                    <th>SĐT</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Quyền</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="approveTable">
+                  <tr class="align-middle">
+                    <td>1</td>
+                    <td>user1@example.com</td>
+                    <td>Nguyen Van A</td>
+                    <td>0123456789</td>
+                    <td>1990-01-01</td>
+                    <td>Nam</td>
+                    <td>User</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm approve-btn animate-hover"><i class="fas fa-check"></i> Duyệt</button>
+                      <button class="btn btn-danger btn-sm delete-btn ms-2 animate-hover"><i class="fas fa-trash"></i> Xóa</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link animate-pulse" href="#">1</a></li>
+                <li class="page-item"><a class="page-link animate-pulse" href="#">2</a></li>
+                <li class="page-item"><a class="page-link animate-pulse" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </section>
+        </main>
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdlZxGkv" crossorigin="anonymous"></script>
+    <script src="/assets-admin/js/admin.js"></script>
+  </body>
+</html>

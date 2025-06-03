@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/create-event.css" />
+    <title>Tạo sự kiện</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+
+    <main id="main-content">
+      <!-- Wizard Steps -->
+      <section class="wizard">
+        <div class="container">
+          <h2 class="wizard-title">
+            Chỉ vài bước đơn giản nữa thôi là sự kiện của bạn đã sẵn sàng lên sóng!
+          </h2>
+          <ul class="wizard-steps">
+            <li class="wizard-step active">
+              <div class="dot">
+                <span class="outer"></span>
+                <span class="inner"></span>
+              </div>
+              <span class="step-label">Thông tin sự kiện</span>
+            </li>
+            <li class="wizard-step">
+              <div class="dot">
+                <span class="outer"></span>
+                <span class="inner"></span>
+              </div>
+              <span class="step-label">Tạo vé</span>
+            </li>
+            <li class="wizard-step">
+              <div class="dot">
+                <span class="outer"></span>
+                <span class="inner"></span>
+              </div>
+              <span class="step-label">Cài đặt</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Form Steps -->
+      <form id="event-form">
+        <!-- Step 1 -->
+        <div class="form-step active" data-step="1">
+          <!-- Upload Media -->
+          <div>
+            <h3>Upload media</h3>
+            <div class="upload-wrapper">
+              <!-- Logo sự kiện (chỉ 1) -->
+              <div class="upload-area" data-type="logo">
+                <input type="file" accept="image/*" />
+                <span>+</span>
+                <p>Logo sự kiện</p>
+                <div class="preview-list"></div>
+              </div>
+              <!-- Video sự kiện (chỉ 1) -->
+              <div class="upload-area" data-type="video">
+                <input type="file" accept="video/*" />
+                <span>+</span>
+                <p>Video sự kiện</p>
+                <div class="preview-list"></div>
+              </div>
+              <!-- Poster sự kiện (nhiều) -->
+              <div class="upload-area" data-type="poster">
+                <input type="file" accept="image/*" multiple />
+                <span>+</span>
+                <p>Poster sự kiện</p>
+                <div class="preview-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thông tin sự kiện -->
+          <div>
+            <h3>Thông tin sự kiện</h3>
+            <!-- Tên & Hình thức -->
+            <div class="two-cols">
+              <div>
+                <label for="event-name">Tên sự kiện</label>
+                <input id="event-name" type="text" placeholder="Tên sự kiện" />
+              </div>
+              <div>
+                <label>Hình thức sự kiện</label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="format" value="offline" checked />
+                    Sự kiện Offline
+                  </label>
+                  <label>
+                    <input type="radio" name="format" value="online" /> Sự kiện
+                    Online
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Địa điểm -->
+            <div>
+              <label for="loc-name">Tên địa điểm</label>
+              <input id="loc-name" type="text" placeholder="Tên địa điểm" />
+            </div>
+            <div class="two-cols">
+              <div class="select-wrapper">
+                <label for="province">Tỉnh/Thành</label>
+                <select id="province">
+                  <option>TP. Hồ Chí Minh</option>
+                  <option>Hà Nội</option>
+                </select>
+                <span class="material-symbols-rounded select-arrow">expand_more</span>
+              </div>
+              <div class="select-wrapper">
+                <label for="district">Quận/Huyện</label>
+                <select id="district">
+                  <option>Quận 1</option>
+                </select>
+                <span class="material-symbols-rounded select-arrow">expand_more</span>
+              </div>
+            </div>
+            <div class="two-cols">
+              <div class="select-wrapper">
+                <label for="ward">Phường/Xã</label>
+                <select id="ward">
+                  <option>Phường 12</option>
+                </select>
+                <span class="material-symbols-rounded select-arrow">expand_more</span>
+              </div>
+              <div>
+                <label for="address">Số nhà, đường</label>
+                <input id="address" type="text" placeholder="46A Nguyễn Thị Định" />
+              </div>
+            </div>
+
+            <!-- Thời gian -->
+            <div class="two-cols">
+              <div>
+                <label for="start-date">Ngày bắt đầu</label>
+                <input id="start-date" type="date" />
+              </div>
+              <div>
+                <label for="end-date">Ngày kết thúc</label>
+                <input id="end-date" type="date" />
+              </div>
+            </div>
+            <div class="two-cols">
+              <div>
+                <label for="start-time">Giờ bắt đầu</label>
+                <input id="start-time" type="time" />
+              </div>
+              <div>
+                <label for="end-time">Giờ kết thúc</label>
+                <input id="end-time" type="time" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Mô tả -->
+          <div>
+            <h3>Mô tả sự kiện</h3>
+            <textarea id="description" rows="6" placeholder="Nhập mô tả..."></textarea>
+          </div>
+
+          <!-- Thông tin Ban tổ chức -->
+          <div>
+            <h3>Thông tin Ban tổ chức</h3>
+            <div class="two-cols">
+              <div>
+                <label for="org-name">Tên Ban tổ chức</label>
+                <input id="org-name" type="text" placeholder="Tên Ban tổ chức" />
+              </div>
+              <div class="upload-wrapper">
+                <label for="org-logo">Logo</label>
+                <div class="upload-area" data-type="org-logo">
+                  <input type="file" accept="image/*" />
+                  <span>+</span>
+                  <p>Thêm Logo Ban tổ chức</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label for="org-desc">Mô tả Ban tổ chức</label>
+              <textarea id="org-desc" rows="4" placeholder="Thông tin về ban tổ chức"></textarea>
+            </div>
+          </div>
+
+          <!-- Next -->
+          <div class="actions">
+            <button type="button" class="btn-next">
+              <span class="material-symbols-rounded"> arrow_right_alt </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" data-step="2">
+          <!-- Upload Sơ đồ chỗ ngồi -->
+          <div>
+            <h3>Sơ đồ chỗ ngồi</h3>
+            <div class="upload-wrapper">
+              <div class="upload-area" data-type="seatmap">
+                <input type="file" accept="image/*" />
+                <span>+</span>
+                <p>Thêm ảnh sơ đồ chỗ ngồi</p>
+                <div class="preview-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tạo vé -->
+          <div>
+            <h3>Tạo các loại vé</h3>
+            <div id="tickets-container">
+              <div class="ticket-item">
+                <button type="button" class="remove-ticket-btn">
+                  <span class="material-symbols-rounded">close</span>
+                </button>
+
+                <div class="two-cols">
+                  <div>
+                    <label for="ticket-name">Tên loại vé</label>
+                    <input id="ticket-name" name="ticket-name[]" type="text" placeholder="Tên vé" />
+                  </div>
+                  <div>
+                    <label for="ticket-qty">Tổng số vé</label>
+                    <input id="ticket-qty" name="ticket-qty[]" type="number" min="1" placeholder="Số lượng" />
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div>
+                    <label for="ticket-price">Giá vé</label>
+                    <input id="ticket-price" name="ticket-price[]" type="text" placeholder="0" />
+                  </div>
+                  <div>
+                    <label for="ticket-max">Số vé tối đa / lượt order</label>
+                    <input id="ticket-max" name="ticket-max[]" type="number" min="1" placeholder="Tối đa" />
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div>
+                    <label for="open-date">Ngày mở vé</label>
+                    <input id="open-date" name="open-date[]" type="date" />
+                  </div>
+                  <div>
+                    <label for="close-date">Ngày đóng vé</label>
+                    <input id="close-date" name="close-date[]" type="date" />
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div>
+                    <label for="open-time">Giờ mở vé</label>
+                    <input id="open-time" name="open-time[]" type="time" />
+                  </div>
+                  <div>
+                    <label for="close-time">Giờ đóng vé</label>
+                    <input id="close-time" name="close-time[]" type="time" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tạo thêm vé -->
+            <div class="add-ticket-wrapper">
+              <button type="button" id="add-ticket-btn" class="btn-add-ticket">
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Prev & Next -->
+          <div class="actions">
+            <button type="button" class="btn-prev">
+              <span class="material-symbols-rounded">arrow_left_alt</span>
+            </button>
+            <button type="button" class="btn-next">
+              <span class="material-symbols-rounded">arrow_right_alt</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" data-step="3">
+          <!-- Quảng bá -->
+          <div>
+            <h3>Quảng bá sự kiện của bạn</h3>
+            <div>
+              <label> Bạn có muốn chia sẻ sự kiện này với mọi người? </label>
+              <div class="share-options">
+                <div class="option">
+                  <label>
+                    <input type="radio" name="visibility" value="public" checked />
+                    Công khai
+                  </label>
+                  <p class="option-desc">
+                    Sự kiện sẽ được hiển thị trên trang chủ, mọi người đều có thể đăng ký hoặc mua vé.
+                  </p>
+                </div>
+                <div class="option">
+                  <label>
+                    <input type="radio" name="visibility" value="limited" />
+                    Giới hạn người xem
+                  </label>
+                  <p class="option-desc">
+                    Sự kiện không hiển thị trên trang chủ, chỉ những ai có đường link mới có thể đăng ký hoặc mua vé.
+                  </p>
+                </div>
+                <div class="option">
+                  <label>
+                    <input type="radio" name="visibility" value="private" />
+                    Không công khai
+                  </label>
+                  <p class="option-desc">
+                    Sự kiện không hiển thị trên trang chủ và không cho phép đăng ký hoặc mua vé.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Link chia sẻ -->
+            <div>
+              <label class="share-label">Hãy chia sẻ sự kiện của bạn</label>
+              <div class="share-link">
+                <span class="material-symbols-rounded"> link </span>
+                <span>Link truy cập đến sự kiện của bạn:</span>
+                <a href="#" id="event-link">https://eventory.com/.....</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prev & Confirm -->
+          <div class="actions">
+            <button type="button" class="btn-prev">
+              <span class="material-symbols-rounded">arrow_left_alt</span>
+            </button>
+            <button type="button" class="btn-confirm">
+              <span class="material-symbols-rounded"> check </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <script src="/assets-user/js/create-event.js"></script>
+  </body>
+</html>

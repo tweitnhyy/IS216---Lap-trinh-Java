@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/account.css" />
+    <title>Sự kiện của tôi</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+
+    <!-- ===== MAIN CONTENT: Sự kiện của tôi ===== -->
+    <main class="my-events-page">
+      <h2>Sự kiện của tôi</h2>
+      <hr />
+
+      <div class="filters">
+        <button class="filter-btn active">Sắp tới</button>
+        <button class="filter-btn">Đã qua</button>
+        <button class="filter-btn">Chờ duyệt</button>
+        <button class="filter-btn">Nháp</button>
+      </div>
+
+      <div class="events-grid"></div>
+    </main>
+
+    <script src="/assets-user/js/account.js"></script>
+  </body>
+</html>

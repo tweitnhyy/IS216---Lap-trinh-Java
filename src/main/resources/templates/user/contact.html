@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/home.css" />
+    <title>Liên hệ</title>
+    <style>
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      main {
+        padding: calc(16px + 81px) 16px 48px;
+        max-width: flex;
+        margin: 0 auto;
+        font-family: var(--font-primary);
+        background-color: #fff1f1;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .page-header h2 {
+        color: var(--color-primary);
+        margin-bottom: 12px;
+      }
+      .page-header p {
+        color: var(--text-dark);
+      }
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        justify-content: center;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 32px;
+        flex: 1 1 360px;
+        max-width: 480px;
+      }
+
+      .card h2 {
+        font-size: 20px;
+        color: var(--color-primary);
+        margin-bottom: 24px;
+      }
+      .contact-info .item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-left: 15px;
+        margin-bottom: 20px;
+      }
+      .contact-info .item .icon {
+        font-size: 24px;
+        color: var(--color-text-light);
+      }
+      .contact-info .item .text {
+        font-size: 14px;
+        color: var(--text-border);
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+        color: var(--color-primary);
+      }
+      .socials {
+        margin-left: 10px;
+      }
+      .socials a {
+        margin-right: 10px;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .socials a .icon-social {
+        font-size: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: transparent;
+        transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      }
+      .social-facebook .icon-social {
+        color: #1877f2;
+      }
+      .social-youtube .icon-social {
+        color: #ff0000;
+      }
+      .social-tiktok .icon-social {
+        color: #000000;
+      }
+      .social-facebook:hover .icon-social {
+        background: #1877f2;
+        color: #ffffff;
+        transform: scale(1.1);
+      }
+      .social-youtube:hover .icon-social {
+        background: #ff0000;
+        color: #ffffff;
+        transform: scale(1.1);
+      }
+      .social-tiktok:hover .icon-social {
+        background: #000000;
+        color: #ffffff;
+        transform: scale(1.1);
+      }
+
+      .contact-form label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: var(--text-border);
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        background-color: #eee;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        font-family: inherit;
+        resize: vertical;
+      }
+      .contact-form button {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        margin: 0 auto;
+        padding: 12px 40px;
+        background: linear-gradient(to bottom, #e51170 20%, #09397c 100%);
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.4s ease;
+      }
+      .contact-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+      .contact-form button .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(0);
+        animation: ripple 600ms linear;
+        pointer-events: none;
+      }
+      @keyframes ripple {
+        to {
+          transform: scale(6);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+
+    <main>
+      <div class="page-header">
+        <h2>Liên hệ với chúng tôi</h2>
+        <p>Chúng tôi sẵn sàng hỗ trợ bạn 24/7</p>
+      </div>
+      <div class="cards">
+        <div class="card contact-info">
+          <h2>Thông tin liên hệ</h2>
+          <div class="item">
+            <span class="material-symbols-rounded icon">mail</span>
+            <div class="text">support@eventory.com</div>
+          </div>
+          <div class="item">
+            <span class="material-symbols-rounded icon">phone</span>
+            <div class="text">(+84) 123 456 789</div>
+          </div>
+          <div class="item">
+            <span class="material-symbols-rounded icon">place</span>
+            <div class="text">
+              Khu phố 6, phường Linh Trung, TP. Thủ Đức, TP. Hồ Chí Minh
+            </div>
+          </div>
+          <h3>Theo dõi chúng tôi</h3>
+          <div class="socials">
+            <a href="#" class="social-facebook" target="_blank" rel="noopener">
+              <span class="fab fa-facebook-f icon-social"></span>
+            </a>
+            <a href="#" class="social-youtube" target="_blank" rel="noopener">
+              <span class="fab fa-youtube icon-social"></span>
+            </a>
+            <a href="#" class="social-tiktok" target="_blank" rel="noopener">
+              <span class="fab fa-tiktok icon-social"></span>
+            </a>
+          </div>
+        </div>
+        <div class="card contact-form">
+          <h2>Gửi tin nhắn</h2>
+          <form>
+            <label for="name">Họ và tên</label>
+            <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Nhập email" required />
+
+            <label for="subject">Chủ đề</label>
+            <input type="text" id="subject" name="subject" placeholder="Chủ đề" required />
+
+            <label for="message">Nội dung</label>
+            <textarea id="message" name="message" rows="6" placeholder="Nội dung tin nhắn" required></textarea>
+
+            <button type="button">Gửi</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+
+  <script src="/assets-user/js/home.js"></script>
+  <script>
+    document.querySelectorAll(".contact-form button").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+        ripple.style.width = ripple.style.height = size + "px";
+        ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+        ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+        this.appendChild(ripple);
+        // remove sau khi animation hoàn tất
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  </script>
+</html>

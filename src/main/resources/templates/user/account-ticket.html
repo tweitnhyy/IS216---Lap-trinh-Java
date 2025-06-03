@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/account.css" />
+    <title>Vé đã mua</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+
+    <!-- ===== MAIN CONTENT: Vé đã mua ===== -->
+    <main class="purchased-tickets">
+      <h2>Vé đã mua</h2>
+      <hr />
+
+      <div class="filters">
+        <button class="filter-btn active">Tất cả</button>
+        <button class="filter-btn">Đã duyệt</button>
+        <button class="filter-btn">Chờ xác nhận</button>
+        <button class="filter-btn">Đã hủy</button>
+      </div>
+
+      <div class="tickets-grid"></div>
+    </main>
+
+    <script src="/assets-user/js/account.js"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<header class="site-header" th:fragment="header-guest">
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src="/upload/other/logo.jpg" alt="EvenTory Logo" style="max-height: 50px; vertical-align: middle;" />
+                <h1>EvenTory</h1>
+            </a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
+            <button>
+                <span class="material-symbols-rounded">search</span>
+            </button>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#" id="createEventBtn" class ="nav-link">Tạo sự kiện</a>
+            <a href="/buy-ticket">Mua vé</a>
+            <a href="/contact">Liên hệ</a>
+            <button class="btn-login" id="loginBtn">Login</button>
+        </nav>
+    </div>
+</header>

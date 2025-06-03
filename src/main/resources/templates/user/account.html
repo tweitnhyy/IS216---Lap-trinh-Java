@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/account.css" />
+    <title>Tài khoản của tôi</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+
+    <main class="account-page">
+      <h2>Thông tin tài khoản</h2>
+      <hr />
+
+      <!-- Avatar -->
+      <div class="profile-pic-upload">
+        <img id="avatarPreview" class="avatar-large" src="/upload/avatar/avatar.jpg" alt="Avatar hiện tại"/>
+        <label for="avatarInput" class="upload-btn" aria-label="Thay ảnh đại diện">
+          <span class="material-symbols-rounded">edit</span>
+        </label>
+        <input id="avatarInput" type="file" accept="image/*" style="display: none"/>
+      </div>
+
+      <!-- Information -->
+      <form class="account-form">
+        <div class="form-group">
+          <label for="fullname">Họ và tên</label>
+          <input id="fullname" type="text" value="Lee Sang-hyeok" />
+        </div>
+
+        <div class="form-group phone-group">
+          <label for="phone-number">Số điện thoại</label>
+          <input id="phone-number" type="tel" value="0123456789" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" value="info@t1.gg" />
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Ngày sinh</label>
+          <div class="date-wrapper">
+            <input id="dob" type="date" value="1996-05-07" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Giới tính</label>
+          <div class="gender-options">
+            <label><input type="radio" name="gender" checked /> Nam</label>
+            <label><input type="radio" name="gender" /> Nữ</label>
+          </div>
+        </div>
+
+        <button type="button" class="btn-save">Lưu</button>
+      </form>
+    </main>
+
+    <script src="/assets-user/js/account.js"></script>
+  </body>
+</html>

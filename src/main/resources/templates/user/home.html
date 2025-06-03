@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/home.css" />
+    <title>Trang chủ</title>
+
+
+  </head>
+
+  <body>
+  <!-- ===== HEADER ===== -->
+  <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+  <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
+
+
+    <!-- Popup Đăng nhập -->
+    <div class="login-popup" id="loginPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Đăng nhập</h2>
+          <img src="/upload/other/shiba_hello.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closePopup">×</span>
+        </div>
+
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="emailInput" required autocomplete="off" />
+              <label for="emailInput">Email hoặc số điện thoại</label>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="passwordInput" required autocomplete="off" />
+              <label for="passwordInput">Mật khẩu</label>
+              <button type="button" class="toggle-password" aria-label="Hiển thị mật khẩu">
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            <p class="signup-link">
+              Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
+            </p>
+            <div class="divider">
+              <span>Hoặc</span>
+            </div>
+            <div class="social-login-wrapper">
+              <button class="google-login-btn">
+                <img src="/upload/other/Google.png" alt="Google Icon" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Quên mật khẩu -->
+    <div class="forgot-password-popup" id="forgotPasswordPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Quên mật khẩu</h2>
+          <img src="/upload/other/shiba_sad.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closeForgotPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="forgotEmailInput" required autocomplete="off" />
+              <label for="forgotEmailInput">Email</label>
+            </div>
+            <button class="continue-btn" id="resetPasswordBtn">
+              Gửi yêu cầu
+            </button>
+            <p class="back-link">
+              <a href="#" id="backToLogin">Quay lại đăng nhập</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Tạo tài khoản -->
+    <div class="signup-popup" id="signupPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Tạo tài khoản mới</h2>
+          <img src="/upload/other/shiba_hihi.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closeSignupPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="signupEmailInput" required autocomplete="off" />
+              <label for="signupEmailInput">Email</label>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="signupPasswordInput" required autocomplete="off" />
+              <label for="signupPasswordInput">Mật khẩu</label>
+              <button type="button" class="toggle-signup-password" aria-label="Hiển thị mật khẩu">
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="signupConfirmPasswordInput" required autocomplete="off" />
+              <label for="signupConfirmPasswordInput">Xác nhận mật khẩu</label>
+            </div>
+            <button class="continue-btn" id="signupBtn">Đăng ký</button>
+            <p class="back-link">
+              <a href="#" id="backToLoginFromSignup">Quay lại đăng nhập</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+      <!-- Banner section -->
+      <section class="banner-section">
+        <div class="banner-wrapper">
+          <video id="bannerVideo" muted loop preload="metadata" poster="/upload/event/poster_babymonster_1.jpg">
+            <source src="/upload/event/teaser_babymonster.mp4" type="video/mp4" />
+          </video>
+
+          <a id="detailButton" href="./event-detail.?eventId=babymonster" class="banner-detail btn-default">
+            Xem chi tiết
+          </a>
+
+          <button id="volumeToggle" class="banner-volume">
+            <span class="material-symbols-rounded">volume_off</span>
+          </button>
+
+          <div class="banner-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event upcoming section -->
+      <section class="event-upcoming-section">
+        <div class="event-upcoming-header">
+          <h2 class="section-title">Các sự kiện sắp diễn ra</h2>
+        </div>
+        <div class="event-grid" id="eventGrid"></div>
+        <div class="event-more-btn">
+          <button class="more-button">
+            <span class="button-text">Xem thêm</span>
+            <span class="material-symbols-rounded button-icon">expand_more</span>
+          </button>
+          <button class="more-button collapse-button" id="collapseButton" style="display: none">
+            <span class="button-text">Thu gọn</span>
+            <span class="material-symbols-rounded button-icon">expand_less</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Promotional section -->
+      <section class="promo-section">
+        <div class="promo-wrapper">
+          <div class="promo-image">
+            <img src="/upload/other/partner.png" alt="Promo Illustration" />
+          </div>
+          <div class="promo-content">
+            <p>
+              Có nơi những ý tưởng không chỉ nảy mầm - mà nở rộ<br />
+              Mỗi sự kiện ở đây, không phải một buổi diễn, mà là một câu
+              chuyện<br />
+              Chọn một lần - cả thế giới ngước nhìn<br />
+              Tạo sự kiện ngay - vì khoảnh khắc của bạn xứng đáng được nhớ
+            </p>
+            <a href="#" id="promoCreateEventBtn" class="promo-button">Tạo sự kiện</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event trend section -->
+      <section class="event-trend-section">
+        <h2 class="section-title">
+          <span class="emoji">🔥</span> Sự kiện xu hướng
+        </h2>
+        <div class="carousel-viewport">
+          <button class="carousel-nav prev">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="carousel-track" id="carouselTrack"></div>
+          <button class="carousel-nav next">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Advertisement section -->
+      <section class="ad-section">
+        <div class="ad-wrapper">
+          <div class="ad-border-wrapper">
+            <div class="ad-image">
+              <img src="/upload/other/ad-landscape.jpg" alt="Ad image" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Event special section -->
+      <section class="event-special-section">
+        <h2 class="section-title">
+          <span class="emoji">🌟</span> Sự kiện đặc biệt
+        </h2>
+        <div class="carousel-viewport">
+          <button class="carousel-nav prev">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="carousel-track" id="specialTrack"></div>
+          <button class="carousel-nav next">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Infinity logo section -->
+      <section class="infinite-logo-section">
+        <div class="infinite-title">
+          <h2>✨ Đồng hành cùng những thương hiệu hàng đầu 🎉</h2>
+          <p>
+            Chúng tôi tự hào đã hợp tác với các thương hiệu tiên phong, định
+            hình xu hướng ngành. Dưới đây chỉ là một vài cái tên nổi bật!
+          </p>
+        </div>
+        <div class="wrapper">
+          <div class="itemLeft">
+            <img src="/upload/brand/bidv.png" alt="BIDV" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/hsbc.png" alt="HSBC" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/logitech.png" alt="Logitech" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/malto.png" alt="Malto" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/mercedes-benz.png" alt="MercedesBenz" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/mobifone.png" alt="Mobifone" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/coca-cola.png" alt="CocaCola" />
+          </div>
+          <div class="itemLeft">
+            <img src="/upload/brand/yamaha.png" alt="Yamaha" />
+          </div>
+        </div>
+        <div class="wrapper">
+          <div class="itemRight">
+            <img src="/upload/brand/samsung.png" alt="Samsung" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/sony.png" alt="Sony" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/spotify.png" alt="Spotify" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/tiger-beer.png" alt="TigerBeer" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/viettel.png" alt="Viettel" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/warner-music.png" alt="WarnerMusic" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/youtube.png" alt="Youtube" />
+          </div>
+          <div class="itemRight">
+            <img src="/upload/brand/audi.png" alt="Audi" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer th:replace="user/fragments/footer :: footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="/assets-user/js/home.js"></script>
+  </body>
+</html>

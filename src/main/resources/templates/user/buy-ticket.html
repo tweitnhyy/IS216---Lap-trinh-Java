@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/home.css" />
+    <link rel="stylesheet" href="/assets-user/css/buy-ticket.css" />
+    <title>Kho vé</title>
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+
+    <!-- Popup Đăng nhập -->
+    <div class="login-popup" id="loginPopup">
+      <div class="login-popup-content">
+        <span class="close-popup" id="closePopup">×</span>
+        <h2>Đăng nhập</h2>
+        <div class="login-form">
+          <label>Email hoặc số điện thoại</label>
+          <input type="text" id="emailInput" placeholder="Email hoặc số điện thoại" />
+          <label>Mật khẩu</label>
+          <input type="password" id="passwordInput" placeholder="Mật khẩu" />
+          <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+          <a href="#" class="forgot-password">Quên mật khẩu?</a>
+          <p class="signup-link">
+            Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
+          </p>
+          <div class="divider">
+            <span>Hoặc</span>
+          </div>
+          <button class="google-login-btn">
+            <img src="/upload/other/Google.png" alt="Google Icon" />
+            <span>Đăng nhập bằng Google</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+      <div class="ticket-section">
+        <div class="section-title">
+          <span>Chọn sự kiện yêu thích – Đặt vé ngay hôm nay!</span>
+          <div class="filters">
+            <div style="position: relative;">
+              <select class="date-filter">
+                <option value="all">Tất cả các ngày</option>
+                <option value="asc">Ngày: Tăng dần</option>
+                <option value="desc">Ngày: Giảm dần</option>
+              </select>
+              <i class="fi fi-sr-calendar-star"></i>
+            </div>
+            <div style="position: relative;">
+              <select class="location-filter">
+                <option value="">Bộ lọc</option>
+                <option value="Hà Nội">Hà Nội</option>
+                <option value="TP.HCM">TP.HCM</option>
+                <option value="Đà Nẵng">Đà Nẵng</option>
+                <option value="Cần Thơ">Cần Thơ</option>
+              </select>
+              <i class="fi fi-br-filter"></i>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-viewport">
+          <div class="ticket-track" id="ticketTrack"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer th:replace="user/fragments/footer :: footer"></footer>
+
+    <script src="/assets-user/js/home.js"></script>
+    <script src="/assets-user/js/buy-ticket.js"></script>
+  </body>
+</html>

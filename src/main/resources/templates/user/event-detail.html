@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head th:replace="user/fragments/head :: head"></head>
+  <head>
+    <link rel="stylesheet" href="/assets-user/css/event-detail.css" />
+    <title>Chi tiết sự kiện</title>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+
+    <!-- Popup Đăng nhập -->
+    <div class="login-popup" id="loginPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Đăng nhập</h2>
+          <img
+            src="/upload/other/shiba_hello.png"
+            alt="Mascot"
+            class="header-mascot"
+          />
+          <span class="close-popup" id="closePopup">×</span>
+        </div>
+
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="emailInput" required autocomplete="off" />
+              <label for="emailInput">Email hoặc số điện thoại</label>
+            </div>
+            <div class="inputGroup">
+              <input
+                type="password"
+                id="passwordInput"
+                required
+                autocomplete="off"
+              />
+              <label for="passwordInput">Mật khẩu</label>
+              <button
+                type="button"
+                class="toggle-password"
+                aria-label="Hiển thị mật khẩu"
+              >
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            <p class="signup-link">
+              Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
+            </p>
+            <div class="divider">
+              <span>Hoặc</span>
+            </div>
+            <div class="social-login-wrapper">
+              <button class="google-login-btn">
+                <img src="/upload/other/Google.png" alt="Google Icon" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Quên mật khẩu -->
+    <div class="forgot-password-popup" id="forgotPasswordPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Quên mật khẩu</h2>
+          <img
+            src="/upload/other/shiba_sad.png"
+            alt="Mascot"
+            class="header-mascot"
+          />
+          <span class="close-popup" id="closeForgotPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="forgotEmailInput" required autocomplete="off" />
+              <label for="forgotEmailInput">Email</label>
+            </div>
+            <button class="continue-btn" id="resetPasswordBtn">Gửi yêu cầu</button>
+            <p class="back-link">
+              <a href="#" id="backToLogin">Quay lại đăng nhập</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Tạo tài khoản -->
+    <div class="signup-popup" id="signupPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Tạo tài khoản mới</h2>
+          <img
+            src="/upload/other/shiba_hihi.png"
+            alt="Mascot"
+            class="header-mascot"
+          />
+          <span class="close-popup" id="closeSignupPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="signupEmailInput" required autocomplete="off" />
+              <label for="signupEmailInput">Email</label>
+            </div>
+            <div class="inputGroup">
+              <input
+                type="password"
+                id="signupPasswordInput"
+                required
+                autocomplete="off"
+              />
+              <label for="signupPasswordInput">Mật khẩu</label>
+              <button
+                type="button"
+                class="toggle-signup-password"
+                aria-label="Hiển thị mật khẩu"
+              >
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <div class="inputGroup">
+              <input
+                type="password"
+                id="signupConfirmPasswordInput"
+                required
+                autocomplete="off"
+              />
+              <label for="signupConfirmPasswordInput">Xác nhận mật khẩu</label>
+            </div>
+            <button class="continue-btn" id="signupBtn">Đăng ký</button>
+            <p class="back-link">
+              <a href="#" id="backToLoginFromSignup">Quay lại đăng nhập</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content">
+      <!-- Event banner -->
+      <section class="event-banner">
+        <img id="event-poster" src="" alt="Poster sự kiện" />
+      </section>
+
+      <!-- Event detail content -->
+      <section class="event-content">
+        <div class="event-content-wrapper">
+          <!-- LEFT COLUMN: info -->
+          <div class="event-info-left">
+            <div class="info-title-circle">
+              <span id="event-info-title"></span>
+            </div>
+
+            <div class="info-section">
+              <h3>Giới thiệu</h3>
+              <p id="event-intro"></p>
+            </div>
+
+            <div class="info-section">
+              <h3>Thông tin sự kiện</h3>
+              <ul id="event-info-list"></ul>
+            </div>
+
+            <div class="info-section">
+              <h3>Trải nghiệm đặc biệt</h3>
+              <ul id="special-experience-list"></ul>
+            </div>
+
+            <div class="info-section" id="promotion-section">
+              <h3>Chương trình khuyến mãi</h3>
+              <p id="promotion-desc"></p>
+              <p><em id="promotion-cond"></em></p>
+            </div>
+
+            <div class="info-section">
+              <h3>Ban tổ chức</h3>
+              <img id="organizer-logo" src="" alt="Logo ban tổ chức" />
+              <p id="organizer-name"></p>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: quảng cáo -->
+          <div class="event-info-right">
+            <img id="event-ad" src="" alt="Hình quảng cáo" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Ticket section -->
+      <section class="event-ticket">
+        <h2>Thông tin hạng vé</h2>
+        <p id="ticket-sale-time" class="ticket-sale-time"></p>
+        <table class="ticket-table">
+          <tbody id="tickets-body"></tbody>
+        </table>
+        <a id="buy-ticket-btn" href="#" class="btn-buy">Mua vé ngay</a>
+      </section>
+
+      <!-- Event suggestion section -->
+      <section class="event-suggestion-section">
+        <h2 class="section-title">
+          <span class="emoji">🎉</span> Gợi ý dành cho bạn
+        </h2>
+        <div class="carousel-viewport">
+          <button class="carousel-nav prev">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+          <div class="carousel-track" id="suggestionTrack"></div>
+          <button class="carousel-nav next">
+            <span class="material-symbols-rounded">chevron_right</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer th:replace="user/fragments/footer :: footer"></footer>
+
+    <script src="/assets-user/js/event-detail.js"></script>
+  </body>
+</html>

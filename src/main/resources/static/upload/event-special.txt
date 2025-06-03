@@ -1,0 +1,72 @@
+[
+  {
+    "id": "event-trend-10",
+    "img": "assets/img/trend/event-trend-10.jpg",
+    "rank": 10,
+    "title": "Hội nghị công nghệ Tech Summit 2025",
+    "date": "12 / 05 / 2025"
+  },
+  {
+    "id": "event-trend-1",
+    "img": "assets/img/trend/event-trend-1.jpg",
+    "rank": 1,
+    "title": "BABYMONSTER WORLD TOUR",
+    "date": "05 / 04 / 2025"
+  },
+  {
+    "id": "event-trend-6",
+    "img": "assets/img/trend/event-trend-6.jpg",
+    "rank": 6,
+    "title": "Triển lãm tranh Art Gallery 2025",
+    "date": "22 / 04 / 2025"
+  },
+  {
+    "id": "event-trend-3",
+    "img": "assets/img/trend/event-trend-3.jpg",
+    "rank": 3,
+    "title": "EXID LIVE IN HO CHI MINH",
+    "date": "15 / 04 / 2025"
+  },
+  {
+    "id": "event-trend-8",
+    "img": "assets/img/trend/event-trend-8.jpg",
+    "rank": 8,
+    "title": "Ngày hội thể thao SportFest 2025",
+    "date": "10 / 05 / 2025"
+  },
+  {
+    "id": "event-trend-4",
+    "img": "assets/img/trend/event-trend-4.jpg",
+    "rank": 4,
+    "title": "BLACKPINK ENCORE",
+    "date": "20 / 04 / 2025"
+  },
+  {
+    "id": "event-trend-9",
+    "img": "assets/img/trend/event-trend-9.jpg",
+    "rank": 9,
+    "title": "Lễ hội ánh sáng Light Festival",
+    "date": "15 / 05 / 2025"
+  },
+  {
+    "id": "event-trend-7",
+    "img": "assets/img/trend/event-trend-7.jpg",
+    "rank": 7,
+    "title": "Hội chợ sách Book Fair 2025",
+    "date": "01 / 05 / 2025"
+  },
+  {
+    "id": "event-trend-2",
+    "img": "assets/img/trend/event-trend-2.jpg",
+    "rank": 2,
+    "title": "SOOBIN CONCERT 2025",
+    "date": "10 / 04 / 2025"
+  },
+  {
+    "id": "event-trend-5",
+    "img": "assets/img/trend/event-trend-5.jpg",
+    "rank": 5,
+    "title": "Lễ hội âm nhạc Music Fest 2025",
+    "date": "25 / 04 / 2025"
+  }
+]
