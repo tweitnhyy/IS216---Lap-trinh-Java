@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Đang chuyển hướng đến VNPay...</title>
+    <script>
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const vnpayUrl = urlParams.get("url");
+
+            if (vnpayUrl) {
+                // Chuyển hướng người dùng đến VNPay
+                window.location.href = decodeURIComponent(vnpayUrl);
+            } else {
+                document.body.innerHTML = "Không tìm thấy URL thanh toán!";
+            }
+        };
+    </script>
 </head>
 <body>
-    <h1>Đang chuyển hướng tới VNPay</h1>
-    <p>Nếu không được chuyển hướng tự động, bạn có thể bấm vào liên kết bên dưới:</p>
-    <a id="vnpay-link" href="#">Thanh toán ngay</a>
-
-    <script>
-        // Lấy URL thanh toán từ query param: ?url=https%3A%2F%2F...
-        const urlParams = new URLSearchParams(window.location.search);
-        const paymentUrl = urlParams.get("url");
-
-        if (paymentUrl) {
-            // Gán vào thẻ <a>
-            document.getElementById("vnpay-link").href = paymentUrl;
-
-            // Tự động redirect sau 1 giây
-            setTimeout(() => {
-                window.location.href = paymentUrl;
-            }, 1000);
-        } else {
-            document.body.innerHTML = "<h2>Lỗi: Không tìm thấy URL thanh toán!</h2>";
-        }
-    </script>
+    <p>Đang chuyển hướng đến VNPay...</p>
 </body>
 </html>

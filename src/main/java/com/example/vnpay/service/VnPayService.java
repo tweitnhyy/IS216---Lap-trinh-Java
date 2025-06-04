@@ -33,7 +33,7 @@ public class VnPayService {
     private String secretKey;
 
     public String createPaymentUrl(PaymentRequest request, HttpServletRequest servletRequest) {
-        String vnp_TxnRef = "45fad5a7-ce85-4107-be41-47d2338b8033"; // UUID.randomUUID().toString();
+        String vnp_TxnRef = request.getOrderID(); // UUID.randomUUID().toString();
         String vnp_OrderInfo = request.getOrderInfo();
         String vnp_Amount = String.valueOf(request.getAmount().multiply(BigDecimal.valueOf(100)).intValue());
 
@@ -70,5 +70,13 @@ public class VnPayService {
 
         String computedHash = VnPayUtil.calculateHash(filteredParams, secretKey);
         return receivedHash != null && receivedHash.equals(computedHash);
+    }
+
+    public void handlePaymentResult(String orderId, String responseCode) {
+        switch (responseCode) {
+            case "00" -> System.out.println("Order " + orderId + " paid successfully.");
+            case "24" -> System.out.println("Order " + orderId + " was cancelled.");
+            default -> System.out.println("Order " + orderId + " payment failed.");
+        }
     }
 }
