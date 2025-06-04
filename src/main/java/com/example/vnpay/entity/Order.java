@@ -24,6 +24,9 @@ public class Order {
     @Column(name = "order_id", nullable = false, updatable = false)
     private String orderId;  // UUID dạng chuỗi
 
+    @Column(name = "user_id", nullable = false)
+    private String userId;
+
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 

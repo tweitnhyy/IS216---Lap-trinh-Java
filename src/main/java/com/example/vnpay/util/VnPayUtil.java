@@ -63,6 +63,7 @@ public class VnPayUtil {
             return sb.toString();
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             return "";
         }
     }

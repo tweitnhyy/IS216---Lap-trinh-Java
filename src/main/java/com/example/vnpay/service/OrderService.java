@@ -1,5 +1,6 @@
 package com.example.vnpay.service;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class OrderService {
         order.setOrderId(orderId);
         order.setPrice(request.getPrice());
         order.setStatus("PENDING"); // mặc định trạng thái chờ thanh toán
-
+        order.setCreatedAt(LocalDateTime.now()); // sử dụng phương thức setNow() để gán thời gian hiện tại
         orderRepository.save(order);
 
         return orderId;
