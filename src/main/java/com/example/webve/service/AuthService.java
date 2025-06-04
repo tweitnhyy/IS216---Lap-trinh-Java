@@ -185,7 +185,7 @@ public class AuthService {
                   resetLink + "\n\n" +
                   "Nếu bạn không yêu cầu, hãy bỏ qua email này.";
 
-    emailService.sendSimpleEmail(email, subject, body);
+    emailService.sendSimpleEmail("no-reply@eventory.vn", email, subject, body);
 
     logger.info("Password reset token generated and email sent to {}", email);
 
