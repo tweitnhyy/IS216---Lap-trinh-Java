@@ -54,6 +54,10 @@ public class SecurityConfig {
                             response.getWriter().write("{\"error\": \"Forbidden\", \"message\": \"" + accessDeniedException.getMessage() + "\"}");
                         })
                 )
+                .oauth2Login(oauth2 -> oauth2
+                    
+                    .defaultSuccessUrl("/", true) // chuyển hướng sau khi đăng nhập thành công
+                )
                 .build();
     }
 
