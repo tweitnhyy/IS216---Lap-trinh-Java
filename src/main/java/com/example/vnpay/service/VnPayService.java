@@ -10,7 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.vnpay.model.PaymentRequest;
+import com.example.vnpay.dto.OrderDTO;
 import com.example.vnpay.util.VnPayUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,15 +32,17 @@ public class VnPayService {
     @Value("${vnpay.secretKey}")
     private String secretKey;
 
-    public String createPaymentUrl(PaymentRequest request, HttpServletRequest servletRequest) {
-        String vnp_TxnRef = request.getOrderID(); // UUID.randomUUID().toString();
-        String vnp_OrderInfo = request.getOrderInfo();
-        String vnp_Amount = String.valueOf(request.getAmount().multiply(BigDecimal.valueOf(100)).intValue());
+    private final OrderService orderService;
 
+    public String createPaymentUrl(OrderDTO request, HttpServletRequest servletRequest) {
+        // ✅ Gọi thông qua đối tượng injected OrderService
+        String vnp_TxnRef = orderService.createOrder(request);
+        String vnp_OrderInfo = "Thanh toán đơn hàng " + vnp_TxnRef;
+        String vnp_Amount = request.getPrice().multiply(BigDecimal.valueOf(100)).toBigInteger().toString();
         String vnp_IpAddr = servletRequest.getRemoteAddr();
         String vnp_CreateDate = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         Calendar expireCalendar = Calendar.getInstance();
-        expireCalendar.add(Calendar.MINUTE, 15); // hết hạn sau 15 phút
+        expireCalendar.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = new SimpleDateFormat("yyyyMMddHHmmss").format(expireCalendar.getTime());
 
         Map<String, String> vnpParams = new HashMap<>();
@@ -56,7 +58,7 @@ public class VnPayService {
         vnpParams.put("vnp_IpAddr", vnp_IpAddr);
         vnpParams.put("vnp_CreateDate", vnp_CreateDate);
         vnpParams.put("vnp_ExpireDate", vnp_ExpireDate);
-        vnpParams.put("vnp_OrderType", 	"250000");
+        vnpParams.put("vnp_OrderType", "250000");
 
         String queryUrl = VnPayUtil.buildUrlWithSecureHash(vnpParams, secretKey);
         return vnpayUrl + "?" + queryUrl;
