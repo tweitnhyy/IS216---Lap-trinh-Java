@@ -45,6 +45,12 @@ public class User {
     @Column(name = "last_login")
     private Timestamp lastLogin;
 
+    @Column(name = "reset_token")
+    private String resetToken;
+
+    @Column(name = "reset_token_expiry")
+    private Timestamp resetTokenExpiry;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Event> events = new ArrayList<>();
 }

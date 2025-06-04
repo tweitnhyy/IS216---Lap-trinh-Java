@@ -21,6 +21,8 @@ public class UserDTO {
     private String gender;
     private Timestamp lastLogin;
     private List<String> eventIds;
+    private Timestamp resetToken;
+    private Timestamp resetTokenExpiry;
 
     public User toEntity() {
         User entity = new User();
