@@ -20,6 +20,8 @@ public class UserDTO {
     private String phoneNumber;
     private String gender;
     private Timestamp lastLogin;
+    private String resetToken;
+    private Timestamp resetTokenExpiry;
     private List<String> eventIds;
     private String resetToken;
     private Timestamp resetTokenExpiry;
@@ -30,6 +32,8 @@ public class UserDTO {
         entity.setPasswordHash(this.password); // Sẽ được mã hóa trong service
         entity.setUsername(this.username);
         entity.setRole(this.role);
+        entity.setResetToken(this.resetToken);
+        entity.setResetTokenExpiry(this.resetTokenExpiry);
         return entity;
     }
 
@@ -38,6 +42,8 @@ public class UserDTO {
         dto.setEmail(entity.getEmail());
         dto.setUsername(entity.getUsername());
         dto.setRole(entity.getRole());
+        dto.setResetToken(entity.getResetToken());
+        dto.setResetTokenExpiry(entity.getResetTokenExpiry());
         return dto;
     }
 }
