@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("confirm-buyer-name").textContent = document.getElementById("buyer-name").value;
     document.getElementById("confirm-buyer-email").textContent = document.getElementById("buyer-email").value;
     document.getElementById("confirm-buyer-phone").textContent = document.getElementById("buyer-phone").value;
-    document.getElementById("confirm-payment-method").textContent = paymentMethod === "vnpay" ? "Thanh toán qua VNPay" : "Thanh toán qua Momo";
+    document.getElementById("confirm-payment-method").textContent = "Thanh toán trực tiếp";
     updateStep(4);
   });
 
@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
       quantity: selectedQuantity,
       price: selectedTicket.price,
       discount: 0,
-      paymentMethod: paymentMethod.toUpperCase(),
+      paymentMethod: "CASH",
     };
 
     try {
@@ -542,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const confirmResult = await confirmResponse.json();
       alert(confirmResult.errorMessage || "Đơn hàng đã được xác nhận thành công! Vé đã được tạo.");
-      window.location.href = "/order-success?orderId=" + orderId;
+      window.location.href = "/";
     } catch (err) {
       console.error("Lỗi khi xác nhận đơn hàng:", err);
       if (err.message.includes("exceeds available tickets")) {

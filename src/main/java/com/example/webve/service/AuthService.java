@@ -1,5 +1,6 @@
 package com.example.webve.service;
 
+import com.example.webve.model.Event;
 import com.example.webve.service.EmailService;
 import com.example.webve.dto.UserDTO;
 import com.example.webve.model.User;
@@ -120,6 +121,7 @@ public class AuthService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
         UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(user.getUserId());
         userDTO.setUsername(user.getUsername());
         userDTO.setEmail(user.getEmail());
         userDTO.setRole(user.getRole());
@@ -224,5 +226,8 @@ public class AuthService {
         logger.info("Password reset successfully for user: {}", user.getEmail());
         return true;
     }
-
+    public User findById(String userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Event not found with ID: " + userId));
+    }
 }
