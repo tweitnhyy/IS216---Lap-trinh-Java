@@ -1,6 +1,7 @@
 package com.example.webve.repository;
 
 import com.example.webve.model.Event;
+import com.example.webve.model.TicketType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.util.Optional;
 import java.sql.Timestamp;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<Event, String> {
     // Bạn có thể thêm các phương thức tùy chỉnh ở đây nếu cần
     // Tìm sự kiện theo eventId
     Optional<Event> findByEventId(String eventId);

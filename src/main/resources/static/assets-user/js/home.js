@@ -530,33 +530,38 @@ document.addEventListener("DOMContentLoaded", () => {
 // Hàm chuyển đổi JSON EventDTO thành dạng cần thiết
 function transformEventUpcomingData(json) {
   const formatMonth = (date) => {
-    if (!date) return '';
+    if (!(date instanceof Date) || isNaN(date)) return '';
     const month = date.getMonth() + 1; // Tháng từ 0-11, cộng 1
-    return `THG${month.toString().padStart(2, '0')}`; // Ví dụ: THG05
+    return `THG${month.toString().padStart(2, '0')}`; // Ví dụ: THG06
   };
 
   const formatDay = (date) => {
-    if (!date) return '';
-    return date.getDate().toString(); // Ví dụ: 31
+    if (!(date instanceof Date) || isNaN(date)) return '';
+    return date.getDate().toString().padStart(2, '0'); // Ví dụ: 20
   };
 
   const formatDate = (timestamp) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
-    return date.toLocaleDateString('vi-VN', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
+    if (isNaN(date)) return '';
+    // Chuyển đổi sang múi giờ Việt Nam (GMT+7)
+    const vietnamDate = new Date(date.getTime() + 7 * 60 * 60 * 1000);
+    // Định dạng thủ công để đảm bảo DD/MM/YYYY
+    const day = vietnamDate.getUTCDate().toString().padStart(2, '0');
+    const month = (vietnamDate.getUTCMonth() + 1).toString().padStart(2, '0');
+    const year = vietnamDate.getUTCFullYear();
+    return `${day}/${month}/${year}`; // Ví dụ: 20/06/2025
   };
 
   const date = json.startDateTime ? new Date(json.startDateTime) : null;
 
   return {
-    id: json.eventId || '',
-    title: String(json.title || 'Sự kiện không có tiêu đề'),
-    poster: String(json.poster || ''),
-    intro: json.description ? String(json.description).split('\n')[0] || '' : '',
+    id: json.eventId != null ? String(json.eventId) : '',
+    title: json.title ? String(json.title) : 'Sự kiện không có tiêu đề',
+    poster: json.poster ? String(json.poster) : '',
+    intro: json.description && typeof json.description === 'string'
+        ? json.description.split('\n')[0] || ''
+        : '',
     event_info: {
       date: formatDate(json.startDateTime),
       month: formatMonth(date),
@@ -577,10 +582,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let displayedEvents = 6;
   const eventsPerLoad = 6;
   let isExpanded = false;
-  const currentDate = new Date(); // Ngày hiện tại: 03/06/2025 22:02 GMT+7
+  // Cố định currentDate ở GMT+7
+  const currentDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));
 
   if (!container || !moreButton || !moreButtonWrapper || !buttonIcon || !buttonText || !eventSection) {
     console.error('Thiếu các phần tử DOM cần thiết cho Event Upcoming Section.');
+    container.innerHTML = '<p>Lỗi: Không tìm thấy các phần tử cần thiết.</p>';
     return;
   }
 
@@ -595,11 +602,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
       })
       .then((data) => {
-        allEvents = data.map(transformEventUpcomingData).filter(event => {
-          const eventDate = new Date(event.event_info.date);
-          return eventDate >= currentDate && event.poster && event.title && event.event_info.month && event.event_info.day;
+        allEvents = data.map(event => {
+          const transformed = transformEventUpcomingData(event);
+          console.log('Transformed event:', transformed);
+          return transformed;
+        }).filter(event => {
+          // Phân tích event.event_info.date (DD/MM/YYYY)
+          const [day, month, year] = event.event_info.date.split('/');
+          const eventDate = new Date(`${year}-${month}-${day}T00:00:00.000+07:00`);
+          const isValid = !isNaN(eventDate) &&
+              eventDate >= currentDate &&
+              event.poster &&
+              event.title &&
+              event.event_info.month &&
+              event.event_info.day &&
+              event.id;
+          if (!isValid) {
+            console.log('Event filtered out:', {
+              title: event.title,
+              date: event.event_info.date,
+              eventDate: eventDate.toISOString(),
+              isValidDate: !isNaN(eventDate),
+              isFuture: eventDate >= currentDate,
+              hasPoster: !!event.poster,
+              hasTitle: !!event.title,
+              hasMonth: !!event.event_info.month,
+              hasDay: !!event.event_info.day,
+              hasId: !!event.id
+            });
+          }
+          return isValid;
         });
-        console.log(`Đã tải ${allEvents.length} sự kiện sắp diễn ra từ API`);
+        console.log(`Đã tải ${allEvents.length} sự kiện hợp lệ từ ${data.length} sự kiện`);
 
         const renderEvents = (eventList) => {
           container.innerHTML = '';
@@ -609,19 +643,19 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('tabindex', '0');
             card.setAttribute('aria-label', `Sự kiện ${event.title}, diễn ra ngày ${event.event_info.date}`);
             card.innerHTML = `
-            <img src="${event.poster}" alt="${event.title}" loading="lazy">
-            <div class="event-info">
-              <div class="event-date">
-                <span class="month">${event.event_info.month}</span>
-                <br/>
-                <span class="day">${event.event_info.day}</span>
+              <img src="${event.poster}" alt="${event.title}" loading="lazy">
+              <div class="event-info">
+                <div class="event-date">
+                  <span class="month">${event.event_info.month}</span>
+                  <br/>
+                  <span class="day">${event.event_info.day}</span>
+                </div>
+                <div class="event-text">
+                  <h3 class="event-title">${event.title}</h3>
+                  <p class="event-desc">${event.intro}</p>
+                </div>
               </div>
-              <div class="event-text">
-                <h3 class="event-title">${event.title}</h3>
-                <p class="event-desc">${event.intro}</p>
-              </div>
-            </div>
-          `;
+            `;
             card.addEventListener('click', () => {
               window.open(`/event-detail?eventId=${event.id}`, '_blank');
             });
@@ -647,13 +681,11 @@ document.addEventListener('DOMContentLoaded', () => {
         moreButton.addEventListener('click', () => {
           if (!isExpanded) {
             renderEvents(allEvents);
-
             const newIconExpand = document.createElement('span');
             newIconExpand.className = 'material-symbols-rounded button-icon';
             newIconExpand.textContent = 'expand_less';
             buttonIcon.replaceWith(newIconExpand);
             buttonIcon = newIconExpand;
-
             buttonText.textContent = moreButtonWrapper.dataset.hide || 'Thu gọn';
             moreButton.classList.add('collapsed');
             moreButton.setAttribute('aria-label', 'Thu gọn danh sách sự kiện');
@@ -661,19 +693,15 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             const initialEvents = allEvents.slice(0, displayedEvents);
             renderEvents(initialEvents);
-
             const newIconCollapse = document.createElement('span');
             newIconCollapse.className = 'material-symbols-rounded button-icon';
             newIconCollapse.textContent = 'expand_more';
             buttonIcon.replaceWith(newIconCollapse);
             buttonIcon = newIconCollapse;
-
             buttonText.textContent = moreButtonWrapper.dataset.show || 'Xem thêm';
             moreButton.classList.remove('collapsed');
             moreButton.setAttribute('aria-label', 'Xem thêm sự kiện');
-
             eventSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
             isExpanded = false;
           }
         });
@@ -688,9 +716,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch((error) => {
         console.error('Lỗi tải dữ liệu sự kiện sắp diễn ra:', error);
         container.innerHTML = `
-        <p>Lỗi khi tải sự kiện sắp diễn ra. 
-        <button class="retry-btn" onclick="location.reload()">Thử lại</button></p>
-      `;
+          <p>Lỗi khi tải sự kiện sắp diễn ra. 
+          <button class="retry-btn" onclick="location.reload()">Thử lại</button></p>
+        `;
         container.style.textAlign = 'center';
         container.style.padding = '20px';
         moreButtonWrapper.style.display = 'none';

@@ -159,11 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Mở popup khi nhấn "Mua vé ngay"
-    buyTicketBtn.addEventListener("click", (e) => {
+    buyTicketBtn.addEventListener("click", async (e) => {
       e.preventDefault();
       const eventId = new URLSearchParams(location.search).get("eventId");
-      redirectAfterLogin = eventId ? `/purchase-ticket?eventId=${eventId}` : "/purchase-ticket";
-      loginPopup.style.display = "flex";
+      const redirectUrl = eventId ? `/purchase-ticket?eventId=${eventId}` : "/purchase-ticket";
 
       // Hiệu ứng ripple
       const ripple = document.createElement("span");
@@ -177,6 +176,17 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.top = e.clientY - rect.top - size / 2 + "px";
 
       ripple.addEventListener("animationend", () => ripple.remove());
+
+      // Kiểm tra trạng thái đăng nhập
+      const isLoggedIn = await checkLoginStatus();
+      if (isLoggedIn) {
+        // Nếu đã đăng nhập, chuyển hướng trực tiếp đến trang mua vé
+        window.location.href = redirectUrl;
+      } else {
+        // Nếu chưa đăng nhập, hiển thị popup đăng nhập
+        redirectAfterLogin = redirectUrl;
+        loginPopup.style.display = "flex";
+      }
     });
 
     // Đóng popup đăng nhập khi nhấn "X"

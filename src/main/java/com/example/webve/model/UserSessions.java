@@ -6,7 +6,7 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "User_sessions")
+@Table(name = "Usersessions")
 @Data
 public class UserSessions {
 

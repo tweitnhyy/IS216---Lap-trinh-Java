@@ -15,14 +15,17 @@ public class Order {
     @Column(name = "ORDER_ID", nullable = false, length = 50)
     private String orderId;
 
-    @Column(name = "USER_ID", nullable = false, length = 50)
-    private String userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
-    @Column(name = "EVENT_ID", nullable = false, length = 50)
-    private String eventId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id", referencedColumnName = "event_id")
+    private Event event;
 
-    @Column(name = "TICKET_TYPE_ID", nullable = false, length = 50)
-    private String ticketTypeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticket_type_id", referencedColumnName = "ticket_type_id")
+    private TicketType ticketType;
 
     @Column(name = "QUANTITY", nullable = false)
     private Integer quantity;
@@ -56,4 +59,8 @@ public class Order {
 
     @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
+
+
+
+
 }

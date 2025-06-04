@@ -1,5 +1,6 @@
 package com.example.webve.model;
 
+import com.cloudinary.provisioning.Account;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -53,4 +54,10 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Event> events = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
 }

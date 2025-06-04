@@ -172,4 +172,9 @@ public class EventService {
             return eventDTO;
         }).collect(Collectors.toList());
     }
+
+    public Event findById(String eventId) {
+        return eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found with ID: " + eventId));
+    }
 }

@@ -54,12 +54,6 @@
 			<version>1.6.2</version> <!-- Bạn có thể sử dụng phiên bản mới nhất nếu cần -->
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version> <!-- Hoặc phiên bản mới hơn -->
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -117,6 +111,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.16.1</version> <!-- Phiên bản mới nhất -->
 		</dependency>
 
 		<dependency>

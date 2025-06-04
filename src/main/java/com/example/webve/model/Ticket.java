@@ -16,14 +16,17 @@ public class Ticket {
     @Column(name = "ticket_id")
     private String ticketId;
 
-    @Column(name = "ticket_type_id", nullable = false)
-    private String ticketTypeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticket_type_id", referencedColumnName = "ticket_type_id")
+    private TicketType ticketType;
 
-    @Column(name = "event_id", nullable = false)
-    private String eventId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "event_id", referencedColumnName = "event_id")
+    private Event event;
 
-    @Column(name = "user_id", nullable = false)
-    private String userId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
     @Column(name = "status", nullable = false)
     private String status;
@@ -36,6 +39,11 @@ public class Ticket {
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+
+
+
+
+
 
     @PrePersist
     protected void onCreate() {
