@@ -54,10 +54,10 @@ import java.util.List;
         private String location;  // Gộp số nhà, đường, phường/xã, quận/huyện, tên địa điểm
 
         @Column(name = "ticket_sale_start")
-        private Date ticketSaleStart;
+        private Timestamp ticketSaleStart;
 
         @Column(name = "ticket_sale_end")
-        private Date ticketSaleEnd;
+        private Timestamp ticketSaleEnd;
 
         @Column(name = "organizer_name")
         private String organizerName;

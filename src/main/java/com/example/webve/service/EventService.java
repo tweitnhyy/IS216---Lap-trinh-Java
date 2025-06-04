@@ -13,6 +13,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -99,5 +101,75 @@ public class EventService {
         }
 
         return eventDTO;
+    }
+
+    public List<EventDTO> getVideoEvents() {
+        List<Event> events = eventRepository.findTop4ByVideoIsNotNullOrderByCreatedAtDesc();
+        return events.stream().map(event -> {
+            EventDTO eventDTO = new EventDTO();
+            BeanUtils.copyProperties(event, eventDTO);
+
+            // Lấy danh sách vé
+            List<TicketType> ticketTypes = event.getTicketTypes();
+            if (ticketTypes != null && !ticketTypes.isEmpty()) {
+                List<TicketTypeDTO> ticketTypeDTOs = ticketTypes.stream().map(ticketType -> {
+                    TicketTypeDTO ticketTypeDTO = new TicketTypeDTO();
+                    BeanUtils.copyProperties(ticketType, ticketTypeDTO);
+                    return ticketTypeDTO;
+                }).collect(Collectors.toList());
+                eventDTO.setTickets(ticketTypeDTOs);
+            } else {
+                eventDTO.setTickets(new ArrayList<>());
+            }
+
+            return eventDTO;
+        }).collect(Collectors.toList());
+    }
+
+
+    public List<EventDTO> getUpcomingEvents() {
+        Timestamp currentDate = Timestamp.from(Instant.now());
+        List<Event> events = eventRepository.findByStartDateTimeGreaterThanEqualOrderByStartDateTimeAsc(currentDate);
+        return events.stream().map(event -> {
+            EventDTO eventDTO = new EventDTO();
+            BeanUtils.copyProperties(event, eventDTO);
+
+            List<TicketType> ticketTypes = event.getTicketTypes();
+            if (ticketTypes != null && !ticketTypes.isEmpty()) {
+                List<TicketTypeDTO> ticketTypeDTOs = ticketTypes.stream().map(ticketType -> {
+                    TicketTypeDTO ticketTypeDTO = new TicketTypeDTO();
+                    BeanUtils.copyProperties(ticketType, ticketTypeDTO);
+                    return ticketTypeDTO;
+                }).collect(Collectors.toList());
+                eventDTO.setTickets(ticketTypeDTOs);
+            } else {
+                eventDTO.setTickets(new ArrayList<>());
+            }
+
+            return eventDTO;
+        }).collect(Collectors.toList());
+    }
+
+
+    public List<EventDTO> getRandomEvents() {
+        List<Event> events = eventRepository.findRandom10Events();
+        return events.stream().map(event -> {
+            EventDTO eventDTO = new EventDTO();
+            BeanUtils.copyProperties(event, eventDTO);
+
+            List<TicketType> ticketTypes = event.getTicketTypes();
+            if (ticketTypes != null && !ticketTypes.isEmpty()) {
+                List<TicketTypeDTO> ticketTypeDTOs = ticketTypes.stream().map(ticketType -> {
+                    TicketTypeDTO ticketTypeDTO = new TicketTypeDTO();
+                    BeanUtils.copyProperties(ticketType, ticketTypeDTO);
+                    return ticketTypeDTO;
+                }).collect(Collectors.toList());
+                eventDTO.setTickets(ticketTypeDTOs);
+            } else {
+                eventDTO.setTickets(new ArrayList<>());
+            }
+
+            return eventDTO;
+        }).collect(Collectors.toList());
     }
 }

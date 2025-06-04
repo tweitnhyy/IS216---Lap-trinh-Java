@@ -30,10 +30,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
-                                "/assets-user/**", "/event-detail/**", "/api/events/**",
-                                "/contact", "/contact/send",
-                                "/account", "/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", "/purchase-ticket/**"
-                                ,"/reset-password","/api/auth/reset-password").permitAll()
+                                "/assets-user/**", "/event-detail/**", "/api/events/**", "/api/location/**", "/contact/send",
+                                "/contact","/account", "/api/upload","/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", 
+                                         "/purchase-ticket/**","/reset-password","/api/auth/reset-password")).permitAll()
+
                         .requestMatchers("/api/auth/update/**", "/api/events/create-events/**").hasRole("user")
                         .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()

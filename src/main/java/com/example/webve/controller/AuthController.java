@@ -82,8 +82,19 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update/{userId}")
-    public ResponseEntity<UserDTO> updateUserProfile(@PathVariable String userId, @Valid @RequestBody UserDTO userDTO) {
+    @PutMapping("/update")
+    public ResponseEntity<UserDTO> updateUserProfile(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody UserDTO userDTO) {
+        logger.info("Update request with Authorization header: {}", authHeader);
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            logger.warn("No valid Authorization header found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        String token = authHeader.substring(7).trim();
+        String userId = jwtService.extractUserId(token);
+        if (userId == null || !jwtService.isTokenValid(token, userId)) {
+            logger.warn("Invalid or expired token for userId: {}", userId);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         UserDTO updatedUser = authService.updateUserProfile(userId, userDTO);
         return ResponseEntity.ok(updatedUser);
     }

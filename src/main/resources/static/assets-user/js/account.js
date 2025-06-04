@@ -1,3 +1,99 @@
+document.addEventListener('DOMContentLoaded', async function() {
+  // Kiểm tra trạng thái đăng nhập
+  const isLoggedIn = await checkLoginStatus();
+  if (!isLoggedIn) {
+    window.location.href = '/'; // Điều chỉnh URL nếu cần
+    return;
+  }
+
+  // Hàm lấy thông tin người dùng
+  async function fetchUserInfo() {
+    const token = localStorage.getItem("jwtToken");
+    try {
+      const response = await fetch("/api/auth/user", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Lỗi HTTP! Trạng thái: ${response.status}`);
+      }
+
+      const userData = await response.json();
+      populateForm(userData);
+    } catch (error) {
+      console.error('Lỗi khi lấy thông tin người dùng:', error);
+      alert('Không thể tải thông tin người dùng. Vui lòng thử lại.');
+    }
+  }
+
+  // Hàm điền dữ liệu vào form
+  function populateForm(userData) {
+    document.getElementById('fullName').value = userData.fullName || '';
+    document.getElementById('phoneNumber').value = userData.phoneNumber || '';
+    document.getElementById('email').value = userData.email || '';
+    document.getElementById('dob').value = userData.dob ? new Date(userData.dob).toISOString().split('T')[0] : '';
+
+    const genderRadios = document.getElementsByName('gender');
+    for (const radio of genderRadios) {
+      if (radio.value === userData.gender) {
+        radio.checked = true;
+      }
+    }
+  }
+
+  // Hàm xử lý gửi form cập nhật
+  async function updateUserProfile(event) {
+    event.preventDefault();
+
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      alert('Vui lòng đăng nhập lại.');
+      window.location.href = '/';
+      return;
+    }
+
+    const userDTO = {
+      fullName: document.getElementById('fullName').value,
+      phoneNumber: document.getElementById('phoneNumber').value,
+      email: document.getElementById('email').value,
+      dob: document.getElementById('dob').value ? new Date(document.getElementById('dob').value).toISOString() : null,
+      gender: document.querySelector('input[name="gender"]:checked')?.value || ''
+    };
+
+    try {
+      const response = await fetchWithToken(`/api/auth/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userDTO)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Lỗi HTTP! Trạng thái: ${response.status}`);
+      }
+
+      const updatedUser = await response.json();
+      alert('Cập nhật thông tin thành công!');
+      populateForm(updatedUser); // Cập nhật lại form với dữ liệu mới
+    } catch (error) {
+      console.error('Lỗi khi cập nhật thông tin:', error);
+      alert('Cập nhật thông tin thất bại. Vui lòng thử lại.');
+    }
+  }
+
+  // Khởi tạo: Lấy thông tin người dùng khi tải trang
+  fetchUserInfo();
+
+  // Thêm sự kiện cho nút Lưu
+  const form = document.querySelector('.account-form');
+  form.addEventListener('submit', updateUserProfile);
+});
+
+
+
 document.querySelectorAll(".btn-save").forEach((btn) => {
   btn.addEventListener("click", function (e) {
     const rect = this.getBoundingClientRect();
@@ -165,3 +261,36 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => console.error(err));
 });
+
+const fetchWithToken = (url, options = {}) => {
+  if (!options.headers) options.headers = {};
+  const token = localStorage.getItem("jwtToken");
+  if (token) options.headers["Authorization"] = `Bearer ${token}`;
+  return fetch(url, options);
+};
+
+
+const checkLoginStatus = async () => {
+  const token = localStorage.getItem("jwtToken");
+  if (!token) {
+    console.log("Chưa đăng nhập (không có token).");
+    return false;
+  }
+  try {
+    const response = await fetch("/api/auth/user", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      console.log("Token không hợp lệ hoặc đã hết hạn.");
+      localStorage.removeItem("jwtToken");
+      return false;
+    }
+    console.log("Đã đăng nhập.");
+    return true;
+  } catch (error) {
+    console.error("Lỗi kiểm tra đăng nhập:", error);
+    return false;
+  }
+};

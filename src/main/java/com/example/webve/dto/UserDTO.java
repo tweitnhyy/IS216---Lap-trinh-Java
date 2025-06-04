@@ -23,6 +23,8 @@ public class UserDTO {
     private String resetToken;
     private Timestamp resetTokenExpiry;
     private List<String> eventIds;
+    private String resetToken;
+    private Timestamp resetTokenExpiry;
 
     public User toEntity() {
         User entity = new User();
