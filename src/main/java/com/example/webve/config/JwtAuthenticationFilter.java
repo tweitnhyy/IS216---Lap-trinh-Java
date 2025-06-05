@@ -1,7 +1,6 @@
 package com.example.webve.config;
 
 import com.example.webve.service.JwtService;
-import com.example.webve.service.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -26,23 +24,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtService jwtService;
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String path = request.getRequestURI();
-        logger.info("Processing request for path: {}", path);
-
         // Bỏ qua các endpoint công khai
         if (path.startsWith("/api/auth/") || path.equals("/") || path.equals("/home")
-                || path.equals("/reset-password") || path.equals("/api/home")
-                || path.startsWith("/assets-user/") || path.startsWith("/api/events/")
-                || path.startsWith("/upload/") || path.startsWith("/event-detail")
-                || path.startsWith("/account") || path.startsWith("/contact")
-                || path.startsWith("/buy-ticket") || path.equals("/create-event")
-                || path.equals("/purchase-ticket")) {
+                || path.startsWith("/api/location/" ) || path.startsWith("/assets-user/") || path.equals("/reset-password")|| path.equals("/api/home")
+                || path.startsWith("/event-detail") || path.startsWith("/account") || path.startsWith("/api/events/no-auth") || path.startsWith("/upload")
+                || path.startsWith("/contact") || path.startsWith("/buy-ticket") || path.equals("/create-event") || path.equals("/purchase-ticket")
+        || path.startsWith("/api/upload")  || path.equals("/api/ticket-types"))
+        {
+
             logger.info("Permitting request without authentication: {}", path);
             filterChain.doFilter(request, response);
             return;
@@ -63,10 +56,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 if (jwtService.isTokenValid(token, userId)) {
-                    String email = jwtService.extractEmail(token); // Giả sử JwtService có phương thức này
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(userId, null, null);
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                     logger.info("Successfully authenticated user with userId: {} for path: {}", userId, path);

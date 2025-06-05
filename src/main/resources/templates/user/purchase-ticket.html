@@ -41,30 +41,7 @@
   </head>
   <body>
     <!-- ===== HEADER ===== -->
-    <header class="site-header">
-      <div class="container">
-        <div class="logo">
-          <a href="/">
-            <img src="/upload/other/logo.jpg" alt="EvenTory Logo" />
-            <h1>EvenTory</h1>
-          </a>
-        </div>
-
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
-          <button>
-            <span class="material-symbols-rounded">search</span>
-          </button>
-        </div>
-
-        <nav class="nav-links">
-          <a href="#" id="createEventBtn">Tạo sự kiện</a>
-          <a href="/buy-ticket">Mua vé</a>
-          <a href="/contact">Liên hệ</a>
-          <button class="btn-login" id="loginBtn">Login</button>
-        </nav>
-      </div>
-    </header>
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
 
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">
@@ -288,7 +265,7 @@
             </div>
             <div class="payment-option">
               <input type="radio" id="momo" name="payment-method" value="momo" />
-              <label for="moo">
+              <label for="momo">
                 <img src="/upload/other/momo.png" alt="MoMo" />
                 Thanh toán qua MoMo
               </label>

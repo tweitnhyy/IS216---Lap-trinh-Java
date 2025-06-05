@@ -25,36 +25,31 @@
       <!-- Information -->
       <form class="account-form">
         <div class="form-group">
-          <label for="fullname">Họ và tên</label>
-          <input id="fullname" type="text" value="Lee Sang-hyeok" />
+          <label for="fullName">Họ và tên</label>
+          <input id="fullName" type="text" placeholder="Nhập họ và tên">
         </div>
-
-        <div class="form-group phone-group">
-          <label for="phone-number">Số điện thoại</label>
-          <input id="phone-number" type="tel" value="0123456789" />
+        <div class="form-group">
+          <label for="phoneNumber">Số điện thoại</label>
+          <input id="phoneNumber" type="tel" placeholder="Nhập số điện thoại">
         </div>
-
         <div class="form-group">
           <label for="email">Email</label>
-          <input id="email" type="email" value="info@t1.gg" />
+          <input id="email" type="email" placeholder="Nhập email" readonly>
         </div>
-
         <div class="form-group">
           <label for="dob">Ngày sinh</label>
           <div class="date-wrapper">
-            <input id="dob" type="date" value="1996-05-07" />
+            <input id="dob" type="date">
           </div>
         </div>
-
         <div class="form-group">
           <label>Giới tính</label>
           <div class="gender-options">
-            <label><input type="radio" name="gender" checked /> Nam</label>
-            <label><input type="radio" name="gender" /> Nữ</label>
+            <label><input type="radio" name="gender" value="Nam"> Nam</label>
+            <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
           </div>
         </div>
-
-        <button type="button" class="btn-save">Lưu</button>
+        <button type="submit" class="btn-save">Lưu</button>
       </form>
     </main>
 

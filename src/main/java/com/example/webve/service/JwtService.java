@@ -25,13 +25,12 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private Long jwtExpiration;
 
-    public String generateToken(String userId, String role, String email) {
-        if (userId == null || role == null || email == null) {
-            throw new IllegalArgumentException("User ID, role, and email cannot be null");
+    public String generateToken(String userId, String role) {
+        if (userId == null || role == null) {
+            throw new IllegalArgumentException("User ID and role cannot be null");
         }
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", role);
-        claims.put("email", email); // Thêm email vào claims
         return createToken(claims, userId);
     }
 
@@ -53,10 +52,6 @@ public class JwtService {
 
     public String extractUserId(String token) {
         return extractClaim(token, Claims::getSubject);
-    }
-
-    public String extractEmail(String token) {
-        return extractClaim(token, claims -> claims.get("email", String.class));
     }
 
     public String extractRole(String token) {

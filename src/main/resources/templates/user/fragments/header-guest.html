@@ -1,24 +1,254 @@
 <header class="site-header" th:fragment="header-guest">
-    <div class="container">
-        <div class="logo">
-            <a href="/">
-                <img src="/upload/other/logo.jpg" alt="EvenTory Logo" style="max-height: 50px; vertical-align: middle;" />
-                <h1>EvenTory</h1>
-            </a>
-        </div>
+  <style>
+    :root {
+      --font-logo: "Praise", cursive;
+      --font-logo-2: "Oleo Script", system-ui;
+      --font-primary: "Roboto", sans-serif;
 
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
-            <button>
-                <span class="material-symbols-rounded">search</span>
-            </button>
-        </div>
+      --color-primary: #a72a7c;
+      --color-primary-light: #d451a1;
+      --color-primary-light-2: #f13781;
+      --color-primary-dark: #861d64;
+      --color-accent-pink: #ffb3db;
+      --color-secondary: #ff8400;
+      --color-secondary-2: #e3182b;
 
-        <nav class="nav-links">
-            <a href="#" id="createEventBtn" class ="nav-link">Tạo sự kiện</a>
-            <a href="/buy-ticket">Mua vé</a>
-            <a href="/contact">Liên hệ</a>
-            <button class="btn-login" id="loginBtn">Login</button>
-        </nav>
+      --gradient-primary: linear-gradient(135deg, #ec4899, #8b5cf6, #5b21b6);
+      --color-bg-body: #fff1f1;
+      --color-bg-footer: #242565;
+      --color-bg-card: #ffffff;
+      --color-border-soft: #e5dde4;
+
+      --color-text-dark: #2b2b2b;
+      --color-text-light: #666666;
+      --color-hover-gray: #f2f2f2;
+
+      --color-success: #4caf50;
+      --color-warning: #ff9800;
+      --color-error: #f44336;
+      --color-info: #2196f3;
+    }
+
+    .site-header {
+      background: var(--gradient-primary);
+      border-bottom: 1px solid var(--color-border-soft);
+      padding: 16px 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .container .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo a h1 {
+      margin: 0;
+      font-family: var(--font-logo-2);
+      color: white;
+    }
+
+    .container .search-bar {
+      display: flex;
+      align-items: center;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 37px;
+      position: relative;
+    }
+
+    .search-bar input {
+      border: none;
+      padding: 8px 12px;
+      outline: none;
+      min-width: 240px;
+      width: 300px;
+      height: 100%;
+    }
+
+    .search-bar input::placeholder {
+      font-size: 14px;
+    }
+
+    .search-bar button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      transition: background-color 0.2s;
+    }
+
+    .search-bar button:hover {
+      background-color: var(--color-primary-light);
+    }
+
+    .search-bar .dropdown-search {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      z-index: 20;
+    }
+
+    .search-bar .dropdown-search.show {
+      display: block;
+    }
+
+    .search-bar .dropdown-search .dropdown-item {
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--color-text-dark);
+      border-bottom: 1px solid var(--color-border-soft);
+      cursor: pointer;
+    }
+
+    .search-bar .dropdown-search .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-bar .dropdown-search .dropdown-item:hover {
+      background: var(--color-hover-gray);
+    }
+
+    .search-bar .dropdown-search .dropdown-item img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  </style>
+  <div class="container">
+    <div class="logo">
+      <a href="/">
+        <img src="https://res.cloudinary.com/dy5gl0qm1/image/upload/logo.jpg" alt="EvenTory Logo" style="max-height: 50px; vertical-align: middle;" />
+        <h1>EvenTory</h1>
+      </a>
     </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" id="searchInputGuest" />
+      <button id="searchButtonGuest">
+        <span class="material-symbols-rounded">search</span>
+      </button>
+      <div class="dropdown-search" id="dropdownSearchGuest"></div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#" id="createEventBtn" class="nav-link">Tạo sự kiện</a>
+      <a href="/buy-ticket">Mua vé</a>
+      <a href="/contact">Liên hệ</a>
+      <button class="btn-login" id="loginBtn">Login</button>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("Header guest loaded successfully at " + new Date().toLocaleString());
+      const searchInputGuest = document.getElementById("searchInputGuest");
+      const dropdownSearchGuest = document.getElementById("dropdownSearchGuest");
+      const searchButtonGuest = document.getElementById("searchButtonGuest");
+
+      if (searchInputGuest && dropdownSearchGuest) {
+        console.log("Search input and dropdown elements found");
+        searchInputGuest.addEventListener("input", async (e) => {
+          const keyword = e.target.value.trim();
+          console.log("User entered keyword: '" + keyword + "'");
+          if (keyword.length < 2) {
+            console.log("Keyword too short, hiding dropdown");
+            dropdownSearchGuest.classList.remove("show");
+            dropdownSearchGuest.innerHTML = "";
+            return;
+          }
+
+          try {
+            console.log("Sending request to API: /api/events/no-auth/search?keyword=" + encodeURIComponent(keyword));
+            const response = await fetch(`/api/events/no-auth/search?keyword=${encodeURIComponent(keyword)}`);
+            console.log("API response status: " + response.status);
+            if (!response.ok) {
+              throw new Error("Network response was not ok: " + response.statusText);
+            }
+            const events = await response.json();
+            console.log("API returned " + events.length + " events:", events);
+            if (events.length === 0) {
+              console.log("No events found, showing 'Không tìm thấy sự kiện nào'");
+              dropdownSearchGuest.innerHTML = '<div class="dropdown-item">Không tìm thấy sự kiện nào</div>';
+            } else {
+              console.log("Rendering events to dropdown");
+              dropdownSearchGuest.innerHTML = events
+                .map(
+                  (event) => `
+                    <a href="/event/${event.eventId}" class="dropdown-item">
+                      <img src="${event.image || 'https://via.placeholder.com/40'}" alt="${event.title}" />
+                      <div>
+                        <div>${event.title}</div>
+                        <small>${event.city} - ${new Date(event.startDateTime).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" })}</small>
+                      </div>
+                    </a>
+                  `
+                )
+                .join("");
+            }
+            dropdownSearchGuest.classList.add("show");
+          } catch (error) {
+            console.error("Error during search: ", error);
+            dropdownSearchGuest.innerHTML = '<div class="dropdown-item">Đã có lỗi xảy ra: ' + error.message + '</div>';
+            dropdownSearchGuest.classList.add("show");
+          }
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!searchInputGuest.contains(e.target) && !dropdownSearchGuest.contains(e.target)) {
+            console.log("Click outside search bar, hiding dropdown");
+            dropdownSearchGuest.classList.remove("show");
+          }
+        });
+      } else {
+        console.error("Search input or dropdown not found: searchInputGuest=" + searchInputGuest + ", dropdownSearchGuest=" + dropdownSearchGuest);
+      }
+
+      if (searchButtonGuest) {
+        searchButtonGuest.addEventListener("click", () => {
+          const keyword = searchInputGuest.value.trim();
+          console.log("Redirecting to search page with keyword: " + keyword);
+          if (keyword) {
+            window.location.href = `/search?keyword=${encodeURIComponent(keyword)}`;
+          }
+        });
+      }
+    });
+  </script>
 </header>
