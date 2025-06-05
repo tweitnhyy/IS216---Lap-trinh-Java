@@ -32,9 +32,10 @@ public class SecurityConfig {
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
                                 "/assets-user/**", "/event-detail/**", "/api/events/**", "/api/location/**", "/contact/send",
                                 "/contact","/account", "/api/upload","/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", 
-                                         "/purchase-ticket/**","/reset-password","/api/auth/reset-password", "/api/payment/**","/api/ticket-types").permitAll()
+                                         "/purchase-ticket/**","/reset-password","/api/auth/reset-password", "/api/payment/**","/api/ticket-types"
+                        ).permitAll()
 
-                        .requestMatchers("/api/auth/update/**", "/api/events/create-events/**").hasRole("user")
+                        .requestMatchers("/api/auth/update/**", "/api/events/create-events/**", "/api/events/my-events", "/api/tickets/my-ticket").hasRole("user")
                         .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )

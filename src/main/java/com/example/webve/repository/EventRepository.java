@@ -18,6 +18,8 @@ public interface EventRepository extends JpaRepository<Event, String> {
 
     String findByTitle(String title);
 
+    List<Event> findByUserUserId(String userId);
+
     List<Event> findTop4ByVideoIsNotNullOrderByCreatedAtDesc();
 
     // Tìm các sự kiện sắp diễn ra (startDateTime >= currentDate), sắp xếp theo startDateTime tăng dần

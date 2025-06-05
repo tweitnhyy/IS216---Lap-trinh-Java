@@ -85,4 +85,11 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/my-events")
+    public ResponseEntity<List<EventDTO>> getMyEvents(Authentication authentication) {
+        String userId = authentication.getName(); // Giả định userId được lưu trong principal
+        List<EventDTO> events = eventService.getEventsByUserId(userId);
+        return ResponseEntity.ok(events);
+    }
 }
