@@ -1,7 +1,6 @@
 package com.example.webve.dto;
 
 import lombok.Data;
-import com.example.webve.model.Ticket;
 
 import java.sql.Timestamp;
 

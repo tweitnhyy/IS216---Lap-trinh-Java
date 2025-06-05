@@ -1,8 +1,7 @@
-<header th:fragment="header-authenticated">
+<header class="site-header" th:fragment="header-authenticated">
     <style>
         :root {
-            --font-logo: "Praise", cursive;
-            --font-logo-2: "Oleo Script", system-ui;
+            --font-logo: "Oleo Script", system-ui;
             --font-primary: "Roboto", sans-serif;
 
             --color-primary: #a72a7c;
@@ -70,7 +69,7 @@
 
         .logo a h1 {
             margin: 0;
-            font-family: var(--font-logo-2);
+            font-family: var(--font-logo);
             color: white;
         }
 
@@ -138,7 +137,7 @@
             left: 11%;
         }
 
-        .nav-links a.active {
+        .nav-links>a.active {
             color: white;
         }
 
@@ -218,87 +217,75 @@
             color: white;
         }
     </style>
-    <header class="site-header">
-        <div class="container">
-            <div class="logo">
-                <a href="/">
-                    <img src="/upload/other/logo.jpg" alt="EvenTory Logo" />
-                    <h1>EvenTory</h1>
-                </a>
-            </div>
-
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
-                <button>
-                    <span class="material-symbols-rounded">search</span>
-                </button>
-            </div>
-
-            <nav class="nav-links">
-                    <a href="#" id="createEventBtn" class ="nav-link">Tạo sự kiện</a>
-                    <a href="/buy-ticket">Mua vé</a>
-                    <a href="/contact">Liên hệ</a>
-                <div class="avatar-dropdown">
-                    <div class="avatar">
-                        <img src="/upload/avatar/avatar.jpg" alt="User Avatar" />
-                    </div>
-                    <div class="dropdown-menu">
-                        <a href="/account" class="dropdown-item">
-                            <span class="material-symbols-rounded">person</span>
-                            Tài khoản
-                        </a>
-                        <a href="/account-ticket" class="dropdown-item">
-                            <span class="material-symbols-rounded">star</span>
-                            Vé đã mua
-                        </a>
-                        <a href="/account-event" class="dropdown-item">
-                            <span class="material-symbols-rounded">event</span>
-                            Sự kiện của tôi
-                        </a>
-                        <a href="#" class="dropdown-item" id="logoutBtn">
-                            <span class="material-symbols-rounded logout">logout</span>
-                            Đăng xuất
-                        </a>
-                    </div>
-                </div>
-            </nav>
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src="/upload/other/logo.jpg" alt="EvenTory Logo" />
+                <h1>EvenTory</h1>
+            </a>
         </div>
-    </header>
-    <script>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm gì đó bùng nổ 🔥 nào?" />
+            <button>
+                <span class="material-symbols-rounded">search</span>
+            </button>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#" id="createEventBtn" class="nav-link">Tạo sự kiện</a>
+            <a href="/buy-ticket">Mua vé</a>
+            <a href="/contact">Liên hệ</a>
+            <div class="avatar-dropdown">
+                <div class="avatar">
+                    <img src="/upload/avatar/avatar.jpg" alt="User Avatar" />
+                </div>
+                <div class="dropdown-menu">
+                    <a href="/account" class="dropdown-item">
+                        <span class="material-symbols-rounded">person</span>
+                        Tài khoản
+                    </a>
+                    <a href="/account-ticket" class="dropdown-item">
+                        <span class="material-symbols-rounded">star</span>
+                        Vé đã mua
+                    </a>
+                    <a href="/account-event" class="dropdown-item">
+                        <span class="material-symbols-rounded">event</span>
+                        Sự kiện của tôi
+                    </a>
+                    <a href="#" class="dropdown-item" id="logoutBtn">
+                        <span class="material-symbols-rounded logout">logout</span>
+                        Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Xử lý dropdown avatar
             const avatarWrap = document.querySelector(".avatar-dropdown");
             if (avatarWrap) {
                 const menu = avatarWrap.querySelector(".dropdown-menu");
+
+                // Toggle dropdown khi click vào avatar
                 avatarWrap.addEventListener("click", (e) => {
                     e.stopPropagation();
                     menu.classList.toggle("show");
-                    console.log("→ Toggle dropdown, hiện hay ẩn:", menu.classList.contains("show"));
                 });
 
+                // Đóng dropdown khi click ra ngoài
                 document.addEventListener("click", (e) => {
                     if (!avatarWrap.contains(e.target)) {
                         menu.classList.remove("show");
                     }
                 });
-            }
 
-            // Xử lí scroll header
-            const headerEl = document.querySelector(".site-header");
-            if (headerEl) {
-                let lastScrollY = window.pageYOffset;
+                // Đóng dropdown khi cuộn trang
                 window.addEventListener("scroll", () => {
-                    const currentY = window.pageYOffset;
-                    if (currentY <= 0) {
-                        headerEl.style.transform = "translateY(0)";
-                    } else if (currentY > lastScrollY) {
-                        headerEl.style.transform = "translateY(-100%)";
-                    } else {
-                        headerEl.style.transform = "translateY(0)";
-                    }
-                    lastScrollY = currentY;
+                    menu.classList.remove("show");
                 });
             }
         });
-    </script>
+    </script> -->
 </header>

@@ -1,4 +1,161 @@
 <header class="site-header" th:fragment="header-guest">
+    <style>
+        .site-header {
+            background: var(--gradient-primary);
+            border-bottom: 1px solid var(--color-border-soft);
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            transition: transform 0.3s ease-in-out;
+        }
+    
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+    
+        .container .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        .logo img {
+            width: 32px;
+            height: 32px;
+        }
+    
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        .logo a h1 {
+            margin: 0;
+            font-family: var(--font-logo);
+            color: white;
+        }
+    
+        .container .search-bar {
+            display: flex;
+            align-items: center;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 37px;
+        }
+    
+        .search-bar input {
+            border: none;
+            padding: 8px 12px;
+            outline: none;
+            min-width: 240px;
+            width: 300px;
+            height: 100%;
+        }
+    
+        .search-bar input::placeholder {
+            font-size: 14px;
+        }
+    
+        .search-bar button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            transition: background-color 0.2s;
+        }
+    
+        .search-bar button:hover {
+            background-color: var(--color-primary-light);
+        }
+    
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+    
+        .nav-links>a {
+            position: relative;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 16px;
+            text-decoration: none;
+        }
+    
+        .nav-links>a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+            width: 80%;
+            left: 11%;
+        }
+    
+        .nav-links>a:hover::after {
+            transform: scaleX(1);
+        }
+    
+        .nav-links>a.active {
+            color: white;
+        }
+    
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+    
+        .nav-links .btn-login {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .btn-login:hover {
+            background: linear-gradient(135deg,
+                    var(--color-secondary),
+                    var(--color-secondary-2));
+            color: white;
+            animation: glow 0.7s infinite alternate;
+        }
+    
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+            }
+    
+            50% {
+                box-shadow: 0 0 15px var(--color-primary-light),
+                    0 0 25px var(--color-primary-light);
+            }
+    
+            100% {
+                box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+            }
+        }
+    </style>
     <div class="container">
         <div class="logo">
             <a href="/">
@@ -15,7 +172,7 @@
         </div>
 
         <nav class="nav-links">
-            <a href="#" id="createEventBtn" class ="nav-link">Tạo sự kiện</a>
+            <a href="javascript:void(0)" id="createEventBtn">Tạo sự kiện</a>
             <a href="/buy-ticket">Mua vé</a>
             <a href="/contact">Liên hệ</a>
             <button class="btn-login" id="loginBtn">Login</button>
