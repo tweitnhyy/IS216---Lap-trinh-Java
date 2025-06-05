@@ -11,7 +11,7 @@ CREATE TABLE USERS (
                        PHONE_NUMBER VARCHAR2(20 BYTE),
                        GENDER VARCHAR2(7 BYTE),
                        RESET_TOKEN VARCHAR2(255 BYTE),
-                       RESET_TOKEN_EXPIRY TIMESTAMP(6)
+                       RESET_TOKEN_EXPIRY TIMESTAMP(6),
                        CONSTRAINT PK_USERS PRIMARY KEY (USER_ID)
 );
 
@@ -109,24 +109,255 @@ CREATE TABLE ORDERS (
 Insert into USERS (USER_ID,USERNAME,EMAIL,PASSWORD_HASH,ROLE,LAST_LOGIN,FULL_NAME,DOB,PHONE_NUMBER,GENDER,RESET_TOKEN,RESET_TOKEN_EXPIRY) values ('492820da-5512-4542-831f-21ef15408b1e','testuser5','test5@eventory.vn','$2a$10$RuLeqH/tqNVxsX3T2GHkqOgWIavM5j5k49J3OEyWS4yRiimRMoHhi','user',to_timestamp('28-MAY-25 01.07.06.940916000 AM','DD-MON-RR HH.MI.SSXFF AM'),null,null,null,null,null,null);
 Insert into USERS (USER_ID,USERNAME,EMAIL,PASSWORD_HASH,ROLE,LAST_LOGIN,FULL_NAME,DOB,PHONE_NUMBER,GENDER,RESET_TOKEN,RESET_TOKEN_EXPIRY) values ('4de76c74-665c-4eb1-90bc-f307f9477dd8','dohaidang','dohaidang@gmail.com','$2a$10$UFBp.V85JyosKWnMYmCzVeTlAVthisadTli8n94unHtt0hnWCdQ76','user',to_timestamp('03-JUN-25 10.13.52.971403000 PM','DD-MON-RR HH.MI.SSXFF AM'),null,null,null,null,null,null);
 
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('8c4e1378-de2b-458f-af01-1cf47e528dae','SOOBIN Live Concert 2025','Hồ Chí Minh','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748962682/poster_soobin_1_jx5kf5.jpg','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748966696/poster_soobin_2_kic76f.jpg',null,to_timestamp('01-JUL-25 07.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('01-JUL-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Nhà hát Hòa Bình, Hồ Chí Minh',to_timestamp('20-MAY-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'SpaceSpeakers Group','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959263/webve/org-logo/zhvcar7nyqisrynqhrf8.png',to_timestamp('03-JUN-25 09.01.04.561000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 09.01.04.561000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8','SOOBIN tổ chức show diễn solo cực kỳ đặc biệt nhân dịp kỷ niệm sự nghiệp.
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    '8c4e1378-de2b-458f-af01-1cf47e528dae',
+    'SOOBIN Live Concert 2025',
+    'Hồ Chí Minh',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748962682/poster_soobin_1_jx5kf5.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748966696/poster_soobin_2_kic76f.jpg',
+    NULL,
+    to_timestamp(
+        '01-JUL-25 07.00.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '01-JUL-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Nhà hát Hòa Bình, Hồ Chí Minh',
+    to_timestamp(
+        '20-MAY-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '30-JUN-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'SpaceSpeakers Group',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959263/webve/org-logo/zhvcar7nyqisrynqhrf8.png',
+    to_timestamp(
+        '03-JUN-25 09.01.04.561000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 09.01.04.561000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    'SOOBIN tổ chức show diễn solo cực kỳ đặc biệt nhân dịp kỷ niệm sự nghiệp.
 
 Special Experience:
 - Gặp gỡ ký tặng SOOBIN
-- Poster giới hạn','.................................');
+- Poster giới hạn',
+    '.................................'
+);
 
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('4fea402f-9fa5-4bf1-8678-02bdfea228f0','BLACKPINK Encore Tour - Vietnam','Hồ Chí Minh','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959737/webve/poster/hmsezify1gtjirialk7z.webp','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959739/webve/poster-sub/rnbqko7zbzfpkeneueox.webp','https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748959744/webve/video/niajqgvfj0xe4fjxzzqt.mp4',to_timestamp('25-JUL-25 07.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('25-JUL-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Sân vận động Thống Nhất, Hồ Chí Minh',to_timestamp('10-JUN-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('24-JUL-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'YG Entertainment','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959747/webve/org-logo/cgeov4pyiinpi95mcmnu.png',to_timestamp('03-JUN-25 09.09.08.535000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 09.09.08.535000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8',""BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    '4fea402f-9fa5-4bf1-8678-02bdfea228f0',
+    'BLACKPINK Encore Tour - Vietnam',
+    'Hồ Chí Minh',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959737/webve/poster/hmsezify1gtjirialk7z.webp',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959739/webve/poster-sub/rnbqko7zbzfpkeneueox.webp',
+    'https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748959744/webve/video/niajqgvfj0xe4fjxzzqt.mp4',
+    to_timestamp(
+        '25-JUL-25 07.00.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '25-JUL-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Sân vận động Thống Nhất, Hồ Chí Minh',
+    to_timestamp(
+        '10-JUN-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '24-JUL-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'YG Entertainment',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959747/webve/org-logo/cgeov4pyiinpi95mcmnu.png',
+    to_timestamp(
+        '03-JUN-25 09.09.08.535000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 09.09.08.535000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    '"BLACKPINK chính thức tổ chức encore concert cực hoành tráng tại Việt Nam.
 
 Special Experience:
 - VIP Soundcheck Experience
-- Tặng card member BP"",'.................................');
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('b4c63ef8-d0b1-4f94-bbaf-37843bd557ab','TWICE 5th World Tour - Vietnam','Hồ Chí Minh','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964226/webve/poster/esmi5scl7ctaq1n16qqg.jpg','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964236/webve/poster-sub/aievyqmaxgft3cmyibwp.jpg',null,to_timestamp('10-AUG-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('10-AUG-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'SVĐ Quân khu 7, Phường 02, Quận Tân Bình, Hồ Chí Minh',to_timestamp('20-JUN-25 12.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('09-AUG-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),'JYP Entertainment','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964238/webve/org-logo/qvddttwib5pk7ztt9gtx.png',to_timestamp('03-JUN-25 10.24.01.103000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 10.24.01.103000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8','TWICE lần đầu tiên tổ chức world tour tại Việt Nam, hứa hẹn bùng nổ cảm xúc.
+- Tặng card member BP"',
+    '.................................'
+);
+
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    'b4c63ef8-d0b1-4f94-bbaf-37843bd557ab',
+    'TWICE 5th World Tour - Vietnam',
+    'Hồ Chí Minh',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964226/webve/poster/esmi5scl7ctaq1n16qqg.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964236/webve/poster-sub/aievyqmaxgft3cmyibwp.jpg',
+    NULL,
+    to_timestamp(
+        '10-AUG-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '10-AUG-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'SVĐ Quân khu 7, Phường 02, Quận Tân Bình, Hồ Chí Minh',
+    to_timestamp(
+        '20-JUN-25 12.00.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '09-AUG-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'JYP Entertainment',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748964238/webve/org-logo/qvddttwib5pk7ztt9gtx.png',
+    to_timestamp(
+        '03-JUN-25 10.24.01.103000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 10.24.01.103000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    'TWICE lần đầu tiên tổ chức world tour tại Việt Nam, hứa hẹn bùng nổ cảm xúc.
 
 Special Experience:
 - Soundcheck package
-- Tặng postcard TWICE','.............................');
+- Tặng postcard TWICE',
+    '.............................'
+);
 
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('23062922-9506-43e6-85b3-08805df847fb','BTS - Map Of The Soul Tour','Hà Nội','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957987/webve/poster/rbeyr6mbjxsdcywqoyhs.jpg','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957990/webve/poster-sub/h1wop1rmvkl637grypz0.webp',null,to_timestamp('12-JUN-25 07.30.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('12-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'SVĐ Mỹ Đình, Hà Nội',to_timestamp('01-MAY-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('11-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Bit Hit Music','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957992/webve/org-logo/slmtbdpeitgg53c78pwe.png',to_timestamp('03-JUN-25 08.39.54.801000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 08.39.54.801000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8','BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    '23062922-9506-43e6-85b3-08805df847fb',
+    'BTS - Map Of The Soul Tour',
+    'Hà Nội',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957987/webve/poster/rbeyr6mbjxsdcywqoyhs.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957990/webve/poster-sub/h1wop1rmvkl637grypz0.webp',
+    NULL,
+    to_timestamp(
+        '12-JUN-25 07.30.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '12-JUN-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'SVĐ Mỹ Đình, Hà Nội',
+    to_timestamp(
+        '01-MAY-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '11-JUN-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Bit Hit Music',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748957992/webve/org-logo/slmtbdpeitgg53c78pwe.png',
+    to_timestamp(
+        '03-JUN-25 08.39.54.801000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 08.39.54.801000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    'BTS trở lại với những bản hit khuấy động sân khấu, màn trình diễn ánh sáng đỉnh cao và hiệu ứng pháo hoa.
 
 Special Experience:
 - Tặng lightstick phiên bản đặc biệt
@@ -134,23 +365,142 @@ Special Experience:
 - Được bốc thăm ký tên
 
 Promotion:
-- Giảm 5% cho học sinh, sinh viên (Xuất trình thẻ sinh viên còn hiệu lực)"",".................................");
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('991423b4-2799-479a-a594-08c9d07df297','EXID - 2025 World Tour','Đà Nẵng','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959010/webve/poster/p0d1bmx3mrgd9lrrah6g.jpg','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959015/webve/poster-sub/s4zp8s2srvlt0sgmbfll.jpg','https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748959019/webve/video/ybugdxk9tlachwm1qfn5.mp4',to_timestamp('20-JUN-25 08.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('20-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Sân vận động Chi Lăng, Đà Nẵng',to_timestamp('10-MAY-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('19-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'EXID Entertainment','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959022/webve/org-logo/qd3obhctotixgyz7x1ms.png',to_timestamp('03-JUN-25 08.57.04.177000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 08.57.04.177000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8,'EXID tổ chức đêm nhạc cháy bỏng tại Việt Nam với những bản hit huyền thoại.
+- Giảm 5% cho học sinh, sinh viên (Xuất trình thẻ sinh viên còn hiệu lực)',
+    '.................................'
+);
+
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    '991423b4-2799-479a-a594-08c9d07df297',
+    'EXID - 2025 World Tour',
+    'Đà Nẵng',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959010/webve/poster/p0d1bmx3mrgd9lrrah6g.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959015/webve/poster-sub/s4zp8s2srvlt0sgmbfll.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748959019/webve/video/ybugdxk9tlachwm1qfn5.mp4',
+    to_timestamp(
+        '20-JUN-25 08.00.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '20-JUN-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Sân vận động Chi Lăng, Đà Nẵng',
+    to_timestamp(
+        '10-MAY-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '19-JUN-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'EXID Entertainment',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748959022/webve/org-logo/qd3obhctotixgyz7x1ms.png',
+    to_timestamp(
+        '03-JUN-25 08.57.04.177000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 08.57.04.177000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    'EXID tổ chức đêm nhạc cháy bỏng tại Việt Nam với những bản hit huyền thoại.
 
 Special Experience:
-- Meet & Greet với EXID
+- Meet and Greet với EXID
 - Photo Card giới hạn
 
 Promotion:
 - Giảm 10% cho nhóm từ 5 người trở lên
-- Đăng ký theo nhóm cùng lúc','.................................');
-Insert into EVENTS (EVENT_ID,TITLE,CITY,POSTER,POSTER_SUB,VIDEO,START_DATE_TIME,END_DATE_TIME,LOCATION,TICKET_SALE_START,TICKET_SALE_END,ORGANIZER_NAME,ORGANIZER_LOGO,CREATED_AT,UPDATED_AT,FORMAT,USER_ID,DESCRIPTION,ORGANIZER_DESCRIPTION) values ('08553bda-7881-4248-a7c2-7fa223bceb9f','BABYMONSTER - Hello Monsters Tour','Hồ Chí Minh','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948320/webve/poster/oeco2x9mg6jrctvzalvp.jpg','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948323/webve/poster-sub/wry8mbwawrete8lit6tm.jpg','https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748948329/webve/video/ijvlmoxmyf5qwdgbzyau.mp4',to_timestamp('31-MAY-25 06.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('31-MAY-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'SECC, Phường Tân Phú, Quận 7, Hồ Chí Minh',to_timestamp('15-APR-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-MAY-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Live Nation Vietnam','https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948332/webve/org-logo/krmyvlkcyccrn0nbkrr5.png',to_timestamp('03-JUN-25 05.58.54.163000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 05.58.54.163000000 PM','DD-MON-RR HH.MI.SSXFF AM'),'Offline','4de76c74-665c-4eb1-90bc-f307f9477dd8','BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.
+- Đăng ký theo nhóm cùng lúc',
+    '.................................'
+);
+
+INSERT INTO EVENTS (
+    EVENT_ID,
+    TITLE,
+    CITY,
+    POSTER,
+    POSTER_SUB,
+    VIDEO,
+    START_DATE_TIME,
+    END_DATE_TIME,
+    LOCATION,
+    TICKET_SALE_START,
+    TICKET_SALE_END,
+    ORGANIZER_NAME,
+    ORGANIZER_LOGO,
+    CREATED_AT,
+    UPDATED_AT,
+    FORMAT,
+    USER_ID,
+    DESCRIPTION,
+    ORGANIZER_DESCRIPTION
+) VALUES (
+    '08553bda-7881-4248-a7c2-7fa223bceb9f',
+    'BABYMONSTER - Hello Monsters Tour',
+    'Hồ Chí Minh',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948320/webve/poster/oeco2x9mg6jrctvzalvp.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948323/webve/poster-sub/wry8mbwawrete8lit6tm.jpg',
+    'https://res.cloudinary.com/dy5gl0qm1/video/upload/v1748948329/webve/video/ijvlmoxmyf5qwdgbzyau.mp4',
+    to_timestamp(
+        '31-MAY-25 06.00.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '31-MAY-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'SECC, Phường Tân Phú, Quận 7, Hồ Chí Minh',
+    to_timestamp(
+        '15-APR-25 12.00.00.000000000 AM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '30-MAY-25 11.59.00.000000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Live Nation Vietnam',
+    'https://res.cloudinary.com/dy5gl0qm1/image/upload/v1748948332/webve/org-logo/krmyvlkcyccrn0nbkrr5.png',
+    to_timestamp(
+        '03-JUN-25 05.58.54.163000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    to_timestamp(
+        '03-JUN-25 05.58.54.163000000 PM',
+        'DD-MON-RR HH.MI.SSXFF AM'
+    ),
+    'Offline',
+    '4de76c74-665c-4eb1-90bc-f307f9477dd8',
+    'BABYMONSTER trở lại với tour diễn đầu tiên tại Việt Nam, mang đến những tiết mục độc quyền chỉ có tại SECC.
 
 Special Experience:
-
 - Tặng poster BABYMONSTER
 - Nhận sticker độc quyền
-- Photo zone check-in','.................................');
+- Photo zone check-in',
+    '.................................'
+);
 
 Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,UPDATED_AT,MAX_PER_ORDER,TICKET_SALE_START,TICKET_SALE_END) values ('21f0e743-754a-4038-9a43-2bca006ea8fb','991423b4-2799-479a-a594-08c9d07df297','STANDARD',2500000,750,to_timestamp('03-JUN-25 08.57.04.192000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 08.57.04.192000000 PM','DD-MON-RR HH.MI.SSXFF AM'),1,to_timestamp('10-MAY-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('19-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
 Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,UPDATED_AT,MAX_PER_ORDER,TICKET_SALE_START,TICKET_SALE_END) values ('391e52b3-20c0-467e-8682-e2c29ddbed46','8c4e1378-de2b-458f-af01-1cf47e528dae','SOOBIN ZONE',2800000,400,to_timestamp('03-JUN-25 09.01.04.567000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 09.01.04.567000000 PM','DD-MON-RR HH.MI.SSXFF AM'),1,to_timestamp('20-MAY-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-JUN-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
@@ -166,3 +516,9 @@ Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,
 Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,UPDATED_AT,MAX_PER_ORDER,TICKET_SALE_START,TICKET_SALE_END) values ('15a2a341-42a3-4923-a94c-615bc93b547d','08553bda-7881-4248-a7c2-7fa223bceb9f','CAT 1 - L',4200000,200,to_timestamp('03-JUN-25 05.58.54.173000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 05.58.54.173000000 PM','DD-MON-RR HH.MI.SSXFF AM'),1,to_timestamp('15-APR-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-MAY-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
 Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,UPDATED_AT,MAX_PER_ORDER,TICKET_SALE_START,TICKET_SALE_END) values ('208bcca6-e09b-46ea-ab95-6322277aab84','08553bda-7881-4248-a7c2-7fa223bceb9f','CAT 2 - L',3400000,150,to_timestamp('03-JUN-25 05.58.54.176000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 05.58.54.176000000 PM','DD-MON-RR HH.MI.SSXFF AM'),1,to_timestamp('15-APR-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-MAY-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
 Insert into TICKETTYPES (TICKET_TYPE_ID,EVENT_ID,TYPE,PRICE,QUANTITY,CREATED_AT,UPDATED_AT,MAX_PER_ORDER,TICKET_SALE_START,TICKET_SALE_END) values ('3f011dac-2f16-49b5-84c6-cc5630aa8b85','08553bda-7881-4248-a7c2-7fa223bceb9f','CAT 3 - L',2800000,200,to_timestamp('03-JUN-25 05.58.54.178000000 PM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('03-JUN-25 05.58.54.178000000 PM','DD-MON-RR HH.MI.SSXFF AM'),1,to_timestamp('15-APR-25 12.00.00.000000000 AM','DD-MON-RR HH.MI.SSXFF AM'),to_timestamp('30-MAY-25 11.59.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
+
+--DROP TABLE TICKETS CASCADE CONSTRAINTS;
+--DROP TABLE TICKETTYPES CASCADE CONSTRAINTS;
+--DROP TABLE EVENTS CASCADE CONSTRAINTS;
+--DROP TABLE USERSESSIONS CASCADE CONSTRAINTS;
+--DROP TABLE USERS CASCADE CONSTRAINTS;
