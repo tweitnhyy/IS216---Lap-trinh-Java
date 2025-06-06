@@ -88,19 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // Logout thành công
             localStorage.removeItem("jwtToken");
             window.location.reload();
-          } else if (response.status === 401) {
+          } else {
             localStorage.removeItem("jwtToken");
             window.location.href = "/";
-          } else {
-            return response.text().then((text) => {
-              throw new Error(text || `Logout failed! Status: ${response.status}`);
-            });
           }
         })
-        .catch((error) => {
-          console.error("Logout error:", error);
-          alert("Đăng xuất thất bại: " + error.message);
-        });
     });
   }
 
