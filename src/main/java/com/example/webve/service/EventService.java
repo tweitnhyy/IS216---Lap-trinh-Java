@@ -177,4 +177,28 @@ public class EventService {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new RuntimeException("Event not found with ID: " + eventId));
     }
+
+
+    public List<EventDTO> getEventsByUserId(String userId) {
+        List<Event> events = eventRepository.findByUserUserId(userId);
+        return events.stream().map(event -> {
+            EventDTO eventDTO = new EventDTO();
+            BeanUtils.copyProperties(event, eventDTO);
+
+            List<TicketType> ticketTypes = event.getTicketTypes();
+            if (ticketTypes != null && !ticketTypes.isEmpty()) {
+                List<TicketTypeDTO> ticketTypeDTOs = ticketTypes.stream().map(ticketType -> {
+                    TicketTypeDTO ticketTypeDTO = new TicketTypeDTO();
+                    BeanUtils.copyProperties(ticketType, ticketTypeDTO);
+                    return ticketTypeDTO;
+                }).collect(Collectors.toList());
+                eventDTO.setTickets(ticketTypeDTOs);
+            } else {
+                eventDTO.setTickets(new ArrayList<>());
+            }
+
+            eventDTO.setUserId(userId);
+            return eventDTO;
+        }).collect(Collectors.toList());
+    }
 }

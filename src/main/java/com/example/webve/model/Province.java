@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name ="Province")
+@Table(name ="Provinces")
 public class Province {
     @Id
     @Column(name = "province_id")
