@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("jwtToken");
   console.log("Token:", token);
 
-  if (!token && window.location.pathname === "/create-event") {
-    // Nếu đã hết token (đã logout) mà vẫn ở trang /create-event → chuyển về trang login hoặc home
+  if (!token && (window.location.pathname === "/create-event" || window.location.pathname === "/account" || window.location.pathname === "/account-ticket" || window.location.pathname === "/account-event")) {
     window.location.href = "/";
     return;
   }
@@ -79,15 +78,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let redirectAfterLogin = "/"; // Mặc định chuyển hướng về trang chính
 
-  // ==== 1) LOGOUT (nếu có logoutBtn) ====
+  // ==== 1) LOGOUT ====
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       fetchWithToken("/api/auth/logout", { method: "POST" })
         .then((response) => {
-          if (!response.ok) throw new Error(`Logout failed! Status: ${response.status}`);
-          localStorage.removeItem("jwtToken");
-          window.location.reload();
+          if (response.ok) {
+            // Logout thành công
+            localStorage.removeItem("jwtToken");
+            window.location.reload();
+          } else if (response.status === 401) {
+            localStorage.removeItem("jwtToken");
+            window.location.href = "/";
+          } else {
+            return response.text().then((text) => {
+              throw new Error(text || `Logout failed! Status: ${response.status}`);
+            });
+          }
         })
         .catch((error) => {
           console.error("Logout error:", error);

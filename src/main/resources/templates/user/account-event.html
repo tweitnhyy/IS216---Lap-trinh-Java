@@ -7,7 +7,9 @@
   </head>
   <body>
     <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+    <!-- <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header> -->
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+    <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
 
     <!-- ===== MAIN CONTENT: Sự kiện của tôi ===== -->
     <main class="my-events-page">
@@ -24,6 +26,7 @@
       <div class="events-grid"></div>
     </main>
 
+    <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/account.js"></script>
   </body>
 </html>
