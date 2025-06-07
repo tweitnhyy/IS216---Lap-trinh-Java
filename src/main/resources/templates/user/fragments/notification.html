@@ -1,0 +1,102 @@
+<div id="notification-popup" class="notification-modal" th:fragment="notification">
+  <style>
+    .notification-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      font-family: --(--font-primary);
+    }
+
+    .notification-modal__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .notification-modal__dialog {
+      position: relative;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .notification-modal__content {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .notification-modal__content p {
+      margin-bottom: 24px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .notification-modal__actions .btn {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .btn--primary {
+      background: #ddd;
+      color: #333;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn--secondary {
+      background: var(--color-primary);
+      color: white;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .notification-modal__actions .btn--primary:hover,
+    .notification-modal__actions .btn--secondary:hover {
+      background: var(--color-primary-light-2);
+      color: white;
+      filter: brightness(1.1);
+      transform: scale(1.05);
+    }
+  </style>
+
+  <div class="notification-modal__overlay"></div>
+  <div class="notification-modal__dialog">
+    <div class="notification-modal__content">
+      <p id="notification-popup__message"></p>
+      <div class="notification-modal__actions">
+        <a id="notification-btn-primary" class="btn btn--primary"></a>
+        <a id="notification-btn-secondary" class="btn btn--secondary"></a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const popup        = document.getElementById("notification-popup");
+      const btnPrimary   = document.getElementById("notification-btn-primary");
+      const btnSecondary = document.getElementById("notification-btn-secondary");
+
+      function hide() {
+        popup.style.display = "none";
+      }
+      btnPrimary.addEventListener("click", hide);
+      btnSecondary.addEventListener("click", hide);
+
+      window.showNotificationPopup = function(
+        message,
+        primaryText,   primaryLink,
+        secondaryText, secondaryLink
+      ) {
+        document.getElementById("notification-popup__message").textContent = message;
+        btnPrimary.textContent   = primaryText;   btnPrimary.href   = primaryLink;
+        btnSecondary.textContent = secondaryText; btnSecondary.href = secondaryLink;
+        popup.style.display = "flex";
+      };
+    });
+  </script>
+</div>

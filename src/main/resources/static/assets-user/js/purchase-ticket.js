@@ -1,258 +1,14 @@
-const fetchWithToken = (url, options = {}) => {
-  if (!options.headers) options.headers = {};
-  const token = localStorage.getItem("jwtToken");
-  if (token) options.headers["Authorization"] = `Bearer ${token}`;
-  return fetch(url, options);
-};
-
-const checkLoginStatus = async () => {
-  const token = localStorage.getItem("jwtToken");
-  if (!token) {
-    console.log("Chưa đăng nhập (không có token).");
-    return false;
-  }
-  try {
-    const response = await fetchWithToken("/api/auth/user");
-    if (!response.ok) {
-      console.log("Token không hợp lệ hoặc đã hết hạn.");
-      localStorage.removeItem("jwtToken");
-      return false;
-    }
-    console.log("Đã đăng nhập.");
-    return true;
-  } catch (error) {
-    console.error("Lỗi kiểm tra đăng nhập:", error);
-    return false;
-  }
-};
-
-// ===== Header Scroll Effect =====
-let lastScrollY = window.pageYOffset;
-const header = document.querySelector(".site-header");
-
-window.addEventListener("scroll", () => {
-  const currentScrollY = window.pageYOffset;
-  if (currentScrollY <= 0) {
-    header.style.transform = "translateY(0)";
-  } else if (currentScrollY > lastScrollY) {
-    header.style.transform = "translateY(-100%)";
-  } else {
-    header.style.transform = "translateY(0)";
-  }
-  lastScrollY = currentScrollY;
-});
-
-// ===== Login Popup Logic =====
-document.addEventListener("DOMContentLoaded", () => {
-  const loginPopup = document.getElementById("loginPopup");
-  const loginBtn = document.getElementById("loginBtn");
-  const createEventBtn = document.getElementById("createEventBtn");
-  const closeLoginPopup = document.getElementById("closePopup");
-
-  const forgotPasswordPopup = document.getElementById("forgotPasswordPopup");
-  const signupPopup = document.getElementById("signupPopup");
-  const closeForgotPopup = document.getElementById("closeForgotPopup");
-  const closeSignupPopup = document.getElementById("closeSignupPopup");
-  const continueBtn = document.getElementById("continueBtn");
-  const forgotPasswordLink = document.querySelector(".forgot-password");
-  const signupLink = document.querySelector(".signup-link a");
-  const backToLogin = document.getElementById("backToLogin");
-  const backToLoginFromSignup = document.getElementById("backToLoginFromSignup");
-  const resetPasswordBtn = document.getElementById("resetPasswordBtn");
-  const signupBtn = document.getElementById("signupBtn");
-
-  let redirectAfterLogin = "/";
-
-  if (loginPopup && loginBtn && createEventBtn && closeLoginPopup) {
-    loginBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      redirectAfterLogin = "/";
-      loginPopup.style.display = "flex";
-    });
-
-    createEventBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      redirectAfterLogin = "/create-event";
-      loginPopup.style.display = "flex";
-    });
-
-    closeLoginPopup.addEventListener("click", () => {
-      loginPopup.style.display = "none";
-    });
-
-    loginPopup.addEventListener("click", (e) => {
-      if (e.target === loginPopup) {
-        loginPopup.style.display = "none";
-      }
-    });
-  }
-
-  if (
-      forgotPasswordPopup &&
-      signupPopup &&
-      closeForgotPopup &&
-      closeSignupPopup &&
-      continueBtn &&
-      forgotPasswordLink &&
-      signupLink &&
-      backToLogin &&
-      backToLoginFromSignup &&
-      resetPasswordBtn &&
-      signupBtn
-  ) {
-    continueBtn.addEventListener("click", async () => {
-      const emailInput = document.getElementById("emailInput").value;
-      const passwordInput = document.getElementById("passwordInput").value;
-      if (emailInput && passwordInput) {
-        try {
-          const response = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: emailInput, password: passwordInput }),
-          });
-          if (!response.ok) {
-            throw new Error("Đăng nhập không thành công!");
-          }
-          const data = await response.json();
-          localStorage.setItem("jwtToken", data.token);
-          loginPopup.style.display = "none";
-          window.location.href = redirectAfterLogin;
-        } catch (error) {
-          alert("Đăng nhập thất bại: " + error.message);
-        }
-      } else {
-        alert("Vui lòng điền đầy đủ email và mật khẩu!");
-      }
-    });
-
-    forgotPasswordLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      loginPopup.style.display = "none";
-      forgotPasswordPopup.style.display = "flex";
-    });
-
-    signupLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      loginPopup.style.display = "none";
-      signupPopup.style.display = "flex";
-    });
-
-    closeForgotPopup.addEventListener("click", () => {
-      forgotPasswordPopup.style.display = "none";
-    });
-
-    closeSignupPopup.addEventListener("click", () => {
-      signupPopup.style.display = "none";
-    });
-
-    forgotPasswordPopup.addEventListener("click", (e) => {
-      if (e.target === forgotPasswordPopup) {
-        forgotPasswordPopup.style.display = "none";
-      }
-    });
-
-    signupPopup.addEventListener("click", (e) => {
-      if (e.target === signupPopup) {
-        signupPopup.style.display = "none";
-      }
-    });
-
-    resetPasswordBtn.addEventListener("click", async () => {
-      const forgotEmail = document.getElementById("forgotEmailInput").value;
-      if (forgotEmail) {
-        try {
-          const response = await fetch("/api/auth/reset-password", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: forgotEmail }),
-          });
-          if (!response.ok) {
-            throw new Error("Gửi yêu cầu đặt lại mật khẩu thất bại!");
-          }
-          alert("Yêu cầu đặt lại mật khẩu đã được gửi đến " + forgotEmail);
-          forgotPasswordPopup.style.display = "none";
-          loginPopup.style.display = "flex";
-        } catch (error) {
-          alert("Lỗi: " + error.message);
-        }
-      } else {
-        alert("Vui lòng nhập email!");
-      }
-    });
-
-    signupBtn.addEventListener("click", async () => {
-      const signupEmail = document.getElementById("signupEmailInput").value;
-      const signupPassword = document.getElementById("signupPasswordInput").value;
-      const signupConfirmPassword = document.getElementById("signupConfirmPasswordInput").value;
-
-      if (signupEmail && signupPassword && signupConfirmPassword) {
-        if (signupPassword === signupConfirmPassword) {
-          try {
-            const response = await fetch("/api/auth/signup", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email: signupEmail, password: signupPassword }),
-            });
-            if (!response.ok) {
-              throw new Error("Đăng ký không thành công!");
-            }
-            alert("Tài khoản cho " + signupEmail + " đã được tạo thành công!");
-            signupPopup.style.display = "none";
-            loginPopup.style.display = "flex";
-          } catch (error) {
-            alert("Đăng ký thất bại: " + error.message);
-          }
-        } else {
-          alert("Mật khẩu và xác nhận mật khẩu không khớp!");
-        }
-      } else {
-        alert("Vui lòng điền đầy đủ thông tin!");
-      }
-    });
-
-    backToLogin.addEventListener("click", (e) => {
-      e.preventDefault();
-      forgotPasswordPopup.style.display = "none";
-      loginPopup.style.display = "flex";
-    });
-
-    backToLoginFromSignup.addEventListener("click", (e) => {
-      e.preventDefault();
-      signupPopup.style.display = "none";
-      loginPopup.style.display = "flex";
-    });
-
-    const pwdInput = document.getElementById("passwordInput");
-    const toggleBtn = document.querySelector(".toggle-password");
-    if (pwdInput && toggleBtn) {
-      const icon = toggleBtn.querySelector(".material-symbols-rounded");
-      toggleBtn.addEventListener("click", () => {
-        const isPwd = pwdInput.type === "password";
-        pwdInput.type = isPwd ? "text" : "password";
-        icon.textContent = isPwd ? "visibility" : "visibility_off";
-        toggleBtn.setAttribute("aria-label", isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu");
-      });
-    }
-
-    const signupPwdInput = document.getElementById("signupPasswordInput");
-    const signupConfirmPwdInput = document.getElementById("signupConfirmPasswordInput");
-    const signupToggleBtn = document.querySelector(".toggle-signup-password");
-    if (signupPwdInput && signupConfirmPwdInput && signupToggleBtn) {
-      const signupIcon = signupToggleBtn.querySelector(".material-symbols-rounded");
-      signupToggleBtn.addEventListener("click", () => {
-        const isPwd = signupPwdInput.type === "password";
-        signupPwdInput.type = isPwd ? "text" : "password";
-        signupConfirmPwdInput.type = isPwd ? "text" : "password";
-        signupIcon.textContent = isPwd ? "visibility" : "visibility_off";
-        signupToggleBtn.setAttribute("aria-label", isPwd ? "Ẩn mật khẩu" : "Hiển thị mật khẩu");
-      });
-    }
-  }
-});
+const buyBtn = document.getElementById("buy-ticket-btn");
+if (buyBtn) {
+  buyBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    showNotificationPopup("Bạn cần hoàn thiện hồ sơ tài khoản trước khi mua vé!");
+  });
+}
 
 // Main ticket purchase logic
 (async () => {
-  // Check login status
+  // Kiểm tra login
   const isLoggedIn = await checkLoginStatus();
   if (!isLoggedIn) {
     alert("Vui lòng đăng nhập để mua vé!");
@@ -260,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Get user information
+  // Lấy thông tin người dùng
   let userData;
   try {
     const response = await fetchWithToken("/api/auth/user");
@@ -279,14 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Check if user info is complete
+  // Kiểm tra hồ sơ người dùng
   const isUserInfoComplete = userData.fullName && userData.email && userData.phoneNumber;
   const nextStep1Button = document.getElementById("next-step-1");
   if (!isUserInfoComplete) {
     nextStep1Button.disabled = true;
     nextStep1Button.style.opacity = "0.5";
     nextStep1Button.style.cursor = "not-allowed";
-    alert("Thông tin tài khoản của bạn chưa đầy đủ (họ tên, email, số điện thoại). Vui lòng cập nhật thông tin trước khi mua vé!");
+    showNotificationPopup(
+      "Bạn cần hoàn thiện hồ sơ trước khi mua vé!",
+      "Trở về", "javascript:history.back()",
+      "Hoàn thiện hồ sơ", "/account"
+    );
     return;
   }
 
@@ -470,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("confirm-buyer-name").textContent = document.getElementById("buyer-name").value;
     document.getElementById("confirm-buyer-email").textContent = document.getElementById("buyer-email").value;
     document.getElementById("confirm-buyer-phone").textContent = document.getElementById("buyer-phone").value;
-    document.getElementById("confirm-payment-method").textContent = "Thanh toán trực tiếp";
+    document.getElementById("confirm-payment-method").textContent = "Thanh toán trực tuyến";
     updateStep(4);
   });
 
@@ -542,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const confirmResult = await confirmResponse.json();
       alert(confirmResult.errorMessage || "Đơn hàng đã được xác nhận thành công! Vé đã được tạo.");
-      window.location.href = "/";
+      window.location.href = "/account-ticket";
     } catch (err) {
       console.error("Lỗi khi xác nhận đơn hàng:", err);
       if (err.message.includes("exceeds available tickets")) {
