@@ -1,6 +1,6 @@
 const buyBtn = document.getElementById("buy-ticket-btn");
 if (buyBtn) {
-  buyBtn.addEventListener("click", function(e) {
+  buyBtn.addEventListener("click", function (e) {
     e.preventDefault();
     showNotificationPopup("Bạn cần hoàn thiện hồ sơ tài khoản trước khi mua vé!");
   });
@@ -264,6 +264,9 @@ if (buyBtn) {
       return;
     }
 
+    const paymentMethodInput = document.querySelector('input[name="payment-method"]:checked');
+    const paymentMethod = paymentMethodInput ? paymentMethodInput.value.toLowerCase() : "vnpay";
+
     const orderData = {
       userId: userData.userId,
       eventId: eventId,
@@ -271,38 +274,39 @@ if (buyBtn) {
       quantity: selectedQuantity,
       price: selectedTicket.price,
       discount: 0,
-      paymentMethod: "CASH",
+      paymentMethod: paymentMethod
     };
 
     try {
-      // Create order
-      const createResponse = await fetchWithToken("/api/payment/create-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
-
-      if (!createResponse.ok) {
-        const errorData = await createResponse.json();
-        throw new Error(errorData.errorMessage || `Lỗi khi tạo đơn hàng: ${createResponse.status}`);
+      let paymentUrl = "";
+      if (paymentMethod === "vnpay") {
+        const res = await fetchWithToken("/api/vnpay/pay", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderData),
+        });
+        if (!res.ok) throw new Error("Lỗi khi tạo đơn hàng VNPAY");
+        const data = await res.json();
+        paymentUrl = data.paymentUrl;
+      }
+      else if (paymentMethod === "momo") {
+        // const res = await fetchWithToken("/api/momo/pay", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify(orderData),
+        // });
+        // if (!res.ok) throw new Error("Lỗi khi tạo đơn hàng MoMo");
+        // const data = await res.json();
+        // paymentUrl = data.payUrl;
+        alert("Momo hiện chưa được hỗ trợ. Vui lòng chọn phương thức thanh toán khác.");
+        return;
+      }
+      else {
+        throw new Error("Phương thức thanh toán không được hỗ trợ.");
       }
 
-      const createResult = await createResponse.json();
-      const orderId = createResult.orderId;
+      window.location.href = paymentUrl;
 
-      // Confirm order
-      const confirmResponse = await fetchWithToken(`/api/payment/confirm-order?orderId=${orderId}`, {
-        method: "POST",
-      });
-
-      if (!confirmResponse.ok) {
-        const errorData = await confirmResponse.json();
-        throw new Error(errorData.errorMessage || `Lỗi khi xác nhận đơn hàng: ${confirmResponse.status}`);
-      }
-
-      const confirmResult = await confirmResponse.json();
-      alert(confirmResult.errorMessage || "Đơn hàng đã được xác nhận thành công! Vé đã được tạo.");
-      window.location.href = "/account-ticket";
     } catch (err) {
       console.error("Lỗi khi xác nhận đơn hàng:", err);
       if (err.message.includes("exceeds available tickets")) {

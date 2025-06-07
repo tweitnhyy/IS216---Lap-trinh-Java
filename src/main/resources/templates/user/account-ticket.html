@@ -28,5 +28,17 @@
 
     <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/account.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const payment = params.get("payment");
+
+      if (payment === "success") {
+        alert("✅ Bạn đã thanh toán thành công!");
+      } else if (payment === "fail") {
+        alert("❌ Giao dịch thất bại. Vui lòng thử lại.");
+      } else if (payment === "invalid") {
+        alert("⚠️ Lỗi xác thực chữ ký. Giao dịch không hợp lệ.");
+      }
+    </script>
   </body>
 </html>

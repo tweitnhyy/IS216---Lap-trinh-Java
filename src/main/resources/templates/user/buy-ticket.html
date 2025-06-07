@@ -4,7 +4,7 @@
   <head>
     <link rel="stylesheet" href="/assets-user/css/home.css" />
     <link rel="stylesheet" href="/assets-user/css/buy-ticket.css" />
-    <title>Mua vé</title>
+    <title>Kho vé</title>
   </head>
 
   <body>
@@ -149,5 +149,17 @@
     <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/home.js"></script>
     <script src="/assets-user/js/buy-ticket.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const payment = params.get("payment");
+
+      if (payment === "success") {
+        alert("✅ Bạn đã thanh toán thành công!");
+      } else if (payment === "fail") {
+        alert("❌ Giao dịch thất bại. Vui lòng thử lại.");
+      } else if (payment === "invalid") {
+        alert("⚠️ Lỗi xác thực chữ ký. Giao dịch không hợp lệ.");
+      }
+    </script>
   </body>
 </html>
