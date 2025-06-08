@@ -34,7 +34,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 || path.startsWith("/event-detail") || path.startsWith("/account") || path.startsWith("/api/events/no-auth") || path.startsWith("/upload")
                 || path.startsWith("/contact") || path.startsWith("/buy-ticket") || path.equals("/create-event") 
                 || path.equals("/purchase-ticket") || path.startsWith("/api/vnpay")
-        || path.startsWith("/api/upload")  || path.equals("/api/ticket-types"))
+                || path.startsWith("/api/upload")  || path.equals("/api/ticket-types")
+                || path.startsWith("/admin") || path.startsWith("/assets-admin") || path.startsWith("/dashboard") || path.startsWith("/test")) // mới thêm
         {
 
             logger.info("Permitting request without authentication: {}", path);

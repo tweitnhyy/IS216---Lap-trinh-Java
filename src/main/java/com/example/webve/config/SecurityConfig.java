@@ -32,9 +32,9 @@ public class SecurityConfig {
                                 "/purchase-ticket/**", "/api/vnpay/**",
                                 "/reset-password","/api/auth/reset-password", "/api/payment/**","/api/ticket-types"
                         ).permitAll()
-
+                        .requestMatchers("/admin/**", "/assets-admin/**", "/dashboard", "/test").permitAll() // mới thêm
                         .requestMatchers("/api/auth/update/**", "/api/events/create-events/**", "/api/events/my-events", "/api/tickets/my-ticket").hasRole("user")
-                        .requestMatchers("/admin/**").hasRole("admin")
+                        // .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
