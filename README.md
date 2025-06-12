@@ -41,12 +41,11 @@
 | 4 | 23521052 | Nguyễn Trần Thảo Nguyên |[2nguyen3](https://github.com/2nguyen3) |23521052@gm.uit.edu.vn |
 | 5 | 23520356 | Thái Bình Dương |[DuongThai2712](https://github.com/DuongThai2712) |23520356@gm.uit.edu.vn |
 
-## SEMINAR
-
-<a name="seminar"></a>
-Seminar nhóm: ...
-
 ## ĐỒ ÁN MÔN HỌC
 
 <a name="doan"></a>
-Đồ án Nhóm: ...
+Đồ án Nhóm: Eventory - Hệ thống quản lý và mua bán vé sự kiện 
+
+[Link Repository](https://github.com/tweitnhyy/IS216---Lap-trinh-Java)
+
+[Link trang web nhóm](https://sites.google.com/gm.uit.edu.vn/z10/trang-ch%E1%BB%A7)
