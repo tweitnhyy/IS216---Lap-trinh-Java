@@ -3,15 +3,17 @@
   <head th:replace="user/fragments/head :: head"></head>
   <head>
     <link rel="stylesheet" href="/assets-user/css/account.css" />
-    <title>Vé đã mua</title>
+    <title>Vé của tôi</title>
   </head>
   <body>
     <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+    <!-- <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header> -->
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+    <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
 
     <!-- ===== MAIN CONTENT: Vé đã mua ===== -->
     <main class="purchased-tickets">
-      <h2>Vé đã mua</h2>
+      <h2>Vé của tôi</h2>
       <hr />
 
       <div class="filters">
@@ -24,6 +26,19 @@
       <div class="tickets-grid"></div>
     </main>
 
+    <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/account.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const payment = params.get("payment");
+
+      if (payment === "success") {
+        alert("✅ Bạn đã thanh toán thành công!");
+      } else if (payment === "fail") {
+        alert("❌ Giao dịch thất bại. Vui lòng thử lại.");
+      } else if (payment === "invalid") {
+        alert("⚠️ Lỗi xác thực chữ ký. Giao dịch không hợp lệ.");
+      }
+    </script>
   </body>
 </html>

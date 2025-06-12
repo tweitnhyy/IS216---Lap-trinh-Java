@@ -1,7 +1,6 @@
 package com.example.webve.dto;
 
 import lombok.*;
-import com.example.webve.model.Order;
 import java.math.BigDecimal;
 
 @Data

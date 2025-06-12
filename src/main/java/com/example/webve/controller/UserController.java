@@ -16,21 +16,16 @@ public class UserController {
     }
     @GetMapping("/create-event")
     public String createEvent() {
-        return "user/create-event"; // Trả về template create-event.html
+        return "user/create-event"; 
     }
-    // @GetMapping("/contact")
-    // public String contact() {
-    //     return "user/contact";
-    // }
     @GetMapping("/event-detail")
     public String eventDetail() {
-        return "user/event-detail"; // Trả về template create-event.html
+        return "user/event-detail"; 
     }
     @GetMapping("/purchase-ticket")
     public String purchaseTicket () {
-        return "user/purchase-ticket"; // Trả về template purchase-ticket.html
+        return "user/purchase-ticket";
     }
-
     @GetMapping("/account")
     public String account () {
         return "user/account";
@@ -43,12 +38,6 @@ public class UserController {
     public String accountEvent () {
         return "user/account-event";
     }
-
-    @GetMapping("/admin")
-    public String admin () {
-        return "admin/admin";
-    }
-
     @GetMapping("/reset-password")
     public String reset () {
         return "user/reset-password";

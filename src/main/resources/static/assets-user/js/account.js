@@ -300,35 +300,3 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
   });
 });
-
-const fetchWithToken = (url, options = {}) => {
-  if (!options.headers) options.headers = {};
-  const token = localStorage.getItem("jwtToken");
-  if (token) options.headers["Authorization"] = `Bearer ${token}`;
-  return fetch(url, options);
-};
-
-const checkLoginStatus = async () => {
-  const token = localStorage.getItem("jwtToken");
-  if (!token) {
-    console.log("Chưa đăng nhập (không có token).");
-    return false;
-  }
-  try {
-    const response = await fetch("/api/auth/user", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-    if (!response.ok) {
-      console.log("Token không hợp lệ hoặc đã hết hạn.");
-      localStorage.removeItem("jwtToken");
-      return false;
-    }
-    console.log("Đã đăng nhập.");
-    return true;
-  } catch (error) {
-    console.error("Lỗi kiểm tra đăng nhập:", error);
-    return false;
-  }
-};

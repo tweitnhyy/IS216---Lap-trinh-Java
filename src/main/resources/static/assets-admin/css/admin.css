@@ -1,154 +1,274 @@
 :root {
-  --gradient-primary: linear-gradient(135deg, #ec4899, #8b5cf6, #3cb2d9);
+    --font-logo: "Oleo Script", system-ui;
+    --font-primary: "Roboto", sans-serif;
+
+    --color-primary: #a72a7c;
+    --color-primary-light: #d451a1;
+    --color-primary-light-2: #f13781;
+    --color-primary-dark: #861d64;
+    --color-accent-pink: #ffb3db;
+    --color-secondary: #ff8400;
+    --color-secondary-2: #e3182b;
+
+    --gradient-primary: linear-gradient(135deg, #ec4899, #8b5cf6, #5b21b6);
+    --color-bg-body: #fff1f1;
+    --color-bg-footer: #242565;
+    --color-bg-card: #ffffff;
+    --color-border-soft: #e5dde4;
+
+    --color-text-dark: #2b2b2b;
+    --color-text-light: #666666;
+    --color-hover-gray: #f2f2f2;
+
+    --color-success: #4caf50;
+    --color-warning: #ff9800;
+    --color-error: #f44336;
+    --color-info: #2196f3;
+
 }
 
-/* Custom styles for sidebar hover */
-.hover-bg:hover {
-  background-color: #343a40;
-  border-radius: 5px;
-  transform: scale(1.02);
-  transition: all 0.3s ease;
+body {
+    overflow-x: hidden;
+    font-family: var(--font-primary);
 }
 
-.hover-bg-sub:hover {
-  background-color: #495057;
-  border-radius: 5px;
-  transform: scale(1.02);
-  transition: all 0.3s ease;
+/* ===== SIDEBAR ===== */
+#sidebar {
+    width: 60px;
+    min-width: 60px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #131b23;
+    transition: width .3s ease;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
-/* Animation for cards */
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+#sidebar:hover {
+    width: 250px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* min-height: 70px; */
+    gap: 10px;
+    width: 60px;
+    overflow: hidden;
+    transition: width 0.15s ease-in-out;
 }
 
-/* Animation for buttons */
-.animate-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+#sidebar:hover .logo-container {
+    width: 250px;
 }
 
-.animate-hover:hover {
-  transform: scale(1.1);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.logo {
+    width: 38px;
+    height: 38px;
+    background-color: #3498db;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
-/* Slide animations */
-.animate-slide-up {
-  animation: slideUp 0.5s ease forwards;
+.logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.animate-pop-in {
-  animation: popIn 0.5s ease forwards;
+.brand-name {
+    color: white;
+    font-family: var(--font-logo);
+    font-size: 26px;
+    font-weight: 600;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
 }
 
-.animate-fade-in {
-  animation: fadeIn 1s ease forwards;
+#sidebar:hover .brand-name {
+    opacity: 1;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
 }
 
-@keyframes popIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.sidebar-item {
+    position: relative;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background .2s;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
-/* Pulse animation for icons and badges */
-.animate-pulse {
-  animation: pulse 1.5s infinite;
+.sidebar-link:hover {
+    background: #2c3e5055;
+
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+.sidebar-link.active {
+    background: #2c3e50;
 }
 
-/* Spin animation for icons */
-.animate-spin-slow {
-  animation: spin 4s linear infinite;
+.sidebar-link .material-icons-round:first-child {
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.menu-text {
+    opacity: 0;
+    transition: opacity .3s ease;
 }
 
-/* Ensure chart containers have proper dimensions */
-#combinedChart, #revenueChart, #ticketsChart, #ticketTypeChart, #orgChart {
-  width: 100% !important;
-  min-height: 300px; /* Minimum height to ensure visibility */
+#sidebar:hover .menu-text {
+    opacity: 1;
 }
 
-/* Header styles */
-.header {
-  background: var(--gradient-primary);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  height: 60px; /* Ensure consistent height */
-}
-
-.header .avatar img {
-  transition: transform 0.3s ease;
-}
-
-.header .avatar:hover img {
-  transform: scale(1.1);
-}
-
-.header-right .dropdown-menu {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.header-right .dropdown-item {
-  color: #333;
-}
-
-.header-right .dropdown-item:hover {
-  background-color: #f8f9fa;
-}
-
-/* Sidebar adjustment */
-.sidebar {
-  position: fixed; 
-  top: 60px; 
-  left: 0;
-  height: calc(100vh - 60px); 
-}
-
-/* Sub-menu animation */
-.sub-menu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.sub-menu.open {
-  max-height: 200px; 
-}
-
-/* Arrow icon rotation */
 .arrow-icon {
-  transition: transform 0.3s ease;
+    margin-left: auto;
+    transition: transform .3s ease;
 }
 
-.arrow-icon.open {
-  transform: rotate(180deg);
+.sidebar-link[aria-expanded="true"] .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.collapse,
+.collapsing {
+    transition: height 0.1s ease-in-out !important;
+}
+
+.submenu-link {
+    display: flex;
+    align-items: center;
+    padding: 8px 30px;
+    color: #bdc3c7;
+    font-size: 14px;
+    text-decoration: none;
+    gap: 8px;
+    transition: background .2s;
+}
+
+.submenu-link:hover {
+    background: rgba(255, 255, 255, 0.199);
+}
+
+.submenu-link:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.submenu-link .material-icons-round {
+    font-size: 10px;
+}
+
+/* Ẩn scrollbar khi không hover */
+#sidebar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+#sidebar:hover {
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+}
+
+#sidebar:hover::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+}
+
+#sidebar:hover::-webkit-scrollbar-thumb {
+    background: #34495e;
+    border-radius: 4px;
+}
+
+/*  ===== MAIN-CONTENT ===== */
+.main-content {
+    margin-left: 60px;
+    /* padding: 20px; */
+    transition: margin-left .3s ease;
+    top: 0;
+}
+
+#sidebar:hover~.main-content {
+    margin-left: 250px;
+}
+
+.page-header {
+    /* position: sticky; */
+    padding: 15px 30px;
+}
+
+.search-form {
+    max-width: 330px;
+    width: 100%;
+}
+
+/* Tắt transition trên input và button */
+.search-form .btn {
+    border-left:none;
+}
+.search-form .form-control,
+.search-form .btn {
+    border-color: #ced4da;
+    transition: none;
+}
+
+/* Tắt outline, box-shadow khi focus hoặc hover trên input */
+.search-form .form-control:focus,
+.search-form .form-control:hover {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Tắt background/box-shadow khi hover, focus, active trên button */
+.search-form .btn:hover,
+.search-form .btn:focus,
+.search-form .btn:focus-visible {
+    background-color: transparent !important;
+    outline: none;
+    color: inherit !important;
+    box-shadow: none !important;
+}
+.search-form .input-group .btn::-moz-focus-inner {
+  border: 0 !important;
+}
+
+.header-icons {
+    gap: 20px
+}
+/* Ẩn badge nếu không có thông báo mới */
+.header-icons .badge {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
 }

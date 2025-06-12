@@ -13,9 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -32,11 +29,12 @@ public class SecurityConfig {
                         .requestMatchers("/", "/home", "/api/auth/**", "/upload/**",
                                 "/assets-user/**", "/event-detail/**", "/api/events/**", "/api/location/**", "/contact/send",
                                 "/contact","/account", "/api/upload","/account-event","/account-ticket", "/buy-ticket", "/event-detail","/create-event/**", 
-                                         "/purchase-ticket/**","/reset-password","/api/auth/reset-password", "/api/payment/**","/api/ticket-types"
+                                "/purchase-ticket/**", "/api/vnpay/**",
+                                "/reset-password","/api/auth/reset-password", "/api/payment/**","/api/ticket-types"
                         ).permitAll()
-
+                        .requestMatchers("/admin/**", "/assets-admin/**", "/dashboard", "/test").permitAll() // mới thêm
                         .requestMatchers("/api/auth/update/**", "/api/events/create-events/**", "/api/events/my-events", "/api/tickets/my-ticket").hasRole("user")
-                        .requestMatchers("/admin/**").hasRole("admin")
+                        // .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

@@ -7,7 +7,9 @@
   </head>
   <body>
     <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header>
+    <!-- <header th:replace="user/fragments/header-authenticated :: header-authenticated"></header> -->
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+    <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
 
     <main class="account-page">
       <h2>Thông tin tài khoản</h2>
@@ -53,6 +55,7 @@
       </form>
     </main>
 
+    <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/account.js"></script>
   </body>
 </html>

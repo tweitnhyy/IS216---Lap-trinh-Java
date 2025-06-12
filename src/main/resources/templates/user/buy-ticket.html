@@ -9,29 +9,104 @@
 
   <body>
     <!-- ===== HEADER ===== -->
-    <header th:replace="user/fragments/header-guest :: header-guest"></header>
+    <header id="headerUser" style="display: none" th:insert="~{user/fragments/header-authenticated :: header-authenticated}"></header>
+    <header id="headerGuest" style="display: none" th:insert="~{user/fragments/header-guest :: header-guest}"></header>
 
     <!-- Popup Đăng nhập -->
     <div class="login-popup" id="loginPopup">
       <div class="login-popup-content">
-        <span class="close-popup" id="closePopup">×</span>
-        <h2>Đăng nhập</h2>
-        <div class="login-form">
-          <label>Email hoặc số điện thoại</label>
-          <input type="text" id="emailInput" placeholder="Email hoặc số điện thoại" />
-          <label>Mật khẩu</label>
-          <input type="password" id="passwordInput" placeholder="Mật khẩu" />
-          <button class="continue-btn" id="continueBtn">Tiếp tục</button>
-          <a href="#" class="forgot-password">Quên mật khẩu?</a>
-          <p class="signup-link">
-            Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
-          </p>
-          <div class="divider">
-            <span>Hoặc</span>
-          </div>
-          <a href="/oauth2/authorization/google" class="google-login-btn">
+        <div class="login-header">
+          <h2>Đăng nhập</h2>
+          <img src="/upload/other/shiba_hello.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closePopup">×</span>
+        </div>
+
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="emailInput" required autocomplete="off" />
+              <label for="emailInput">Email hoặc số điện thoại</label>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="passwordInput" required autocomplete="off" />
+              <label for="passwordInput">Mật khẩu</label>
+              <button type="button" class="toggle-password" aria-label="Hiển thị mật khẩu">
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <button class="continue-btn" id="continueBtn">Tiếp tục</button>
+            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+            <p class="signup-link">
+              Chưa có tài khoản? <a href="#">Tạo tài khoản ngay</a>
+            </p>
+            <div class="divider">
+              <span>Hoặc</span>
+            </div>
+            <div class="social-login-wrapper">
+              <a href="/oauth2/authorization/google" class="google-login-btn">
                 <img src="/upload/other/Google.png" alt="Google Icon" />
               </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Quên mật khẩu -->
+    <div class="forgot-password-popup" id="forgotPasswordPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Quên mật khẩu</h2>
+          <img src="/upload/other/shiba_sad.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closeForgotPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="forgotEmailInput" required autocomplete="off" />
+              <label for="forgotEmailInput">Email</label>
+            </div>
+            <button class="continue-btn" id="resetPasswordBtn">
+              Gửi yêu cầu
+            </button>
+            <p class="back-link">
+              <a href="#" id="backToLogin">Quay lại đăng nhập</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popup Tạo tài khoản -->
+    <div class="signup-popup" id="signupPopup">
+      <div class="login-popup-content">
+        <div class="login-header">
+          <h2>Tạo tài khoản mới</h2>
+          <img src="/upload/other/shiba_hihi.png" alt="Mascot" class="header-mascot" />
+          <span class="close-popup" id="closeSignupPopup">×</span>
+        </div>
+        <div class="login-body">
+          <div class="login-form">
+            <div class="inputGroup">
+              <input type="text" id="signupEmailInput" required autocomplete="off" />
+              <label for="signupEmailInput">Email</label>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="signupPasswordInput" required autocomplete="off" />
+              <label for="signupPasswordInput">Mật khẩu</label>
+              <button type="button" class="toggle-signup-password" aria-label="Hiển thị mật khẩu">
+                <span class="material-symbols-rounded"> visibility_off </span>
+              </button>
+            </div>
+            <div class="inputGroup">
+              <input type="password" id="signupConfirmPasswordInput" required autocomplete="off" />
+              <label for="signupConfirmPasswordInput">Xác nhận mật khẩu</label>
+            </div>
+            <button class="continue-btn" id="signupBtn">Đăng ký</button>
+            <p class="back-link">
+              <a href="#" id="backToLoginFromSignup">Quay lại đăng nhập</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -70,8 +145,21 @@
 
     <!-- ===== FOOTER ===== -->
     <footer th:replace="user/fragments/footer :: footer"></footer>
-
+    
+    <script src="/assets-user/js/common-header.js"></script>
     <script src="/assets-user/js/home.js"></script>
     <script src="/assets-user/js/buy-ticket.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const payment = params.get("payment");
+
+      if (payment === "success") {
+        alert("✅ Bạn đã thanh toán thành công!");
+      } else if (payment === "fail") {
+        alert("❌ Giao dịch thất bại. Vui lòng thử lại.");
+      } else if (payment === "invalid") {
+        alert("⚠️ Lỗi xác thực chữ ký. Giao dịch không hợp lệ.");
+      }
+    </script>
   </body>
 </html>
